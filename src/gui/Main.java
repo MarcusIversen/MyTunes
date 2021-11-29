@@ -16,7 +16,7 @@ import javax.swing.*;
 
 <<<<<<< HEAD
     public static void main(String[] args) {
-=======
+=====
 public class Main extends Application{
 
     @Override
@@ -27,14 +27,6 @@ public class Main extends Application{
         Scene scene = new Scene(parent);
         primaryStage.setScene(scene);
         primaryStage.show();
-
-
-    }
-
-    public static void main(String[] args)
-    {
-
->>>>>>> c9d25fb007eb19025eaabcb5c08db31a05d5de5c
     }
 
 }
