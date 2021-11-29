@@ -1,4 +1,4 @@
 package gui;
 
-public class MainMenu {
+public class MainMenu{
 }

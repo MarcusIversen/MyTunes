@@ -61,36 +61,36 @@
          <graphic>
             <ImageView fitHeight="11.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Pictures/GUI/Up Button.png" />
+                  <Image url="@Pictures/Up%20Button.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
       <ImageView fitHeight="150.0" fitWidth="52.0" layoutX="126.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Pictures/GUI/Play Button.png" />
+            <Image url="@Pictures/Play%20Button.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="50.0" fitWidth="31.0" layoutX="92.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Pictures/GUI/Back Button.png" />
+            <Image url="@Pictures/Back%20Button.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="30.0" fitWidth="39.0" layoutX="173.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Pictures/GUI/Next Button.png" />
+            <Image url="@Pictures/Next%20Button.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="72.0" fitWidth="14.0" layoutX="66.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Pictures/GUI/Sound Logo.png" />
+            <Image url="@Pictures/Sound%20Logo.png" />
          </image>
       </ImageView>
       <Button layoutX="474.0" layoutY="117.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="52.0">
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Pictures/GUI/Left button.png" />
+                  <Image url="@Pictures/Left%20button.png" />
                </image>
             </ImageView>
          </graphic>
@@ -99,7 +99,7 @@
          <graphic>
             <ImageView fitHeight="11.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Pictures/GUI/Down Button.png" />
+                  <Image url="@Pictures/Down%20Button.png" />
                </image>
             </ImageView>
          </graphic>
