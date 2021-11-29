@@ -14,8 +14,8 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        Parent parent = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        primaryStage.setTitle("Converter of Fun");
+        Parent parent = FXMLLoader.load(getClass().getResource("NewSong.fxml"));
+        primaryStage.setTitle("New Song");
         Scene scene = new Scene(parent);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -25,7 +25,7 @@ public class Main extends Application{
 
     public static void main(String[] args)
     {
-
+        launch(args);
     }
 
 }
