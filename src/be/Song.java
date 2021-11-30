@@ -6,7 +6,7 @@ public class Song {
     private String category;
     private double time;
 
-    public Song(String year, String artist, String category, double time) {
+    public Song(String title, String artist, String category, double time) {
 
         this.title = title;
         this.artist = artist;
@@ -29,6 +29,12 @@ public class Song {
     public Double getTime(){return time;}
 
     public void setTime(){this.time = time;}
+
+    @Override
+    public String toString()
+    {
+        return title + " , " +  artist + " , " + category + " , " + time;
+    }
 }
 
 

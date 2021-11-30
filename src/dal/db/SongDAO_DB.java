@@ -22,7 +22,7 @@ public class SongDAO_DB {
 
             try(Connection connection = databaseConnector.getConnection())
             {
-                String sql = "SELECT * FROM Songs;";
+                String sql = "SELECT * FROM dbo.Songs;";
 
                 Statement statement = connection.createStatement();
 
@@ -34,7 +34,7 @@ public class SongDAO_DB {
                         String title = resultset.getString("Title");
                         String artist = resultset.getString("Artist");
                         String category = resultset.getString("Category");
-                        Double time = resultset.getDouble("Time");
+                        double time = resultset.getDouble("Time");
 
                         Song song = new Song(title, artist, category, time);
                         allSongs.add(song);
