@@ -7,24 +7,23 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.NewSong">
+<AnchorPane prefHeight="315.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.NewSong">
    <children>
-      <Label layoutX="109.0" layoutY="85.0" text="Title:" />
-      <Label layoutX="104.0" layoutY="135.0" text="Artist:" />
-      <Label layoutX="83.0" layoutY="185.0" text="Category:" />
-      <Label layoutX="106.0" layoutY="235.0" text="Time:" />
-      <Label layoutX="114.0" layoutY="285.0" text="File:" />
-      <TextField layoutX="150.0" layoutY="85.0" />
-      <TextField layoutX="150.0" layoutY="135.0" />
-      <TextField layoutX="150.0" layoutY="235.0" />
-      <TextField layoutX="150.0" layoutY="285.0" />
-      <Button layoutX="325.0" layoutY="285.0" mnemonicParsing="false" text="Choose..." />
+      <Label layoutX="43.0" layoutY="26.0" text="Title:" />
+      <Label layoutX="41.0" layoutY="82.0" text="Artist:" />
+      <Label layoutX="20.0" layoutY="127.0" text="Category:" />
+      <Label layoutX="41.0" layoutY="181.0" text="Time:" />
+      <Label layoutX="46.0" layoutY="239.0" text="File:" />
+      <TextField layoutX="85.0" layoutY="31.0" prefHeight="25.0" prefWidth="223.0" />
+      <TextField layoutX="85.0" layoutY="78.0" prefHeight="25.0" prefWidth="223.0" />
+      <TextField layoutX="85.0" layoutY="177.0" prefHeight="25.0" prefWidth="223.0" />
+      <TextField layoutX="85.0" layoutY="235.0" prefHeight="25.0" prefWidth="223.0" />
+      <Button layoutX="319.0" layoutY="235.0" mnemonicParsing="false" text="Choose..." />
       <Button layoutX="133.0" layoutY="-46.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="275.0" layoutY="185.0" mnemonicParsing="false" text="More..." />
-      <Button layoutX="325.0" layoutY="345.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="400.0" layoutY="345.0" mnemonicParsing="false" text="Save" />
-      <MenuButton layoutX="150.0" layoutY="185.0" mnemonicParsing="false" text="MenuButton">
+      <Button layoutX="197.0" layoutY="123.0" mnemonicParsing="false" text="More..." />
+      <Button layoutX="244.0" layoutY="276.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" text="Cancel" />
+      <Button layoutX="319.0" layoutY="276.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="51.0" text="Save" />
+      <MenuButton layoutX="84.0" layoutY="123.0" mnemonicParsing="false" text="MenuButton">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
