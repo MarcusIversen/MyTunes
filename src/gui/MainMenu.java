@@ -15,7 +15,7 @@ public class MainMenu{
 
     public void onBmiClicked(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) NewPlaylist.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("NewPlaylist .fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("NewPlaylist.fxml"));
         Scene scene = new Scene(parent);
         swich.setScene(scene);
 
