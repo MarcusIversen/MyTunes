@@ -15,7 +15,7 @@ public class NewSong {
 
     public void GoReturnMainMenu(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) ReturnMainMenu.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("NewSong.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         Scene scene = new Scene(parent);
         swich.setScene(scene);
 
