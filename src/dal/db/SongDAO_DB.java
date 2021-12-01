@@ -1,6 +1,7 @@
 package dal.db;
 
 import be.Song;
+import gui.MainMenu;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,12 +32,15 @@ public class SongDAO_DB {
                     ResultSet resultset = statement.getResultSet();
                     while(resultset.next())
                     {
+                        int id = resultset.getInt("Id");
                         String title = resultset.getString("Title");
                         String artist = resultset.getString("Artist");
                         String category = resultset.getString("Category");
                         Double time = resultset.getDouble("Time");
 
-                        Song song = new Song(title, artist, category, time);
+
+
+                        Song song = new Song(id, title, artist, category, time);
                         allSongs.add(song);
                     }
                 }
