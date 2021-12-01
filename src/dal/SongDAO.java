@@ -11,6 +11,7 @@ import java.util.List;
 
 public class SongDAO implements ISongDataAccess {
 
+    //TODO FIND UD AF HVORDAN MAN KOBLER SONGDAO SAMMEN MED SQL SERVEREN, SÅ RESTEN AF METODERNE VIRKER
     private static final String SONGS_FILE = "MYTUNES2021GR7";
     private List<Song> allSongs;
 
