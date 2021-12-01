@@ -36,12 +36,12 @@
         </columns>
       </TableView>
       <ListView layoutX="264.0" layoutY="119.0" prefHeight="398.0" prefWidth="191.0" />
-      <TableView layoutX="544.0" layoutY="119.0" prefHeight="398.0" prefWidth="366.0">
+      <TableView fx:id="SongTable" layoutX="544.0" layoutY="119.0" onSort="#SongTableMain" prefHeight="398.0" prefWidth="366.0">
          <columns>
-            <TableColumn prefWidth="139.199951171875" text="Title" />
-            <TableColumn prefWidth="94.4000244140625" text="Artist" />
-            <TableColumn minWidth="0.0" prefWidth="60.0" text="Category" />
-            <TableColumn minWidth="8.800048828125" prefWidth="72.00003662109373" text="Time" />
+            <TableColumn fx:id="TableTitle" prefWidth="139.199951171875" text="Title" />
+            <TableColumn fx:id="TableArtist" prefWidth="94.4000244140625" text="Artist" />
+            <TableColumn fx:id="TableCategory" minWidth="0.0" prefWidth="60.0" text="Category" />
+            <TableColumn fx:id="TableTime" minWidth="8.800048828125" prefWidth="72.00003662109373" text="Time" />
          </columns>
       </TableView>
       <Slider layoutX="82.0" layoutY="71.0" prefHeight="14.0" prefWidth="152.0" />
@@ -104,7 +104,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <ImageView fitHeight="31.0" fitWidth="39.0" layoutX="121.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="120.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Pictures/Pause%20Button.png" />
          </image>
