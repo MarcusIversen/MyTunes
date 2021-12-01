@@ -1,7 +1,6 @@
 package dal;
 
 import be.Song;
-import dal.db.SongDAO_DB;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -17,12 +16,13 @@ public class SongDAO implements ISongDataAccess {
 
     @Override
     public List<Song> getAllSongs() throws IOException {
-        List<Song> allSongList = new ArrayList<>();
 
+        List<Song> allSongList = new ArrayList<>();
         File songsFile = new File(SONGS_FILE);
 
 
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(songsFile))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(songsFile) {
+        })) {
             boolean hasLines = true;
             while (hasLines) {
                 String line = bufferedReader.readLine();
@@ -97,6 +97,28 @@ public class SongDAO implements ISongDataAccess {
 
     @Override
     public void deleteSong(Song song) throws Exception {
+        try {
+            File tmp = new File(song.hashCode() + ".txt");
+            List<Song> allSongs = getAllSongs();
 
+            if (allSongs.remove(song)) {
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File(SONGS_FILE)))) {
+                    for (Song sn : allSongs) {
+                        bw.write(sn.getId() + "," + sn.getTitle() + "," + sn.getArtist() + "," + sn.getCategory() + "," + sn.getTime());
+                        bw.newLine();
+                    }
+                }
+                Files.delete(tmp.toPath());
+            }
+        } catch (IOException ex) {
+
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        File file = new File(SONGS_FILE);
+
+        System.out.println("Is it there: " + file.canRead());
     }
 }
