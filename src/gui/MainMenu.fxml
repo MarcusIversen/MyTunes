@@ -20,14 +20,14 @@
       <ButtonBar layoutX="53.0" layoutY="109.0" prefHeight="40.0" prefWidth="39.0" />
       <ButtonBar layoutX="53.0" layoutY="109.0" prefHeight="40.0" prefWidth="39.0" />
       <ButtonBar layoutX="28.0" layoutY="530.0" prefHeight="40.0" prefWidth="39.0" />
-      <Button layoutX="47.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="New.." />
+      <Button fx:id="NewPlaylist" layoutX="47.0" layoutY="537.0" mnemonicParsing="false" onAction="#GoNewPlaylist" prefHeight="26.0" prefWidth="64.0" text="New.." />
       <Button layoutX="121.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit.." />
       <Button layoutX="183.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Delete" />
       <Button layoutX="391.0" layoutY="536.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Delete" />
     <Button layoutX="846.0" layoutY="536.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Close" />
       <Button layoutX="609.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit.." />
       <Button layoutX="668.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Delete" />
-      <Button layoutX="544.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="New.." />
+      <Button fx:id="NewSong" layoutX="544.0" layoutY="537.0" mnemonicParsing="false" onAction="#GoNewSong" prefHeight="26.0" prefWidth="52.0" text="New.." />
       <TableView layoutX="47.0" layoutY="119.0" prefHeight="398.0" prefWidth="200.0">
         <columns>
           <TableColumn prefWidth="75.0" text="Name" />
