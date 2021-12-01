@@ -12,7 +12,7 @@ import java.io.IOException;
 public class MainMenu{
 
     public Button NewPlaylist;
-    public Button GoNewSong;
+    public Button NewSong;
 
     public void GoNewPlaylist(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) NewPlaylist.getScene().getWindow();
@@ -26,7 +26,7 @@ public class MainMenu{
     }
 
     public void GoNewSong(ActionEvent actionEvent) throws IOException {
-        Stage swich = (Stage) GoNewSong.getScene().getWindow();
+        Stage swich = (Stage) NewSong.getScene().getWindow();
         Parent parent = FXMLLoader.load(getClass().getResource("NewSong.fxml"));
         Scene scene = new Scene(parent);
         swich.setScene(scene);

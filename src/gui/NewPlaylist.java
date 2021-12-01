@@ -14,13 +14,11 @@ public class NewPlaylist {
     public Button BackMainMenu;
 
     public void GoBackMainMenu(ActionEvent actionEvent) throws IOException {
+
         Stage swich = (Stage) BackMainMenu.getScene().getWindow();
         Parent parent = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         Scene scene = new Scene(parent);
         swich.setScene(scene);
-
-
-
 
     }
 
