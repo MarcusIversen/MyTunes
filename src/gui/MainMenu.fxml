@@ -36,7 +36,7 @@
         </columns>
       </TableView>
       <ListView layoutX="264.0" layoutY="119.0" prefHeight="398.0" prefWidth="191.0" />
-      <TableView fx:id="SongTable" layoutX="544.0" layoutY="119.0" onSort="#SongTableMain" prefHeight="398.0" prefWidth="366.0">
+      <TableView fx:id="SongTable" layoutX="544.0" layoutY="119.0" prefHeight="398.0" prefWidth="366.0">
          <columns>
             <TableColumn fx:id="TableTitle" prefWidth="139.199951171875" text="Title" />
             <TableColumn fx:id="TableArtist" prefWidth="94.4000244140625" text="Artist" />

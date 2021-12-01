@@ -19,10 +19,6 @@ public class MainMenu{
         Parent parent = FXMLLoader.load(getClass().getResource("NewPlaylist.fxml"));
         Scene scene = new Scene(parent);
         swich.setScene(scene);
-
-
-
-
     }
 
     public void GoNewSong(ActionEvent actionEvent) throws IOException {
@@ -30,10 +26,12 @@ public class MainMenu{
         Parent parent = FXMLLoader.load(getClass().getResource("NewSong.fxml"));
         Scene scene = new Scene(parent);
         swich.setScene(scene);
-
-
-
-
     }
+
+
+
+
+
+
 
 }
