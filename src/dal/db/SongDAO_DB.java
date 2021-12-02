@@ -106,7 +106,4 @@ public class SongDAO_DB {
                 }
             }
 
-            public static void main(String[] args) throws SQLException {
-
-    }
 }
