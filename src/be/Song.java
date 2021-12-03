@@ -16,26 +16,46 @@ public class Song {
         this.time = time;
     }
 
-    public int getId() {return id;}
+    public int getId() {
+        return id;
+    }
 
-    public String getTitle() {return title;}
 
-    public void setTitle(String title) {this.title = title;}
+    public String getTitle() {
+        return title;
+    }
 
-    public String getArtist(){return artist;}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-    public void setArtist(String artist){this.artist = artist;}
+    public String getArtist() {
+        return artist;
+    }
 
-    public String getCategory(){return category;}
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
 
-    public void setCategory(String category){this.category = category;}
+    public String getCategory() {
+        return category;
+    }
 
-    public Double getTime(){return time;}
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
-    public void setTime(){this.time = time;}
+    public Double getTime() {
+        return time;
+    }
+
+    public void setTime() {
+        this.time = time;
+    }
+
     @Override
-    public String toString(){
-        return  id + " , " + title + " , " + artist + " , " + category + " , " + time;
+    public String toString() {
+        return id + " , " + title + " , " + artist + " , " + category + " , " + time;
     }
 }
 
