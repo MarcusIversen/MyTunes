@@ -32,11 +32,15 @@ public class NewPlaylist {
     private Button PlaylistSaveButton;
 
     String playlist;
-    
 
-    public void savePlaylist(ActionEvent event) {
+
+    public void savePlaylist(ActionEvent event) throws IOException{
         playlist = TextInputPlaylist.getText();
         System.out.println(playlist);
+        Stage swich = (Stage) BackMainMenu.getScene().getWindow();
+        Parent parent = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        Scene scene = new Scene(parent);
+        swich.setScene(scene);
     }
 
 
