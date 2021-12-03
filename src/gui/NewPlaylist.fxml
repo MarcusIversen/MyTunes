@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="239.0" prefWidth="442.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.NewPlaylist">
    <children>
-      <TextField layoutX="140.0" layoutY="71.0" prefHeight="25.0" prefWidth="231.0" />
+      <TextField fx:id="TextInputPlaylist" layoutX="140.0" layoutY="71.0" prefHeight="25.0" prefWidth="231.0" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
       <Text layoutX="81.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" wrappingWidth="130.693359375">
          <font>
@@ -19,6 +19,6 @@
       <Separator layoutX="-17.0" layoutY="30.0" prefHeight="3.0" prefWidth="458.0" />
       <Button fx:id="BackMainMenu" layoutX="230.0" layoutY="152.0" mnemonicParsing="false" onAction="#GoBackMainMenu" prefHeight="25.0" prefWidth="77.0" text="Cancel" />
       <Separator layoutY="211.0" prefHeight="3.0" prefWidth="442.0" />
-      <Button layoutX="330.0" layoutY="152.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Save" />
+      <Button fx:id="SaveButton" layoutX="330.0" layoutY="152.0" mnemonicParsing="false" onAction="#savePlaylist" prefHeight="25.0" prefWidth="70.0" text="Save" />
    </children>
 </AnchorPane>
