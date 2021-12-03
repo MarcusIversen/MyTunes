@@ -64,7 +64,6 @@ public class MainMenu {
     //* samme for de andre
     public void initialize() {
 //        clmID.setCellValueFactory(new PropertyValueFactory<>("ticketId"));
-
         TableTitle.setCellValueFactory(new PropertyValueFactory<Song, String>("title"));
         TableArtist.setCellValueFactory(new PropertyValueFactory<Song, String>("artist"));
         TableCategory.setCellValueFactory(new PropertyValueFactory<Song, String>("category"));
