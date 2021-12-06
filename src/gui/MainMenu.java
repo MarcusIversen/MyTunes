@@ -10,11 +10,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import java.sql.Connection;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -36,6 +36,8 @@ public class MainMenu {
     private TableColumn<Song, String> TableCategory;
     @FXML
     private TableColumn<Song, Double> TableTime;
+
+    public static Label PlaylistTextNowPlaying;
 
     public Button NewPlaylist;
     public Button NewSong;

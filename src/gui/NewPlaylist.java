@@ -8,16 +8,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.IOException;
 
 public class NewPlaylist {
 
     public Button BackMainMenu;
 
     public void GoBackMainMenu(ActionEvent actionEvent) throws IOException {
-
         Stage swich = (Stage) BackMainMenu.getScene().getWindow();
         Parent parent = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         Scene scene = new Scene(parent);
@@ -37,8 +37,11 @@ public class NewPlaylist {
     public void savePlaylist(ActionEvent event) throws IOException{
         playlist = TextInputPlaylist.getText();
         System.out.println(playlist);
+//        PlaylistTextNowPlaying.setText(playlist);
         Stage swich = (Stage) BackMainMenu.getScene().getWindow();
         Parent parent = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        Text playListLabel = (Text) parent.lookup("#PlaylistTextNowPlaying");
+        playListLabel.setText(playlist);
         Scene scene = new Scene(parent);
         swich.setScene(scene);
     }

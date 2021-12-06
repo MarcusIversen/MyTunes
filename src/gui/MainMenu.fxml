@@ -45,7 +45,7 @@
          </columns>
       </TableView>
       <Slider layoutX="82.0" layoutY="71.0" prefHeight="14.0" prefWidth="152.0" />
-      <Text layoutX="396.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(none) ... Is Playing">
+      <Text layoutX="493.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="... Is Playing">
          <font>
             <Font size="20.0" />
          </font>
@@ -109,5 +109,10 @@
             <Image url="@Pictures/Pause%20Button.png" />
          </image>
       </ImageView>
+      <Text fx:id="PlaylistTextNowPlaying" layoutX="427.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(none)">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
