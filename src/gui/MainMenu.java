@@ -1,6 +1,8 @@
 package gui;
 
 import be.Song;
+import bll.SongManager;
+import bll.SongSearcher;
 import dal.db.SongDAO_DB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,15 +15,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainMenu {
 
+
+
     ObservableList<Song> songData = FXCollections.observableArrayList();
+    ObservableList<Song> searchData = FXCollections.observableArrayList();
 
     //* Her tager jeg dataen fra Fxml filen og sætter dem til at op tage data
     @FXML
@@ -37,10 +45,19 @@ public class MainMenu {
     @FXML
     private TableColumn<Song, Double> TableTime;
 
+
     public static Label PlaylistTextNowPlaying;
+    
+    private SongSearcher songSearcher = new SongSearcher();
+    private SongManager songManager = new SongManager();
+
 
     public Button NewPlaylist;
     public Button NewSong;
+    public TextField filterBar;
+    public Button filterSearch;
+
+
 
 //    public String TableTitle;
 //    public String TableArtist;
@@ -86,10 +103,27 @@ public class MainMenu {
         SongTable.setItems(getSongData());
     }
 
+    private void TableViewLoader(ObservableList<Song> searchData) {
+        SongTable.setItems(getSearchData());
+    }
+
+
+    public ObservableList<Song> getSearchData() {
+        return searchData;
+    }
+
  //* her sætter jeg hvad song data er 
     public ObservableList<Song> getSongData() {
         return songData;
     }
 
+    public void filterSongs() throws Exception {
+        try {
+            searchData = FXCollections.observableList(songManager.searchSongs(filterBar.getText()));
+            TableViewLoader(searchData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+    }
 }
