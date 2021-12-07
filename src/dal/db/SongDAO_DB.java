@@ -2,8 +2,6 @@ package dal.db;
 
 import be.Song;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import dal.ISongDataAccess;
-import gui.MainMenu;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -40,7 +38,7 @@ public class SongDAO_DB {
 
 
 
-                        Song song = new Song(id, title, artist, category, time);
+                        Song song = new Song(id, title, time);
                         allSongs.add(song);
                     }
                 }
@@ -66,7 +64,7 @@ public class SongDAO_DB {
                         if (resultSet.next()) {
                             id = resultSet.getInt(1);
                         }
-                        Song song = new Song(id, title, artist, category, time);
+                        Song song = new Song(id, title, time);
                         return song;
                     }
             } catch (SQLException throwables) {

@@ -7,7 +7,7 @@ public class Song {
     private String category;
     private double time;
 
-    public Song(int id, String title, String artist, String category, double time) {
+    public Song(int id, String title, double time) {
 
         this.id = id;
         this.title = title;
@@ -29,9 +29,7 @@ public class Song {
         this.title = title;
     }
 
-    public String getArtist() {
-        return artist;
-    }
+    public String getArtist() {return artist;}
 
     public void setArtist(String artist) {
         this.artist = artist;

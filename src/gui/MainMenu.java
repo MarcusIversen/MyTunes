@@ -23,8 +23,8 @@ public class MainMenu {
 
 
     ObservableList<Song> songData = FXCollections.observableArrayList();
-    ObservableList<Playlist> playlistData = FXCollections.observableArrayList();
     ObservableList<Song> searchData = FXCollections.observableArrayList();
+    ObservableList<Playlist> playlistData = FXCollections.observableArrayList();
     ObservableList<Playlist> playlistSerchData = FXCollections.observableArrayList();
 
     //* Her tager jeg dataen fra Fxml filen og sætter dem til at op tage data
@@ -104,7 +104,7 @@ public class MainMenu {
         playlistSongs.setCellValueFactory(new PropertyValueFactory<Playlist, Integer>("songs"));
         playlistTime.setCellValueFactory(new PropertyValueFactory<Playlist, Double>("playTime"));
         SongDAO_DB songDbLogic = new SongDAO_DB();
-        SongDAO_DB playlistDbLogic = new SongDAO_DB();
+        playlistDB playlistDbLogic = new SongDAO_DB();
 
         //* her sætter jeg dataen til at blive vist i tabellen
         try {
@@ -114,12 +114,12 @@ public class MainMenu {
             e.printStackTrace();
         }
 
-       /* try {
-           playlistData = FXCollections.observableList(songDbLogic.getAllSongs());
+        try {
+           playlistData = FXCollections.observableList(playlistDbLogic.getAllPlaylists());
             TableViewLoad(playlistData);
         } catch (SQLException e) {
             e.printStackTrace();
-        } */
+        }
     }
 
     //TableView bliver generert
