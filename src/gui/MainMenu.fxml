@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainMenu">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainMenu">
    <children>
       <ButtonBar layoutX="43.0" layoutY="99.0" prefHeight="40.0" prefWidth="39.0" />
       <ButtonBar layoutX="53.0" layoutY="109.0" prefHeight="40.0" prefWidth="39.0" />
@@ -28,11 +28,11 @@
       <Button layoutX="609.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit.." />
       <Button layoutX="668.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Delete" />
       <Button fx:id="NewSong" layoutX="544.0" layoutY="537.0" mnemonicParsing="false" onAction="#GoNewSong" prefHeight="26.0" prefWidth="52.0" text="New.." />
-      <TableView layoutX="47.0" layoutY="119.0" prefHeight="398.0" prefWidth="200.0">
+      <TableView fx:id="PlaylistTable" layoutX="47.0" layoutY="119.0" prefHeight="398.0" prefWidth="200.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Name" />
-          <TableColumn prefWidth="68.80001831054688" text="Songs" />
-            <TableColumn prefWidth="55.999969482421875" text="Time" />
+          <TableColumn fx:id="PlaylistName" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="playlistSongs" prefWidth="68.80001831054688" text="Songs" />
+            <TableColumn fx:id="playlistTime" prefWidth="55.999969482421875" text="Time" />
         </columns>
       </TableView>
       <ListView layoutX="264.0" layoutY="119.0" prefHeight="398.0" prefWidth="191.0" />
@@ -45,7 +45,7 @@
          </columns>
       </TableView>
       <Slider layoutX="82.0" layoutY="71.0" prefHeight="14.0" prefWidth="152.0" />
-      <Text layoutX="493.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="... Is Playing">
+      <Text layoutX="528.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Is Playing">
          <font>
             <Font size="20.0" />
          </font>

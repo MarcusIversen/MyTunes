@@ -1,5 +1,6 @@
 package gui;
 
+import be.Playlist;
 import be.Song;
 import bll.SongManager;
 import bll.SongSearcher;
@@ -21,13 +22,17 @@ import java.sql.SQLException;
 public class MainMenu {
 
 
-
     ObservableList<Song> songData = FXCollections.observableArrayList();
+    ObservableList<Playlist> playlistData = FXCollections.observableArrayList();
     ObservableList<Song> searchData = FXCollections.observableArrayList();
+    ObservableList<Playlist> playlistSerchData = FXCollections.observableArrayList();
 
     //* Her tager jeg dataen fra Fxml filen og sætter dem til at op tage data
     @FXML
     private TableView<Song> SongTable;
+    @FXML
+    private TableView<Playlist> PlaylistTable;
+
     //    @FXML
 //    private TableColumn<Song, String> clmID;
     @FXML
@@ -40,6 +45,14 @@ public class MainMenu {
     private TableColumn<Song, Double> TableTime;
 
 
+    @FXML
+    private TableColumn<Playlist, String> PlaylistName;
+    @FXML
+    private TableColumn<Playlist, Integer> playlistSongs;
+    @FXML
+    private TableColumn<Playlist, Double> playlistTime;
+
+
     public static Label PlaylistTextNowPlaying;
 
     private SongSearcher songSearcher = new SongSearcher();
@@ -48,9 +61,9 @@ public class MainMenu {
 
     public Button NewPlaylist;
     public Button NewSong;
+
     public TextField filterBar;
     public Button filterSearch;
-
 
 
 //    public String TableTitle;
@@ -81,7 +94,12 @@ public class MainMenu {
         TableArtist.setCellValueFactory(new PropertyValueFactory<Song, String>("artist"));
         TableCategory.setCellValueFactory(new PropertyValueFactory<Song, String>("category"));
         TableTime.setCellValueFactory(new PropertyValueFactory<Song, Double>("time"));
+
+        PlaylistName.setCellValueFactory(new PropertyValueFactory<Playlist, String>("title"));
+        playlistSongs.setCellValueFactory(new PropertyValueFactory<Playlist, Integer>("songs"));
+        playlistTime.setCellValueFactory(new PropertyValueFactory<Playlist, Double>("playTime"));
         SongDAO_DB songDbLogic = new SongDAO_DB();
+        SongDAO_DB playlistDbLogic = new SongDAO_DB();
 
         //* her sætter jeg daten til at blive vis i tabellen
         try {
@@ -90,15 +108,24 @@ public class MainMenu {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+       /* try {
+           playlistData = FXCollections.observableList(songDbLogic.getAllSongs());
+            TableViewLoad(playlistData);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } */
     }
 
     //TableView wird generiert
     private void TableViewLoad(ObservableList<Song> songData) {
         SongTable.setItems(getSongData());
+        PlaylistTable.setItems(getPlaylistData());
     }
 
     private void TableViewLoader(ObservableList<Song> searchData) {
         SongTable.setItems(getSearchData());
+        PlaylistTable.setItems(getplaylistSerchData());
     }
 
 
@@ -106,9 +133,17 @@ public class MainMenu {
         return searchData;
     }
 
- //* her sætter jeg hvad song data er 
+    public ObservableList<Playlist> getplaylistSerchData() {
+        return playlistSerchData;
+    }
+
+    //* her sætter jeg hvad song data er
     public ObservableList<Song> getSongData() {
         return songData;
+    }
+
+    public ObservableList<Playlist> getPlaylistData() {
+        return playlistData;
     }
 
     public void filterSongs() throws Exception {
