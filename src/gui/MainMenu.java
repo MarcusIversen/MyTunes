@@ -58,7 +58,7 @@ public class MainMenu {
     private SongSearcher songSearcher = new SongSearcher();
     private SongManager songManager = new SongManager();
 
-
+    public Button closeButton;
     public Button NewPlaylist;
     public Button NewSong;
 
@@ -85,8 +85,13 @@ public class MainMenu {
         Scene scene = new Scene(parent);
         swich.setScene(scene);
     }
+    
+    public void closeButton() {
+        System.exit(0);
+    }
 
-    //*  her starter jeg programet og sætter værdigerne til fortæller at der er en song som er en String der hedder title et sted i koden som den finder den gør det
+
+    //*  her starter jeg programmet og sætter værdierne til at fortæller der er en song som er en String der hedder title et sted i koden. Den finder den og gør det
     //* samme for de andre
     public void initialize() {
 //        clmID.setCellValueFactory(new PropertyValueFactory<>("ticketId"));
@@ -101,7 +106,7 @@ public class MainMenu {
         SongDAO_DB songDbLogic = new SongDAO_DB();
         SongDAO_DB playlistDbLogic = new SongDAO_DB();
 
-        //* her sætter jeg daten til at blive vis i tabellen
+        //* her sætter jeg dataen til at blive vist i tabellen
         try {
             songData = FXCollections.observableList(songDbLogic.getAllSongs());
             TableViewLoad(songData);
@@ -117,7 +122,7 @@ public class MainMenu {
         } */
     }
 
-    //TableView wird generiert
+    //TableView bliver generert
     private void TableViewLoad(ObservableList<Song> songData) {
         SongTable.setItems(getSongData());
         PlaylistTable.setItems(getPlaylistData());
