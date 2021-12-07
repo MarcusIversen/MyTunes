@@ -13,8 +13,7 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 
 public class NewSong {
@@ -42,10 +41,11 @@ public class NewSong {
 
 
 
-    public String getSongInfo(){
+    public String getSongInfo() throws IOException {
         String temp;
         temp = title() + "\n" + artist()  + "\n" + category() + "\n" + time();
         System.out.println(temp);
+        getFile();
         return temp;
     }
 
@@ -64,17 +64,23 @@ public class NewSong {
         return categoryTemp;
     }
     public String time(){
-        String temp = timeBar.getText();
-        return temp;
+        String timeTemp = timeBar.getText();
+        return timeTemp;
     }
+
 
     public void chooseFile() {
         FileChooser fileChooser = new FileChooser();
+        File defaultDirectory = new File("src/dal/db/songFiles");
+        fileChooser.setInitialDirectory(defaultDirectory);
         File selectedFile = fileChooser.showOpenDialog(null);
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("mp3 files", "*.MP3"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("mp3 and wav files", "*.MP3" + "*.Wav"));
         if(selectedFile != null){
             fileText.appendText(selectedFile.getAbsolutePath());
         }else System.out.println("File is not valid");
+    }
+    public void getFile() throws IOException {
+        //TODO GØR SÅDAN AT FILE BLIVER GEMT SAMMEN MED SANGEN DU LAVER
     }
 
 }
