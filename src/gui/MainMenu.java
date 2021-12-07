@@ -45,7 +45,7 @@ public class MainMenu {
     private SongSearcher songSearcher = new SongSearcher();
     private SongManager songManager = new SongManager();
 
-
+    public Button closeButton;
     public Button NewPlaylist;
     public Button NewSong;
     public TextField filterBar;
@@ -71,6 +71,10 @@ public class MainMenu {
         Parent parent = FXMLLoader.load(getClass().getResource("NewSong.fxml"));
         Scene scene = new Scene(parent);
         swich.setScene(scene);
+    }
+
+    public void closeButton() {
+        System.exit(0);
     }
 
     //*  her starter jeg programet og sætter værdigerne til fortæller at der er en song som er en String der hedder title et sted i koden som den finder den gør det

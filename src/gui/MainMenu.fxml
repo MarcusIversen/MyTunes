@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainMenu">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainMenu">
    <children>
       <ButtonBar layoutX="43.0" layoutY="99.0" prefHeight="40.0" prefWidth="39.0" />
       <ButtonBar layoutX="53.0" layoutY="109.0" prefHeight="40.0" prefWidth="39.0" />
@@ -24,7 +24,7 @@
       <Button layoutX="121.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit.." />
       <Button layoutX="183.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Delete" />
       <Button layoutX="391.0" layoutY="536.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Delete" />
-    <Button layoutX="846.0" layoutY="536.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Close" />
+    <Button fx:id="closeButton" layoutX="846.0" layoutY="536.0" mnemonicParsing="false" onAction="#closeButton" prefHeight="26.0" prefWidth="64.0" text="Close" />
       <Button layoutX="609.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit.." />
       <Button layoutX="668.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Delete" />
       <Button fx:id="NewSong" layoutX="544.0" layoutY="537.0" mnemonicParsing="false" onAction="#GoNewSong" prefHeight="26.0" prefWidth="52.0" text="New.." />
