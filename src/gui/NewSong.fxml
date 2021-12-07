@@ -16,8 +16,8 @@
       <TextField fx:id="titleBar" layoutX="85.0" layoutY="31.0" prefHeight="25.0" prefWidth="223.0" />
       <TextField fx:id="artistBar" layoutX="85.0" layoutY="78.0" prefHeight="25.0" prefWidth="223.0" />
       <TextField fx:id="timeBar" layoutX="85.0" layoutY="177.0" prefHeight="25.0" prefWidth="223.0" />
-      <TextField layoutX="85.0" layoutY="235.0" prefHeight="25.0" prefWidth="223.0" />
-      <Button layoutX="319.0" layoutY="235.0" mnemonicParsing="false" text="Choose..." />
+      <TextField fx:id="fileText" layoutX="85.0" layoutY="235.0" prefHeight="25.0" prefWidth="223.0" />
+      <Button layoutX="319.0" layoutY="235.0" mnemonicParsing="false" onAction="#chooseFile" text="Choose..." />
       <Button layoutX="133.0" layoutY="-46.0" mnemonicParsing="false" text="Button" />
       <Button layoutX="244.0" layoutY="123.0" mnemonicParsing="false" text="More..." />
       <Button fx:id="ReturnMainMenu" layoutX="244.0" layoutY="276.0" mnemonicParsing="false" onAction="#GoReturnMainMenu" prefHeight="25.0" prefWidth="64.0" text="Cancel" />

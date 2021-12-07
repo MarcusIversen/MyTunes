@@ -72,7 +72,7 @@ public class MainMenu {
         Scene scene = new Scene(parent);
         swich.setScene(scene);
     }
-    
+
     public void closeButton() {
         System.exit(0);
     }
@@ -98,6 +98,7 @@ public class MainMenu {
     }
 
     //TableView bliver generert
+
     private void TableViewLoad(ObservableList<Song> songData) {
         SongTable.setItems(getSongData());
     }
