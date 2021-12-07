@@ -38,7 +38,7 @@ public class SongDAO_DB {
 
 
 
-                        Song song = new Song(id, title, time);
+                        Song song = new Song(id, title, artist, category, time);
                         allSongs.add(song);
                     }
                 }
@@ -64,7 +64,7 @@ public class SongDAO_DB {
                         if (resultSet.next()) {
                             id = resultSet.getInt(1);
                         }
-                        Song song = new Song(id, title, time);
+                        Song song = new Song(id, title, artist, category, time);
                         return song;
                     }
             } catch (SQLException throwables) {

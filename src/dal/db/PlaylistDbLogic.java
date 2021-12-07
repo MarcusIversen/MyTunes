@@ -8,11 +8,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class playlistDbLogic {
+public class PlaylistDbLogic {
 
     private MyDatabaseConnector databaseConnector;
 
-    public playlistDbLogic()
+    public PlaylistDbLogic()
     {
         databaseConnector = new MyDatabaseConnector();
     }
@@ -36,7 +36,6 @@ public class playlistDbLogic {
                    double time = resultset.getDouble("Time");
 
 
-
                     Playlist playlist = new Playlist(name, songs, time);
                     allPlaylist.add(playlist);
                 }
@@ -45,8 +44,7 @@ public class playlistDbLogic {
         return allPlaylist;
     }
 
-
-    public Playlist createSong(String name, String songs, double time) throws SQLServerException {
+   /** public Playlist createSong(String name, int songs, double time) throws SQLServerException {
 
         try(Connection connection = databaseConnector.getConnection())
         {
@@ -54,7 +52,7 @@ public class playlistDbLogic {
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, name);
-                preparedStatement.setString(2, songs);
+                preparedStatement.setInt(2, songs);
                 preparedStatement.setDouble(3, time);
                 preparedStatement.executeUpdate();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -70,15 +68,17 @@ public class playlistDbLogic {
         }
         return null;
     }
+    **/
 
 
-    public void updateSong(Playlist playlist) throws SQLException {
+    /**
+     * public void updatePlaylist(Playlist playlist) throws SQLException {
         try (Connection connection = databaseConnector.getConnection()) {
-            String sql = "UPDATE Song SET Title=?, Artist=?, Time=? WHERE Id=?;";
+            String sql = "UPDATE Playlist SET Name=?, Songs=?, Time=? WHERE Id=?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, Playlist.getName());
+            preparedStatement.setString(1, Playlist.getPlName());
             preparedStatement.setString(2, String.valueOf(Playlist.getSongCount()));
-            preparedStatement.setDouble(3, Playlist.getTime());
+            preparedStatement.setDouble(3, Playlist.getPlTime());
             if (preparedStatement.executeUpdate() != 1) {
                 throw new Exception("Could not delete song");
             }
@@ -86,6 +86,7 @@ public class playlistDbLogic {
             e.printStackTrace();
         }
     }
+     **/
 
 
     public void deleteSong (Song song){

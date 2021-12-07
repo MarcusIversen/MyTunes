@@ -4,6 +4,7 @@ import be.Playlist;
 import be.Song;
 import bll.SongManager;
 import bll.SongSearcher;
+import dal.db.PlaylistDbLogic;
 import dal.db.SongDAO_DB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,7 +26,6 @@ public class MainMenu {
     ObservableList<Song> songData = FXCollections.observableArrayList();
     ObservableList<Song> searchData = FXCollections.observableArrayList();
     ObservableList<Playlist> playlistData = FXCollections.observableArrayList();
-    ObservableList<Playlist> playlistSerchData = FXCollections.observableArrayList();
 
     //* Her tager jeg dataen fra Fxml filen og sætter dem til at op tage data
     @FXML
@@ -57,6 +57,7 @@ public class MainMenu {
 
     private SongSearcher songSearcher = new SongSearcher();
     private SongManager songManager = new SongManager();
+    private PlaylistModel playlistModel = new PlaylistModel();
 
     public Button closeButton;
     public Button NewPlaylist;
@@ -64,6 +65,9 @@ public class MainMenu {
 
     public TextField filterBar;
     public Button filterSearch;
+
+    public MainMenu() throws Exception {
+    }
 
 
 //    public String TableTitle;
@@ -95,16 +99,11 @@ public class MainMenu {
     //* samme for de andre
     public void initialize() {
 //        clmID.setCellValueFactory(new PropertyValueFactory<>("ticketId"));
-        TableTitle.setCellValueFactory(new PropertyValueFactory<Song, String>("title"));
-        TableArtist.setCellValueFactory(new PropertyValueFactory<Song, String>("artist"));
-        TableCategory.setCellValueFactory(new PropertyValueFactory<Song, String>("category"));
-        TableTime.setCellValueFactory(new PropertyValueFactory<Song, Double>("time"));
-
-        PlaylistName.setCellValueFactory(new PropertyValueFactory<Playlist, String>("title"));
-        playlistSongs.setCellValueFactory(new PropertyValueFactory<Playlist, Integer>("songs"));
-        playlistTime.setCellValueFactory(new PropertyValueFactory<Playlist, Double>("playTime"));
+        TableTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        TableArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
+        TableCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+        TableTime.setCellValueFactory(new PropertyValueFactory<>("time"));
         SongDAO_DB songDbLogic = new SongDAO_DB();
-        playlistDB playlistDbLogic = new SongDAO_DB();
 
         //* her sætter jeg dataen til at blive vist i tabellen
         try {
@@ -114,10 +113,15 @@ public class MainMenu {
             e.printStackTrace();
         }
 
+        PlaylistName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        playlistSongs.setCellValueFactory(new PropertyValueFactory<>("songs"));
+        playlistTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+        PlaylistDbLogic playlistDbLogic = new PlaylistDbLogic();
+
         try {
-           playlistData = FXCollections.observableList(playlistDbLogic.getAllPlaylists());
-            TableViewLoad(playlistData);
-        } catch (SQLException e) {
+            playlistData = FXCollections.observableList(playlistModel.getPlaylistData());
+            TableViewLoadet(playlistData);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -126,21 +130,19 @@ public class MainMenu {
 
     private void TableViewLoad(ObservableList<Song> songData) {
         SongTable.setItems(getSongData());
-        PlaylistTable.setItems(getPlaylistData());
     }
 
     private void TableViewLoader(ObservableList<Song> searchData) {
         SongTable.setItems(getSearchData());
-        PlaylistTable.setItems(getplaylistSerchData());
+    }
+
+    private void TableViewLoadet(ObservableList<Playlist> playlistData){
+        PlaylistTable.setItems(getPlaylistData());
     }
 
 
     public ObservableList<Song> getSearchData() {
         return searchData;
-    }
-
-    public ObservableList<Playlist> getplaylistSerchData() {
-        return playlistSerchData;
     }
 
     //* her sætter jeg hvad song data er
