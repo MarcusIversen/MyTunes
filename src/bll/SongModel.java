@@ -1,14 +1,14 @@
-package gui;
+package bll;
 
 import be.Song;
 import bll.SongManager;
-import gui.MainMenu;
+import gui.MainMenuController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.List;
 
-public class SongModel extends MainMenu {
+public class SongModel extends MainMenuController {
     private ObservableList<Song> songsToBeViewed;
 
     private SongManager songManager;

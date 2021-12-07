@@ -2,9 +2,11 @@ package gui;
 
 import be.Playlist;
 import be.Song;
+import bll.PlaylistModel;
 import bll.SongManager;
+import bll.SongModel;
 import bll.SongSearcher;
-import dal.db.PlaylistDbLogic;
+import dal.db.PlaylistDAO_DB;
 import dal.db.SongDAO_DB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +22,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class MainMenu {
+public class MainMenuController {
 
 
     ObservableList<Song> songData = FXCollections.observableArrayList();
@@ -57,7 +59,8 @@ public class MainMenu {
 
     private SongSearcher songSearcher = new SongSearcher();
     private SongManager songManager = new SongManager();
-    private PlaylistModel playlistModel = new PlaylistModel();
+
+
 
     public Button closeButton;
     public Button NewPlaylist;
@@ -66,8 +69,6 @@ public class MainMenu {
     public TextField filterBar;
     public Button filterSearch;
 
-    public MainMenu() throws Exception {
-    }
 
 
 //    public String TableTitle;
@@ -97,26 +98,26 @@ public class MainMenu {
 
     //*  her starter jeg programmet og sætter værdierne til at fortæller der er en song som er en String der hedder title et sted i koden. Den finder den og gør det
     //* samme for de andre
-    public void initialize() {
-//        clmID.setCellValueFactory(new PropertyValueFactory<>("ticketId"));
+    public void initialize() throws Exception {
+//
         TableTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         TableArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
         TableCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
         TableTime.setCellValueFactory(new PropertyValueFactory<>("time"));
-        SongDAO_DB songDbLogic = new SongDAO_DB();
+        SongModel songModel = new SongModel();
 
         //* her sætter jeg dataen til at blive vist i tabellen
         try {
-            songData = FXCollections.observableList(songDbLogic.getAllSongs());
+            songData = FXCollections.observableList((songModel.getSongData()));
             TableViewLoad(songData);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         PlaylistName.setCellValueFactory(new PropertyValueFactory<>("name"));
         playlistSongs.setCellValueFactory(new PropertyValueFactory<>("songs"));
         playlistTime.setCellValueFactory(new PropertyValueFactory<>("time"));
-        PlaylistDbLogic playlistDbLogic = new PlaylistDbLogic();
+        PlaylistModel playlistModel = new PlaylistModel();
 
         try {
             playlistData = FXCollections.observableList(playlistModel.getPlaylistData());

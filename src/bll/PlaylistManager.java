@@ -1,20 +1,20 @@
 package bll;
 
 import be.Playlist;
-import dal.db.PlaylistDbLogic;
+import dal.db.PlaylistDAO_DB;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class PlaylistManager {
-    PlaylistDbLogic playlistDbLogic;
+    PlaylistDAO_DB playlistDAODB;
 
     public PlaylistManager()
     {
-        playlistDbLogic = new PlaylistDbLogic();
+        playlistDAODB = new PlaylistDAO_DB();
     }
 
     public List<Playlist> getAllPlaylists() throws SQLException {
-        return playlistDbLogic.getAllPlaylists();
+        return playlistDAODB.getAllPlaylists();
     }
 }

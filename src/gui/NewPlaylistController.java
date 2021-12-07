@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class NewPlaylist {
+public class NewPlaylistController {
 
     public Button BackMainMenu;
 

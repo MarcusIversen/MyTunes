@@ -16,7 +16,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 
 
-public class NewSong {
+public class NewSongController {
 
     public Button ReturnMainMenu;
     public TextField titleBar;
