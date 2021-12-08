@@ -71,12 +71,12 @@ public class MainMenuController {
 //    public String TableCategory;
 //    public double TableTime;
 
-    /**public void mediaPlayer(){
+    public void mediaPlayer(){
         Media pick = new Media("STAY.mp3");
         MediaPlayer player = new MediaPlayer(pick);
         player.play();
     }
-     */
+
 
     public void GoNewPlaylist(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) NewPlaylist.getScene().getWindow();

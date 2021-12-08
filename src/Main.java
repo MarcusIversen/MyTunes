@@ -11,8 +11,8 @@ import java.io.IOException;
 public class Main extends Application{
 
 
-    public void start(Stage primaryStage) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource(".../src/gui/view/MainMenu.fxml"));
+    public void start(Stage primaryStage) throws Exception {
+        Parent parent = FXMLLoader.load(getClass().getResource("gui/view/MainMenu.fxml"));
         primaryStage.setTitle("myTunes");
         Scene scene = new Scene(parent);
         primaryStage.setScene(scene);
