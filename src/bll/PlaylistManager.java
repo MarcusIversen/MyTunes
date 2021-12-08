@@ -1,7 +1,7 @@
 package bll;
 
 import be.Playlist;
-import dal.db.PlaylistDAO_DB;
+import dal.db.dao.PlaylistDAO_DB;
 
 import java.sql.SQLException;
 import java.util.List;

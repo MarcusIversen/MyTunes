@@ -1,13 +1,9 @@
-package gui;
+package gui.controllers;
 
 import be.Playlist;
 import be.Song;
-import bll.PlaylistModel;
-import bll.SongManager;
-import bll.SongModel;
-import bll.SongSearcher;
-import dal.db.PlaylistDAO_DB;
-import dal.db.SongDAO_DB;
+import gui.models.PlaylistModel;
+import gui.models.SongModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,15 +16,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class MainMenuController {
-
-
-    ObservableList<Song> songData = FXCollections.observableArrayList();
-    ObservableList<Song> searchData = FXCollections.observableArrayList();
-    ObservableList<Playlist> playlistData = FXCollections.observableArrayList();
-
     //* Her tager jeg dataen fra Fxml filen og sætter dem til at op tage data
     @FXML
     private TableView<Song> SongTable;
@@ -54,12 +43,13 @@ public class MainMenuController {
     @FXML
     private TableColumn<Playlist, Double> playlistTime;
 
+    ObservableList<Song> songData = FXCollections.observableArrayList();
+    ObservableList<Song> searchData = FXCollections.observableArrayList();
+    ObservableList<Playlist> playlistData = FXCollections.observableArrayList();
 
     public static Label PlaylistTextNowPlaying;
 
-    private SongSearcher songSearcher = new SongSearcher();
-    private SongManager songManager = new SongManager();
-
+    private SongModel songModel;
 
 
     public Button closeButton;
@@ -70,7 +60,6 @@ public class MainMenuController {
     public Button filterSearch;
 
 
-
 //    public String TableTitle;
 //    public String TableArtist;
 //    public String TableCategory;
@@ -79,14 +68,14 @@ public class MainMenuController {
 
     public void GoNewPlaylist(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) NewPlaylist.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("NewPlaylist.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("../view/NewPlaylist.fxml"));
         Scene scene = new Scene(parent);
         swich.setScene(scene);
     }
 
     public void GoNewSong(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) NewSong.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("NewSong.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("../view/NewSong.fxml"));
         Scene scene = new Scene(parent);
         swich.setScene(scene);
     }
@@ -100,11 +89,13 @@ public class MainMenuController {
     //* samme for de andre
     public void initialize() throws Exception {
 //
+        songModel = new SongModel();
+
         TableTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         TableArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
         TableCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
         TableTime.setCellValueFactory(new PropertyValueFactory<>("time"));
-        SongModel songModel = new SongModel();
+
 
         //* her sætter jeg dataen til at blive vist i tabellen
         try {
@@ -137,7 +128,7 @@ public class MainMenuController {
         SongTable.setItems(getSearchData());
     }
 
-    private void TableViewLoadet(ObservableList<Playlist> playlistData){
+    private void TableViewLoadet(ObservableList<Playlist> playlistData) {
         PlaylistTable.setItems(getPlaylistData());
     }
 
@@ -157,7 +148,7 @@ public class MainMenuController {
 
     public void filterSongs() throws Exception {
         try {
-            searchData = FXCollections.observableList(songManager.searchSongs(filterBar.getText()));
+            searchData = FXCollections.observableList(songModel.searchSongs(filterBar.getText()));
             TableViewLoader(searchData);
         } catch (Exception e) {
             e.printStackTrace();

@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainMenuController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.MainMenuController">
    <children>
       <ButtonBar layoutX="43.0" layoutY="99.0" prefHeight="40.0" prefWidth="39.0" />
       <ButtonBar layoutX="53.0" layoutY="109.0" prefHeight="40.0" prefWidth="39.0" />
@@ -61,36 +61,36 @@
          <graphic>
             <ImageView fitHeight="11.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Pictures/Up%20Button.png" />
+                  <Image url="@../Pictures/Up%20Button.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
       <ImageView fitHeight="150.0" fitWidth="52.0" layoutX="147.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Pictures/Play%20Button.png" />
+            <Image url="@../Pictures/Play%20Button.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="82.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Pictures/Back%20Button.png" />
+            <Image url="@../Pictures/Back%20Button.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="40.0" fitWidth="39.0" layoutX="196.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Pictures/Next%20Button.png" />
+            <Image url="@../Pictures/Next%20Button.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="72.0" fitWidth="14.0" layoutX="66.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Pictures/Sound%20Logo.png" />
+            <Image url="@../Pictures/Sound%20Logo.png" />
          </image>
       </ImageView>
       <Button layoutX="474.0" layoutY="117.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="52.0">
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Pictures/Left%20button.png" />
+                  <Image url="@../Pictures/Left%20button.png" />
                </image>
             </ImageView>
          </graphic>
@@ -99,14 +99,14 @@
          <graphic>
             <ImageView fitHeight="11.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Pictures/Down%20Button.png" />
+                  <Image url="@../Pictures/Down%20Button.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="120.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Pictures/Pause%20Button.png" />
+            <Image url="@../Pictures/Pause%20Button.png" />
          </image>
       </ImageView>
       <Text fx:id="PlaylistTextNowPlaying" layoutX="427.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(none)">

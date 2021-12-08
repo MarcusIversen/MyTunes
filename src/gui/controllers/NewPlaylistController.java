@@ -1,4 +1,4 @@
-package gui;
+package gui.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +19,7 @@ public class NewPlaylistController {
 
     public void GoBackMainMenu(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) BackMainMenu.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("view/MainMenu.fxml"));
         Scene scene = new Scene(parent);
         swich.setScene(scene);
     }
@@ -36,10 +36,9 @@ public class NewPlaylistController {
 
     public void savePlaylist(ActionEvent event) throws IOException{
         playlist = TextInputPlaylist.getText();
-        System.out.println(playlist);
-//        PlaylistTextNowPlaying.setText(playlist);
+        //PlaylistTextNowPlaying.setText(playlist);
         Stage swich = (Stage) BackMainMenu.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("view/MainMenu.fxml"));
         Text playListLabel = (Text) parent.lookup("#PlaylistTextNowPlaying");
         playListLabel.setText(playlist);
         Scene scene = new Scene(parent);

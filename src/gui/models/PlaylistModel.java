@@ -1,10 +1,7 @@
-package bll;
+package gui.models;
 
 import be.Playlist;
-import be.Song;
 import bll.PlaylistManager;
-import bll.SongManager;
-import gui.MainMenuController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

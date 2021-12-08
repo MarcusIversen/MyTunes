@@ -1,4 +1,4 @@
-package bll;
+package bll.helpers;
 
 import be.Song;
 
