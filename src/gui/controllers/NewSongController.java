@@ -94,7 +94,7 @@ public class NewSongController {
     }
 
     public void getFile() throws IOException {
-        //TODO GØR SÅDAN AT FILE BLIVER GEMT SAMMEN MED SANGEN DU LAVER
+
     }
 
 }

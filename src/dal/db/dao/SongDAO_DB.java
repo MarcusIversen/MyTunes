@@ -47,6 +47,36 @@ public class SongDAO_DB {
         return allSongs;
     }
 
+    public int getSingleSongById(int id) {
+        //TODO CONNECT TO GET FILE METHOD
+        try (Connection connection = databaseConnector.getConnection()) {
+
+            String sql = "SELECT * FROM Songs;";
+
+            Statement statement = connection.createStatement();
+
+            if (statement.execute(sql)) {
+                ResultSet resultset = statement.getResultSet();
+                while (resultset.next()) {
+                    id = resultset.getInt("Id");
+                    String title = resultset.getString("Title");
+                    String artist = resultset.getString("Artist");
+                    String category = resultset.getString("Category");
+                    double time = resultset.getDouble("Time");
+
+
+                    Song song = new Song(id, title, artist, category, time);
+                }
+            }
+        } catch (SQLServerException throwables) {
+            throwables.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return id;
+    }
+
+
 
     public Song createSong(String title, String artist, String category, double time) {
 

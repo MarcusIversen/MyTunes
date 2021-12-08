@@ -13,11 +13,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MainMenuController {
+
+
     //* Her tager jeg dataen fra Fxml filen og sætter dem til at op tage data
     @FXML
     private TableView<Song> SongTable;
@@ -51,7 +57,7 @@ public class MainMenuController {
 
     private SongModel songModel;
 
-
+    public Button playButton;
     public Button closeButton;
     public Button NewPlaylist;
     public Button NewSong;
@@ -65,6 +71,12 @@ public class MainMenuController {
 //    public String TableCategory;
 //    public double TableTime;
 
+    /**public void mediaPlayer(){
+        Media pick = new Media("STAY.mp3");
+        MediaPlayer player = new MediaPlayer(pick);
+        player.play();
+    }
+     */
 
     public void GoNewPlaylist(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) NewPlaylist.getScene().getWindow();

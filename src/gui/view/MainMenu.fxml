@@ -57,7 +57,7 @@
          </font>
       </Text>
       <Button fx:id="filterSearch" layoutX="858.0" layoutY="38.0" mnemonicParsing="false" onAction="#filterSongs" text="Search" />
-      <Button layoutX="264.0" layoutY="537.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="52.0">
+      <Button layoutX="264.0" layoutY="537.0" mnemonicParsing="false" onAction="#mediaPlayer" prefHeight="24.0" prefWidth="52.0">
          <graphic>
             <ImageView fitHeight="11.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -66,7 +66,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <ImageView fitHeight="150.0" fitWidth="52.0" layoutX="147.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="52.0" layoutX="147.0" layoutY="17.0" onMouseClicked="#mediaPLayer" onTouchPressed="#mediaPlayer" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Pictures/Play%20Button.png" />
          </image>
@@ -114,5 +114,10 @@
             <Font size="20.0" />
          </font>
       </Text>
+      <Button fx:id="playButton" layoutX="153.0" layoutY="22.0" mnemonicParsing="false" onAction="#mediaPlayer" prefHeight="50.0" prefWidth="39.0" style="-fx-background-color: 1;" textFill="#3b4834">
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
