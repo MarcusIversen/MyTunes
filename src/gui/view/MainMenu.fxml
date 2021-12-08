@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorInput?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -114,5 +115,25 @@
             <Font size="20.0" />
          </font>
       </Text>
+      <Button fx:id="playButton" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" onAction="#mediaPlayer" prefHeight="50.0" prefWidth="52.0">
+         <effect>
+            <ColorInput />
+         </effect>
+      </Button>
+      <Button layoutX="196.0" layoutY="33.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="39.0">
+         <effect>
+            <ColorInput />
+         </effect>
+      </Button>
+      <Button layoutX="81.0" layoutY="33.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="39.0">
+         <effect>
+            <ColorInput />
+         </effect>
+      </Button>
+      <Button layoutX="120.0" layoutY="38.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="31.0">
+         <effect>
+            <ColorInput />
+         </effect>
+      </Button>
    </children>
 </AnchorPane>
