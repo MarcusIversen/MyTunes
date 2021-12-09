@@ -39,7 +39,7 @@ public class SongModel extends MainMenuController {
         return searchResults;
     }
 
-    public void createSong(String title, String artist, String category, double time, String URL) {
+    public void createSong(String title, String artist, String category, String time, String URL) {
         Song newSong = songManager.createSong(title, artist, category, time, URL);
         songsToBeViewed.add(newSong);
     }

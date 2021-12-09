@@ -23,7 +23,7 @@ public class DALManager implements  IDALManager{
     }
 
     @Override
-    public Song createSong(String title, String artist, String category, double time, String URL) {
+    public Song createSong(String title, String artist, String category, String time, String URL) {
         return songDAO.createSong(title, artist, category, time, URL);
     }
 

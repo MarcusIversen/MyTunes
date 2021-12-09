@@ -10,7 +10,7 @@ public interface IDALManager {
 
     public Song getSingleSongById(int id);
 
-    public Song createSong(String title, String artist, String category, double time, String URL) ;
+    public Song createSong(String title, String artist, String category, String time, String URL) ;
 
 
     public void updateSong(Song song) ;

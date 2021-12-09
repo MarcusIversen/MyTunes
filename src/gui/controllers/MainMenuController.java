@@ -40,7 +40,7 @@ public class MainMenuController {
     @FXML
     private TableColumn<Song, String> TableCategory;
     @FXML
-    private TableColumn<Song, Double> TableTime;
+    private TableColumn<Song, String> TableTime;
 
 
     @FXML
@@ -63,6 +63,8 @@ public class MainMenuController {
     public Button NewPlaylist;
     public Button NewSong;
 
+    MediaPlayer mediaPlayer;
+
     public TextField filterBar;
     public Button filterSearch;
 
@@ -72,12 +74,18 @@ public class MainMenuController {
 //    public String TableCategory;
 //    public double TableTime;
 
-    public void mediaPlayer(){
-        System.out.println(SongTable.getSelectionModel().getSelectedItem().getURL());
-        Media pick = new Media(new File(SongTable.getSelectionModel().getSelectedItem().getURL()).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(pick);
-        mediaPlayer.play();
-        mediaPlayer.setVolume(100.0);
+    public void mediaPlayer() {
+        if (mediaPlayer == null) {
+            System.out.println(SongTable.getSelectionModel().getSelectedItem().getURL());
+            Media pick = new Media(new File(SongTable.getSelectionModel().getSelectedItem().getURL()).toURI().toString());
+            mediaPlayer = new MediaPlayer(pick);
+            mediaPlayer.setVolume(0.42);
+            mediaPlayer.play();
+            mediaPlayer.setOnEndOfMedia(() -> {
+                mediaPlayer.stop();
+                mediaPlayer = null;
+            });
+        }
     }
 
 

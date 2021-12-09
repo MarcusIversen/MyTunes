@@ -5,7 +5,7 @@ public class Song {
     private String title;
     private String artist;
     private String category;
-    private double time;
+    private String time;
 
     public String getURL() {
         return URL;
@@ -17,7 +17,7 @@ public class Song {
 
     private String URL;
 
-    public Song(int id, String title, String artist, String category, double time, String URL) {
+    public Song(int id, String title, String artist, String category, String time, String URL) {
 
         this.id = id;
         this.title = title;
@@ -54,7 +54,7 @@ public class Song {
         this.category = category;
     }
 
-    public Double getTime() {
+    public String getTime() {
         return time;
     }
 

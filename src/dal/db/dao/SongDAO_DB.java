@@ -32,7 +32,7 @@ public class SongDAO_DB {
                     String title = resultset.getString("Title");
                     String artist = resultset.getString("Artist");
                     String category = resultset.getString("Category");
-                    double time = resultset.getDouble("Time");
+                    String time = resultset.getString("Time");
                     String URL = resultset.getString("URL");
 
 
@@ -63,7 +63,7 @@ public class SongDAO_DB {
                         String title = resultSet.getString("Title");
                         String artist = resultSet.getString("Artist");
                         String category = resultSet.getString("Category");
-                        double time = resultSet.getDouble("Time");
+                        String time = resultSet.getString("Time");
                         String URL = resultSet.getString("URL");
 
 
@@ -83,7 +83,7 @@ public class SongDAO_DB {
 
 
 
-    public Song createSong(String title, String artist, String category, double time, String URL) {
+    public Song createSong(String title, String artist, String category, String time, String URL) {
 
         try (Connection connection = databaseConnector.getConnection()) {
             String sql = "INSERT INTO Songs(Title, Artist, Category, Time, URL) values(?,?,?,?,?);";
@@ -92,7 +92,7 @@ public class SongDAO_DB {
                 preparedStatement.setString(1, title);
                 preparedStatement.setString(2, artist);
                 preparedStatement.setString(3, category);
-                preparedStatement.setDouble(4, time);
+                preparedStatement.setString(4, time);
                 preparedStatement.setString(5, URL);
                 preparedStatement.executeUpdate();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -117,7 +117,7 @@ public class SongDAO_DB {
             preparedStatement.setString(1, song.getTitle());
             preparedStatement.setString(2, song.getArtist());
             preparedStatement.setString(3, song.getCategory());
-            preparedStatement.setDouble(4, song.getTime());
+            preparedStatement.setString(4, song.getTime());
             if (preparedStatement.executeUpdate() != 1) {
                 throw new Exception("Could not delete song");
             }

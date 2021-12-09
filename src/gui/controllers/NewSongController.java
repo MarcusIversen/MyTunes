@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -45,7 +47,7 @@ public class NewSongController {
     }
 
 
-    public void uploadSongInfo(String title, String artist, String category, double time) throws IOException, SQLException {
+    public void uploadSongInfo(String title, String artist, String category, String time) throws IOException, SQLException {
         songModel.createSong(title, artist, category, time, fileText.getText());
     }
 
@@ -53,7 +55,7 @@ public class NewSongController {
         String uploadTitle = title();
         String uploadArtist = artist();
         String uploadCategory = category();
-        double uploadTime = time();
+        String uploadTime = time();
         uploadSongInfo(uploadTitle, uploadArtist, uploadCategory, uploadTime);
 
 
@@ -76,8 +78,8 @@ public class NewSongController {
         return categoryTemp;
     }
 
-    public double time() {
-        double timeTemp = timeBar.getPrefColumnCount();
+    public String time() {
+        String timeTemp = timeBar.getText();
         return timeTemp;
     }
 
@@ -86,10 +88,22 @@ public class NewSongController {
         FileChooser fileChooser = new FileChooser();
         File defaultDirectory = new File("src/dal/db/songFiles");
         fileChooser.setInitialDirectory(defaultDirectory);
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("mp3 and wav files", "*.mp3", "*.Wav"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("mp3 and wav files", "*.mp3", "*.wav"));
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             fileText.appendText(selectedFile.getAbsolutePath());
+            Media pick = new Media(new File(selectedFile.getAbsolutePath()).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(pick);
+            mediaPlayer.setOnReady(() -> {
+                String timeInSeconds = String.format("%1.0f", mediaPlayer.getMedia().getDuration().toSeconds());
+                int minuts = Integer.parseInt(timeInSeconds)/60;
+                int seconds = Integer.parseInt(timeInSeconds)%60;
+                if (10 > seconds){
+                    timeBar.setText(minuts + ":0" + seconds);
+                } else {
+                    timeBar.setText(minuts + ":" + seconds);
+                }
+            });
         } else System.out.println("File is not valid");
     }
 
