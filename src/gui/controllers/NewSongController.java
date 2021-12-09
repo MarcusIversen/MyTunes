@@ -58,8 +58,12 @@ public class NewSongController {
         String uploadTime = time();
         uploadSongInfo(uploadTitle, uploadArtist, uploadCategory, uploadTime);
 
-
+        Stage swich = (Stage) ReturnMainMenu.getScene().getWindow();
+        Parent parent = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
+        Scene scene = new Scene(parent);
+        swich.setScene(scene);
     }
+
 
 
     public String title() {

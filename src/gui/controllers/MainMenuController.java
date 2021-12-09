@@ -53,26 +53,19 @@ public class MainMenuController {
     ObservableList<Song> songData = FXCollections.observableArrayList();
     ObservableList<Song> searchData = FXCollections.observableArrayList();
     ObservableList<Playlist> playlistData = FXCollections.observableArrayList();
+    MediaPlayer mediaPlayer;
 
     public static Label PlaylistTextNowPlaying;
 
     private SongModel songModel;
-
     public Button playButton;
     public Button closeButton;
     public Button NewPlaylist;
     public Button NewSong;
-
-    MediaPlayer mediaPlayer;
-
     public TextField filterBar;
     public Button filterSearch;
 
-
-//    public String TableTitle;
-//    public String TableArtist;
-//    public String TableCategory;
-//    public double TableTime;
+    
 
     public void mediaPlayer() {
         if (mediaPlayer == null) {
@@ -85,6 +78,12 @@ public class MainMenuController {
                 mediaPlayer.stop();
                 mediaPlayer = null;
             });
+        }
+    }
+
+    public void mediaPause(ActionEvent actionEvent) {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
         }
     }
 
