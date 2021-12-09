@@ -2,8 +2,6 @@ package dal;
 
 import be.Song;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public interface IDALManager {
@@ -12,7 +10,7 @@ public interface IDALManager {
 
     public Song getSingleSongById(int id);
 
-    public Song createSong(String title, String artist, String category, double time) ;
+    public Song createSong(String title, String artist, String category, double time, String URL) ;
 
 
     public void updateSong(Song song) ;

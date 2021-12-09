@@ -46,7 +46,7 @@ public class NewSongController {
 
 
     public void uploadSongInfo(String title, String artist, String category, double time) throws IOException, SQLException {
-        songModel.createSong(title, artist, category, time);
+        songModel.createSong(title, artist, category, time, fileText.getText());
     }
 
     public void getSongInfo() throws IOException, SQLException {
@@ -55,7 +55,7 @@ public class NewSongController {
         String uploadCategory = category();
         double uploadTime = time();
         uploadSongInfo(uploadTitle, uploadArtist, uploadCategory, uploadTime);
-        getFile();
+
 
     }
 
@@ -86,14 +86,14 @@ public class NewSongController {
         FileChooser fileChooser = new FileChooser();
         File defaultDirectory = new File("src/dal/db/songFiles");
         fileChooser.setInitialDirectory(defaultDirectory);
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("mp3 and wav files", "*.mp3", "*.Wav"));
         File selectedFile = fileChooser.showOpenDialog(null);
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("mp3 and wav files", "*.MP3" + "*.Wav"));
         if (selectedFile != null) {
             fileText.appendText(selectedFile.getAbsolutePath());
         } else System.out.println("File is not valid");
     }
 
-    public void getFile() throws IOException {
+    public void attachFile() throws IOException {
 
     }
 

@@ -24,6 +24,10 @@ public class SongModel extends MainMenuController {
         return songsToBeViewed;
     }
 
+    public Song getSingleSongById(int id){
+        return songManager.getSingleSongById(id);
+    }
+
 
     public List<Song> searchSongs(String text) {
         List<Song> searchResults = null;
@@ -35,8 +39,8 @@ public class SongModel extends MainMenuController {
         return searchResults;
     }
 
-    public void createSong(String title, String artist, String category, double time) {
-        Song newSong = songManager.createSong(title, artist, category, time);
+    public void createSong(String title, String artist, String category, double time, String URL) {
+        Song newSong = songManager.createSong(title, artist, category, time, URL);
         songsToBeViewed.add(newSong);
     }
 }

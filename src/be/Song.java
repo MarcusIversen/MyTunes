@@ -7,13 +7,24 @@ public class Song {
     private String category;
     private double time;
 
-    public Song(int id, String title,String artist, String category,  double time) {
+    public String getURL() {
+        return URL;
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
+    }
+
+    private String URL;
+
+    public Song(int id, String title, String artist, String category, double time, String URL) {
 
         this.id = id;
         this.title = title;
         this.artist = artist;
         this.category = category;
         this.time = time;
+        this.URL = URL;
     }
 
     public int getId() {

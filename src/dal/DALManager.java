@@ -19,12 +19,12 @@ public class DALManager implements  IDALManager{
 
     @Override
     public Song getSingleSongById(int id) {
-        return null;
+        return songDAO.getSingleSongById(id);
     }
 
     @Override
-    public Song createSong(String title, String artist, String category, double time) {
-        return songDAO.createSong(title, artist, category, time);
+    public Song createSong(String title, String artist, String category, double time, String URL) {
+        return songDAO.createSong(title, artist, category, time, URL);
     }
 
     @Override

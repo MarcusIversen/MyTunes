@@ -4,10 +4,7 @@ import be.Song;
 import bll.helpers.SongSearcher;
 import dal.DALManager;
 import dal.IDALManager;
-import dal.db.dao.SongDAO_DB;
-import gui.controllers.NewSongController;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class SongManager implements ISongManager {
@@ -33,8 +30,8 @@ public class SongManager implements ISongManager {
     }
 
     @Override
-    public Song createSong(String title, String artist, String category, double time) {
-        return dalManager.createSong(title, artist, category, time);
+    public Song createSong(String title, String artist, String category, double time, String URL) {
+        return dalManager.createSong(title, artist, category, time, URL);
     }
 
     @Override

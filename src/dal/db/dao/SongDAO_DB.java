@@ -33,9 +33,10 @@ public class SongDAO_DB {
                     String artist = resultset.getString("Artist");
                     String category = resultset.getString("Category");
                     double time = resultset.getDouble("Time");
+                    String URL = resultset.getString("URL");
 
 
-                    Song song = new Song(id, title, artist, category, time);
+                    Song song = new Song(id, title, artist, category, time, URL);
                     allSongs.add(song);
                 }
             }
@@ -47,25 +48,28 @@ public class SongDAO_DB {
         return allSongs;
     }
 
-    public int getSingleSongById(int id) {
-        //TODO CONNECT TO GET FILE METHOD
+    public Song getSingleSongById(int id) {
         try (Connection connection = databaseConnector.getConnection()) {
 
-            String sql = "SELECT * FROM Songs;";
+            String sql = "SELECT * FROM Songs WHERE Id=?;";
 
-            Statement statement = connection.createStatement();
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                preparedStatement.setInt(1, id);
 
-            if (statement.execute(sql)) {
-                ResultSet resultset = statement.getResultSet();
-                while (resultset.next()) {
-                    id = resultset.getInt("Id");
-                    String title = resultset.getString("Title");
-                    String artist = resultset.getString("Artist");
-                    String category = resultset.getString("Category");
-                    double time = resultset.getDouble("Time");
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                        id = resultSet.getInt("Id");
+                        String title = resultSet.getString("Title");
+                        String artist = resultSet.getString("Artist");
+                        String category = resultSet.getString("Category");
+                        double time = resultSet.getDouble("Time");
+                        String URL = resultSet.getString("URL");
 
 
-                    Song song = new Song(id, title, artist, category, time);
+                        Song song = new Song(id, title, artist, category, time, URL);
+                        return song;
+
                 }
             }
         } catch (SQLServerException throwables) {
@@ -73,28 +77,30 @@ public class SongDAO_DB {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return id;
+        return null;
     }
 
 
 
-    public Song createSong(String title, String artist, String category, double time) {
+
+    public Song createSong(String title, String artist, String category, double time, String URL) {
 
         try (Connection connection = databaseConnector.getConnection()) {
-            String sql = "INSERT INTO Songs(Title, Artist, Category, Time) values(?,?,?,?);";
+            String sql = "INSERT INTO Songs(Title, Artist, Category, Time, URL) values(?,?,?,?,?);";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, title);
                 preparedStatement.setString(2, artist);
                 preparedStatement.setString(3, category);
                 preparedStatement.setDouble(4, time);
+                preparedStatement.setString(5, URL);
                 preparedStatement.executeUpdate();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 int id = 0;
                 if (resultSet.next()) {
                     id = resultSet.getInt(1);
                 }
-                Song song = new Song(id, title, artist, category, time);
+                Song song = new Song(id, title, artist, category, time, URL);
                 return song;
             }
         } catch (SQLException throwables) {

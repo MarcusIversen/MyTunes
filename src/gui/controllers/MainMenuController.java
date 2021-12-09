@@ -19,6 +19,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class MainMenuController {
@@ -72,9 +73,11 @@ public class MainMenuController {
 //    public double TableTime;
 
     public void mediaPlayer(){
-        Media pick = new Media("STAY.mp3");
-        MediaPlayer player = new MediaPlayer(pick);
-        player.play();
+        System.out.println(SongTable.getSelectionModel().getSelectedItem().getURL());
+        Media pick = new Media(new File(SongTable.getSelectionModel().getSelectedItem().getURL()).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(pick);
+        mediaPlayer.play();
+        mediaPlayer.setVolume(100.0);
     }
 
 

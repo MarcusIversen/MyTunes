@@ -9,7 +9,7 @@ public interface ISongManager {
 
     public Song getSingleSongById(int id);
 
-    public Song createSong(String title, String artist, String category, double time);
+    public Song createSong(String title, String artist, String category, double time, String URL);
 
 
     public void updateSong(Song song);
