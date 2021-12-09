@@ -4,6 +4,8 @@ import be.Playlist;
 import be.Song;
 import gui.models.PlaylistModel;
 import gui.models.SongModel;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class MainMenuController {
+
 
 
     //* Her tager jeg dataen fra Fxml filen og sætter dem til at op tage data
@@ -55,6 +58,7 @@ public class MainMenuController {
     ObservableList<Playlist> playlistData = FXCollections.observableArrayList();
     MediaPlayer mediaPlayer;
 
+
     public static Label songTextPlaying;
 
     private SongModel songModel;
@@ -66,6 +70,13 @@ public class MainMenuController {
     public TextField filterBar;
     public Button filterSearch;
     public Button pauseButton;
+    public Slider volumeSlider;
+    public double volume = 0;
+
+
+    public MainMenuController(){
+        volumeSlider = new Slider();
+    }
 
     //public void whatSongIsPlaying(){
         //if (mediaPlayer.isAutoPlay())
@@ -78,7 +89,6 @@ public class MainMenuController {
         if (mediaPlayer == null) {
             Media pick = new Media(new File(SongTable.getSelectionModel().getSelectedItem().getURL()).toURI().toString());
             mediaPlayer = new MediaPlayer(pick);
-            mediaPlayer.setVolume(0.10);
             mediaPlayer.play();
             mediaPlayer.setOnEndOfMedia(() -> {
                 mediaPlayer.stop();
@@ -89,6 +99,9 @@ public class MainMenuController {
             mediaPlayer = null;
         }
     }
+
+
+
 
 
 
@@ -133,6 +146,14 @@ public class MainMenuController {
             e.printStackTrace();
         }
 
+        volumeSlider.valueProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {mediaPlayer.setVolume(volume);
+            }
+        });
+
+
+
         PlaylistName.setCellValueFactory(new PropertyValueFactory<>("name"));
         playlistSongs.setCellValueFactory(new PropertyValueFactory<>("songs"));
         playlistTime.setCellValueFactory(new PropertyValueFactory<>("time"));
@@ -160,6 +181,11 @@ public class MainMenuController {
         PlaylistTable.setItems(getPlaylistData());
     }
 
+
+    public void adjustVolume(){
+        volume = volumeSlider.getValue() / 100;
+        System.out.println(volume);
+    }
 
     public ObservableList<Song> getSearchData() {
         return searchData;
