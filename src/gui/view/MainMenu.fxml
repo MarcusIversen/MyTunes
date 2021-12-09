@@ -58,7 +58,7 @@
          </font>
       </Text>
       <Button fx:id="filterSearch" layoutX="858.0" layoutY="38.0" mnemonicParsing="false" onAction="#filterSongs" text="Search" />
-      <Button layoutX="264.0" layoutY="537.0" mnemonicParsing="false" onAction="#mediaPlayer" prefHeight="24.0" prefWidth="52.0">
+      <Button layoutX="264.0" layoutY="537.0" mnemonicParsing="false" onAction="#mediaPlay" prefHeight="24.0" prefWidth="52.0">
          <graphic>
             <ImageView fitHeight="11.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -67,7 +67,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <ImageView fitHeight="150.0" fitWidth="52.0" layoutX="147.0" layoutY="17.0" onMouseClicked="#mediaPlayer" onTouchPressed="#mediaPlayer" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="52.0" layoutX="147.0" layoutY="17.0" onMouseClicked="#mediaPlay" onTouchPressed="#mediaPlay" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Pictures/Play%20Button.png" />
          </image>
@@ -110,12 +110,12 @@
             <Image url="@../Pictures/Pause%20Button.png" />
          </image>
       </ImageView>
-      <Text fx:id="PlaylistTextNowPlaying" layoutX="427.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(none)">
+      <Text fx:id="songTextPlaying" layoutX="427.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(none)">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="playButton" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" onAction="#mediaPlayer" prefHeight="50.0" prefWidth="52.0">
+      <Button fx:id="playButton" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" onAction="#mediaPlay" prefHeight="50.0" prefWidth="52.0">
          <effect>
             <ColorInput />
          </effect>
@@ -130,7 +130,7 @@
             <ColorInput />
          </effect>
       </Button>
-      <Button fx:id="pauseButton" layoutX="120.0" layoutY="38.0" mnemonicParsing="false" onAction="#mediaPause" prefHeight="26.0" prefWidth="31.0">
+      <Button fx:id="pauseButton" layoutX="120.0" layoutY="35.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0">
          <effect>
             <ColorInput />
          </effect>

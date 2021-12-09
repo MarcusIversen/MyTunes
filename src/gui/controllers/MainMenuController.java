@@ -55,37 +55,43 @@ public class MainMenuController {
     ObservableList<Playlist> playlistData = FXCollections.observableArrayList();
     MediaPlayer mediaPlayer;
 
-    public static Label PlaylistTextNowPlaying;
+    public static Label songTextPlaying;
 
     private SongModel songModel;
+
     public Button playButton;
     public Button closeButton;
     public Button NewPlaylist;
     public Button NewSong;
     public TextField filterBar;
     public Button filterSearch;
+    public Button pauseButton;
 
-    
+    //public void whatSongIsPlaying(){
+        //if (mediaPlayer.isAutoPlay())
+        //{
+            //song
+       // }
+    //}
 
-    public void mediaPlayer() {
+    public void mediaPlay() {
         if (mediaPlayer == null) {
-            System.out.println(SongTable.getSelectionModel().getSelectedItem().getURL());
             Media pick = new Media(new File(SongTable.getSelectionModel().getSelectedItem().getURL()).toURI().toString());
             mediaPlayer = new MediaPlayer(pick);
-            mediaPlayer.setVolume(0.42);
+            mediaPlayer.setVolume(0.10);
             mediaPlayer.play();
             mediaPlayer.setOnEndOfMedia(() -> {
                 mediaPlayer.stop();
                 mediaPlayer = null;
             });
+        }else if (playButton.isManaged()){
+            mediaPlayer.pause();
+            mediaPlayer = null;
         }
     }
 
-    public void mediaPause(ActionEvent actionEvent) {
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-        }
-    }
+
+
 
 
     public void GoNewPlaylist(ActionEvent actionEvent) throws IOException {
