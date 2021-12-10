@@ -88,14 +88,14 @@ public class NewSongController {
     }
 
 
-    public void chooseFile() {
+    public void chooseFile() throws IOException {
         FileChooser fileChooser = new FileChooser();
         File defaultDirectory = new File("src/dal/db/songFiles");
         fileChooser.setInitialDirectory(defaultDirectory);
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("mp3 and wav files", "*.mp3", "*.wav"));
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            fileText.appendText(selectedFile.getAbsolutePath());
+            fileText.appendText("src/dal/db/songFiles/"+selectedFile.getName());
             Media pick = new Media(new File(selectedFile.getAbsolutePath()).toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(pick);
             mediaPlayer.setOnReady(() -> {

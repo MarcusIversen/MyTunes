@@ -19,13 +19,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 
 public class MainMenuController {
-
 
 
     //* Her tager jeg dataen fra Fxml filen og sætter dem til at op tage data
@@ -59,8 +59,8 @@ public class MainMenuController {
     MediaPlayer mediaPlayer;
 
 
-    public static Label songTextPlaying;
 
+    public Text songTextPlaying;
     private SongModel songModel;
 
     public Button playButton;
@@ -72,24 +72,20 @@ public class MainMenuController {
     public Button pauseButton;
     public Slider volumeSlider;
     public double volume = 0;
+    private String SongPlaying;
 
 
     public MainMenuController(){
         volumeSlider = new Slider();
     }
 
-    //public void whatSongIsPlaying(){
-        //if (mediaPlayer.isAutoPlay())
-        //{
-            //song
-       // }
-    //}
 
     public void mediaPlay() {
         if (mediaPlayer == null) {
             Media pick = new Media(new File(SongTable.getSelectionModel().getSelectedItem().getURL()).toURI().toString());
             mediaPlayer = new MediaPlayer(pick);
             mediaPlayer.play();
+            songTextPlaying.setText(SongTable.getSelectionModel().getSelectedItem().getTitle());
             mediaPlayer.setOnEndOfMedia(() -> {
                 mediaPlayer.stop();
                 mediaPlayer = null;
@@ -99,10 +95,6 @@ public class MainMenuController {
             mediaPlayer = null;
         }
     }
-
-
-
-
 
 
 
