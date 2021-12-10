@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -22,8 +23,10 @@ import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class MainMenuController {
 
@@ -59,10 +62,11 @@ public class MainMenuController {
     MediaPlayer mediaPlayer;
 
 
-
     public Text songTextPlaying;
     private SongModel songModel;
 
+    public Button songEditor;
+    public Button songDeleter;
     public Button playButton;
     public Button closeButton;
     public Button NewPlaylist;
@@ -73,6 +77,7 @@ public class MainMenuController {
     public Slider volumeSlider;
     public double volume = 0;
     private String SongPlaying;
+    private Object ObservableList;
 
 
     public MainMenuController(){
@@ -96,7 +101,24 @@ public class MainMenuController {
         }
     }
 
+    public void goEditSong(ActionEvent actionEvent) throws IOException{
+        Song selectedItem = SongTable.getSelectionModel().getSelectedItem();
+        Stage swich = (Stage) songEditor.getScene().getWindow();
+        FXMLLoader parent = new FXMLLoader(getClass().getResource("../view/EditSong.fxml"));
+        Scene mainWindowScene = null;
+        try {
+            mainWindowScene = new Scene(parent.load());
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        Stage editSongStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        editSongStage.setScene(mainWindowScene);
 
+        EditSongController editSongController = parent.getController();
+        editSongController.setSong(selectedItem);
+        editSongStage.show();
+
+    }
 
 
     public void GoNewPlaylist(ActionEvent actionEvent) throws IOException {
@@ -116,6 +138,13 @@ public class MainMenuController {
     public void closeButton() {
         System.exit(0);
     }
+
+    public void deleteSong(){
+        songModel.deleteSong(SongTable.getSelectionModel().getSelectedItem());
+        SongTable.getItems().remove(SongTable.getSelectionModel().getSelectedItem());
+    }
+
+
 
 
     //*  her starter jeg programmet og sætter værdierne til at fortæller der er en song som er en String der hedder title et sted i koden. Den finder den og gør det

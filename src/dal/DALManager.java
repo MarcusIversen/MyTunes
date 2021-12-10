@@ -29,11 +29,12 @@ public class DALManager implements  IDALManager{
 
     @Override
     public void updateSong(Song song) {
+        songDAO.updateSong(song);
 
     }
 
     @Override
     public void deleteSong(Song song) {
-
+        songDAO.deleteSong(song);
     }
 }

@@ -7,6 +7,18 @@ public class Song {
     private String category;
     private String time;
 
+    public Song(String title, String artist, String category, String time, int id, String URL) {
+
+            this.title = title;
+            this.artist = artist;
+            this.category = category;
+            this.time = time;
+            this.URL = URL;
+            this.id = id;
+    }
+
+
+
     public String getURL() {
         return URL;
     }
@@ -40,7 +52,9 @@ public class Song {
         this.title = title;
     }
 
-    public String getArtist() {return artist;}
+    public String getArtist() {
+        return artist;
+    }
 
     public void setArtist(String artist) {
         this.artist = artist;
@@ -66,6 +80,7 @@ public class Song {
     public String toString() {
         return id + " , " + title + " , " + artist + " , " + category + " , " + time;
     }
+
 }
 
 

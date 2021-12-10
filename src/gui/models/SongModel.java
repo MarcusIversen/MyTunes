@@ -24,7 +24,7 @@ public class SongModel extends MainMenuController {
         return songsToBeViewed;
     }
 
-    public Song getSingleSongById(int id){
+    public Song getSingleSongById(int id) {
         return songManager.getSingleSongById(id);
     }
 
@@ -42,5 +42,13 @@ public class SongModel extends MainMenuController {
     public void createSong(String title, String artist, String category, String time, String URL) {
         Song newSong = songManager.createSong(title, artist, category, time, URL);
         songsToBeViewed.add(newSong);
+    }
+
+    public void updateSong(Song song) {
+        songManager.updateSong(song);
+    }
+
+    public void deleteSong(Song song) {
+        songManager.deleteSong(song);
     }
 }

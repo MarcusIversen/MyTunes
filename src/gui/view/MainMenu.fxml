@@ -26,8 +26,8 @@
       <Button layoutX="183.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Delete" />
       <Button layoutX="391.0" layoutY="536.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Delete" />
     <Button fx:id="closeButton" layoutX="846.0" layoutY="536.0" mnemonicParsing="false" onAction="#closeButton" prefHeight="26.0" prefWidth="64.0" text="Close" />
-      <Button layoutX="609.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit.." />
-      <Button layoutX="668.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Delete" />
+      <Button fx:id="songEditor" layoutX="609.0" layoutY="537.0" mnemonicParsing="false" onAction="#goEditSong" prefHeight="26.0" prefWidth="52.0" text="Edit.." />
+      <Button fx:id="songDeleter" layoutX="668.0" layoutY="537.0" mnemonicParsing="false" onAction="#deleteSong" prefHeight="26.0" prefWidth="64.0" text="Delete" />
       <Button fx:id="NewSong" layoutX="544.0" layoutY="537.0" mnemonicParsing="false" onAction="#GoNewSong" prefHeight="26.0" prefWidth="52.0" text="New.." />
       <TableView fx:id="PlaylistTable" layoutX="47.0" layoutY="119.0" prefHeight="398.0" prefWidth="200.0">
         <columns>
@@ -45,8 +45,8 @@
             <TableColumn fx:id="TableTime" minWidth="8.800048828125" prefWidth="72.00003662109373" text="Time" />
          </columns>
       </TableView>
-      <Slider fx:id="volumeSlider" layoutX="82.0" layoutY="71.0" onDragDetected="#adjustVolume" prefHeight="14.0" prefWidth="152.0" />
-      <Text layoutX="528.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Is Playing">
+      <Slider fx:id="volumeSlider" layoutX="82.0" layoutY="71.0" max="110.0" min="-10.0" onDragDetected="#adjustVolume" prefHeight="14.0" prefWidth="152.0" />
+      <Text layoutX="320.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Now Playing:">
          <font>
             <Font size="20.0" />
          </font>
@@ -110,7 +110,7 @@
             <Image url="@../Pictures/Pause%20Button.png" />
          </image>
       </ImageView>
-      <Text fx:id="songTextPlaying" layoutX="427.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(none)">
+      <Text fx:id="songTextPlaying" layoutX="500.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(none)">
          <font>
             <Font size="20.0" />
          </font>

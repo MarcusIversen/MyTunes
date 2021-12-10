@@ -112,12 +112,14 @@ public class SongDAO_DB {
 
     public void updateSong(Song song) {
         try (Connection connection = databaseConnector.getConnection()) {
-            String sql = "UPDATE Song SET Title=?, Artist=?, Category=?, Time=? WHERE Id=?;";
+            String sql = "UPDATE Songs SET Title=?, Artist=?, Category=?, Time=?, URL=? WHERE Id=?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, song.getTitle());
             preparedStatement.setString(2, song.getArtist());
             preparedStatement.setString(3, song.getCategory());
             preparedStatement.setString(4, song.getTime());
+            preparedStatement.setString(5, song.getURL());
+            preparedStatement.setInt(6, song.getId());
             if (preparedStatement.executeUpdate() != 1) {
                 throw new Exception("Could not delete song");
             }
@@ -129,7 +131,7 @@ public class SongDAO_DB {
 
     public void deleteSong(Song song) {
         try (Connection connection = databaseConnector.getConnection()) {
-            String sql = "DELETE FROM Song WHERE Id =?;";
+            String sql = "DELETE FROM Songs WHERE Id =?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, song.getId());
             if (preparedStatement.executeUpdate() != 1) {
