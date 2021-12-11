@@ -110,7 +110,7 @@
             <Image url="@../Pictures/Pause%20Button.png" />
          </image>
       </ImageView>
-      <Text fx:id="songTextPlaying" layoutX="500.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(none)">
+      <Text fx:id="songTextPlaying" layoutX="446.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(none)">
          <font>
             <Font size="20.0" />
          </font>
