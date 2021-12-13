@@ -29,14 +29,14 @@ public class EditSongController implements Initializable {
 
     MainMenuController mainMenuController = new MainMenuController();
 
-    public Button updateSongButton;
+
     SongModel songModel = new SongModel();
     public TextField titleBar;
     public TextField artistBar;
     public TextField timeBar;
     public TextField fileText;
     public Button ReturnMainMenu;
-    public Button songSaveButton;
+    public Button updateSongButton;
     public ComboBox categoryMenu;
     public TextField idBar;
 
@@ -74,6 +74,7 @@ public class EditSongController implements Initializable {
     public void setSong(Song song){
         titleBar.setText(song.getTitle());
         artistBar.setText(song.getArtist());
+        categoryMenu.getSelectionModel().select(song.getCategory());
         timeBar.setText(song.getTime());
         idBar.setText(Integer.toString(song.getId()));
         fileText.setText(song.getURL());

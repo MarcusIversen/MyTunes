@@ -1,12 +1,16 @@
 package dal;
 
+import be.Playlist;
 import be.Song;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IDALManager {
 
     public List<Song> getAllSongs();
+
+    public List<Playlist> getAllPlaylists() throws SQLException;
 
     public Song getSingleSongById(int id);
 
@@ -17,4 +21,6 @@ public interface IDALManager {
 
 
     public void deleteSong(Song song) ;
+
+
 }

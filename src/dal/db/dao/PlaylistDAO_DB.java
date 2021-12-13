@@ -45,22 +45,18 @@ public class PlaylistDAO_DB {
         return allPlaylist;
     }
 
-   /** public Playlist createSong(String name, int songs, double time) throws SQLServerException {
+   public Playlist createPlaylist(String name, int songs, double time) throws SQLServerException {
 
         try(Connection connection = databaseConnector.getConnection())
         {
-            String sql = "INSERT INTO Song(Title, Artist, Category, Time) values(?,?,?,?);";
+            String sql = "INSERT INTO PLaylist(Name, Songs, Time) values(?,?,?);";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, name);
                 preparedStatement.setInt(2, songs);
                 preparedStatement.setDouble(3, time);
                 preparedStatement.executeUpdate();
-                ResultSet resultSet = preparedStatement.getGeneratedKeys();
-                int id = 0;
-                if (resultSet.next()) {
-                    id = resultSet.getInt(1);
-                }
+
                 Playlist playlist = new Playlist(name, songs, time);
                 return playlist;
             }
@@ -69,7 +65,7 @@ public class PlaylistDAO_DB {
         }
         return null;
     }
-    **/
+    
 
 
     /**

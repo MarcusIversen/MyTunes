@@ -63,6 +63,7 @@ public class MainMenuController {
 
     public Text songTextPlaying;
     private SongModel songModel;
+    private PlaylistModel playlistModel;
 
     public Button songEditor;
     public Button songDeleter;
@@ -172,12 +173,11 @@ public class MainMenuController {
             }
         });
 
-
+        playlistModel = new PlaylistModel();
 
         PlaylistName.setCellValueFactory(new PropertyValueFactory<>("name"));
         playlistSongs.setCellValueFactory(new PropertyValueFactory<>("songs"));
         playlistTime.setCellValueFactory(new PropertyValueFactory<>("time"));
-        PlaylistModel playlistModel = new PlaylistModel();
 
         try {
             playlistData = FXCollections.observableList(playlistModel.getPlaylistData());

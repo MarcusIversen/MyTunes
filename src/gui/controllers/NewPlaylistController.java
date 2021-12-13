@@ -19,7 +19,7 @@ public class NewPlaylistController {
 
     public void GoBackMainMenu(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) BackMainMenu.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("view/MainMenu.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
         Scene scene = new Scene(parent);
         swich.setScene(scene);
     }
