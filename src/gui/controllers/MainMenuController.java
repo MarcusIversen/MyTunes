@@ -6,6 +6,8 @@ import gui.models.PlaylistModel;
 import gui.models.SongModel;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -185,6 +187,13 @@ public class MainMenuController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
+            }
+        });
+
     }
 
     //TableView bliver generert
@@ -203,8 +212,8 @@ public class MainMenuController {
 
 
     public void adjustVolume(){
-        volume = volumeSlider.getValue() / 100;
-        System.out.println(volume);
+       /* volume = volumeSlider.getValue() / 100;
+        System.out.println(volume);*/
     }
 
     public ObservableList<Song> getSearchData() {
