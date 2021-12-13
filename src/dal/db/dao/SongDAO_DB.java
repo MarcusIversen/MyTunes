@@ -144,4 +144,26 @@ public class SongDAO_DB {
         }
     }
 
+    /**public Song addSongToPLaylist(Song song)  {
+        try (Connection connection = databaseConnector.getConnection()){
+            String sql = "INSERT INTO SongsInPlaylist(Id, Title) values(?,?);";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+                {
+                    preparedStatement.setString(1, id);
+                    preparedStatement.setString(2, title);
+
+                    Song song = new Song(id, title);
+                    return song;
+
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        } catch (SQLServerException throwables) {
+            throwables.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+**/
 }

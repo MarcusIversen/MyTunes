@@ -1,5 +1,7 @@
 package gui.controllers;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+import gui.models.PlaylistModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +14,17 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class NewPlaylistController {
 
+    public TextField TextInputPlaylist;
+    private PlaylistModel playlistModel;
     public Button BackMainMenu;
+
+    public NewPlaylistController() throws SQLException {
+        playlistModel = new PlaylistModel();
+    }
 
     public void GoBackMainMenu(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) BackMainMenu.getScene().getWindow();
@@ -24,83 +33,17 @@ public class NewPlaylistController {
         swich.setScene(scene);
     }
 
-    @FXML
-    private Label NamePrompt;
-    @FXML
-    private TextField TextInputPlaylist;
-    @FXML
-    private Button PlaylistSaveButton;
+    public void savePlaylist(ActionEvent event) throws IOException, SQLServerException {
+        uploadPlaylistInfo(TextInputPlaylist.getText());
 
-    String playlist;
-
-
-    public void savePlaylist(ActionEvent event) throws IOException{
-        playlist = TextInputPlaylist.getText();
-        //PlaylistTextNowPlaying.setText(playlist);
         Stage swich = (Stage) BackMainMenu.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("view/MainMenu.fxml"));
-        Text playListLabel = (Text) parent.lookup("#PlaylistTextNowPlaying");
-        playListLabel.setText(playlist);
+        Parent parent = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
         Scene scene = new Scene(parent);
         swich.setScene(scene);
-    }
-
-
-
-
-
-/*
-    public void savePlaylist()
-    {
-        try
-        {
-            FileOutputStream fileOutputStream = new FileOutputStream("playlist");
-
-            ObjectOutputStream outObjectStream = new ObjectOutputStream(fileOutputStream);
-
-            outObjectStream.writeObject(playlist);
-
-            outObjectStream.flush();
-            outObjectStream.close();
-        }
-        catch(FileNotFoundException fnfException)
-        {
-            System.out.println("No file");
-        }
-        catch(IOException ioException)
-        {
-            System.out.println("bad IO");
-        }
 
     }
 
-    //Reads the file contents containing to a Playlist.
-    public void loadPlaylist()
-    {
-        try
-        {
-            FileInputStream fileInputStream = new FileInputStream("playlist");
-
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-
-            playlist = (Playlist)objectInputStream.readObject();
-
-            objectInputStream.close();
-        }
-        catch(FileNotFoundException fnfException)
-        {
-            System.out.println("No File");
-        }
-        catch(IOException ioException)
-        {
-            System.out.println("IO no good");
-        }
-
-        catch(ClassNotFoundException cnfException)
-        {
-            System.out.println("This is not a Playlist.");
-        }
-
-    }*/
-
+    public void uploadPlaylistInfo(String name) throws SQLServerException {
+        playlistModel.createPLaylist(name);
+    }
 }

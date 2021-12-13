@@ -2,6 +2,7 @@ package gui.models;
 
 import be.Playlist;
 import bll.PlaylistManager;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -20,5 +21,10 @@ public class PlaylistModel {
 
     public ObservableList<Playlist> getPlaylistData(){
         return playlistToBeViewed;
+    }
+
+    public void createPLaylist(String name) throws SQLServerException {
+        Playlist newPlaylist = playlistManager.createPlaylist(name);
+        playlistToBeViewed.add(newPlaylist);
     }
 }

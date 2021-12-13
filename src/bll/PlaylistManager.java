@@ -2,6 +2,7 @@ package bll;
 
 import be.Playlist;
 import be.Song;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DALManager;
 import dal.IDALManager;
 import dal.db.dao.PlaylistDAO_DB;
@@ -27,8 +28,8 @@ public class PlaylistManager implements IPlaylistManager{
 
 
     @Override
-    public Playlist createPlaylist(String name, int songs, double time) {
-        return null;
+    public Playlist createPlaylist(String name) throws SQLServerException {
+        return dalManager.createPlaylist(name);
     }
 
     @Override

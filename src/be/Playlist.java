@@ -11,13 +11,14 @@ public class Playlist {
     private double time;
     private static List<Playlist> playlist;
 
-    public Playlist(String name,int songs, double time) {
+    public Playlist(String name) {
 
         this.name = name;
-        this.songs = songs;
-        this.time = time;
+        //this.songs = songs;
+        //this.time = time;
 
     }
+
 
     public static int getSongCount() {
         return playlist.size();

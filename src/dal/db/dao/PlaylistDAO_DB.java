@@ -33,11 +33,11 @@ public class PlaylistDAO_DB {
                 while(resultset.next())
                 {
                    String name = resultset.getString("Name");
-                   int songs = resultset.getInt("Songs");
-                   double time = resultset.getDouble("Time");
+                   String songs = resultset.getString("Songs");
+                   String time = resultset.getString("Duration");
 
 
-                    Playlist playlist = new Playlist(name, songs, time);
+                    Playlist playlist = new Playlist(name);
                     allPlaylist.add(playlist);
                 }
             }
@@ -45,19 +45,17 @@ public class PlaylistDAO_DB {
         return allPlaylist;
     }
 
-   public Playlist createPlaylist(String name, int songs, double time) throws SQLServerException {
+   public Playlist createPlaylist(String name) throws SQLServerException {
 
         try(Connection connection = databaseConnector.getConnection())
         {
-            String sql = "INSERT INTO PLaylist(Name, Songs, Time) values(?,?,?);";
+            String sql = "INSERT INTO PLaylist(Name) values(?);";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, name);
-                preparedStatement.setInt(2, songs);
-                preparedStatement.setDouble(3, time);
                 preparedStatement.executeUpdate();
 
-                Playlist playlist = new Playlist(name, songs, time);
+                Playlist playlist = new Playlist(name);
                 return playlist;
             }
         } catch (SQLException throwables) {

@@ -2,6 +2,7 @@ package dal;
 
 import be.Playlist;
 import be.Song;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -22,5 +23,5 @@ public interface IDALManager {
 
     public void deleteSong(Song song) ;
 
-
+    Playlist createPlaylist(String name) throws SQLServerException;
 }

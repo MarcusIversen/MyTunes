@@ -18,19 +18,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class MainMenuController {
+
 
 
     //* Her tager jeg dataen fra Fxml filen og sætter dem til at op tage data
@@ -39,7 +36,11 @@ public class MainMenuController {
     @FXML
     private TableView<Playlist> PlaylistTable;
 
+    private TableView songsInPlaylistTable;
 
+
+
+    private TableColumn<Song, String> TableSongs;
     @FXML
     private TableColumn<Song, String> TableTitle;
     @FXML
@@ -94,6 +95,7 @@ public class MainMenuController {
             mediaPlayer = new MediaPlayer(pick);
             mediaPlayer.play();
             songTextPlaying.setText(SongTable.getSelectionModel().getSelectedItem().getTitle());
+            playButton.setVisible(false);
             mediaPlayer.setOnEndOfMedia(() -> {
                 mediaPlayer.stop();
                 mediaPlayer = null;
@@ -102,6 +104,10 @@ public class MainMenuController {
             mediaPlayer.pause();
             mediaPlayer = null;
         }
+    }
+
+    public void mediaPause(){
+
     }
 
     public void goEditSong(ActionEvent actionEvent) throws IOException{
@@ -165,7 +171,7 @@ public class MainMenuController {
         //* her sætter jeg dataen til at blive vist i tabellen
         try {
             songData = FXCollections.observableList((songModel.getSongData()));
-            TableViewLoad(songData);
+            songTableViewLoad(songData);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -184,7 +190,7 @@ public class MainMenuController {
 
         try {
             playlistData = FXCollections.observableList(playlistModel.getPlaylistData());
-            TableViewLoadet(playlistData);
+            playlistTableViewLoad(playlistData);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -199,15 +205,15 @@ public class MainMenuController {
 
     //TableView bliver generert
 
-    private void TableViewLoad(ObservableList<Song> songData) {
+    private void songTableViewLoad(ObservableList<Song> songData) {
         SongTable.setItems(getSongData());
     }
 
-    private void TableViewLoader(ObservableList<Song> searchData) {
+    private void searchTableViewLoad(ObservableList<Song> searchData) {
         SongTable.setItems(getSearchData());
     }
 
-    private void TableViewLoadet(ObservableList<Playlist> playlistData) {
+    private void playlistTableViewLoad(ObservableList<Playlist> playlistData) {
         PlaylistTable.setItems(getPlaylistData());
     }
 
@@ -229,7 +235,7 @@ public class MainMenuController {
     public void filterSongs() throws Exception {
         try {
             searchData = FXCollections.observableList(songModel.searchSongs(filterBar.getText()));
-            TableViewLoader(searchData);
+            searchTableViewLoad(searchData);
         } catch (Exception e) {
             e.printStackTrace();
         }
