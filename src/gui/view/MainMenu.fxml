@@ -103,11 +103,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="120.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Pictures/Pause%20Button.png" />
-         </image>
-      </ImageView>
       <Text fx:id="songTextPlaying" layoutX="446.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(none)">
          <font>
             <Font size="20.0" />
@@ -128,15 +123,11 @@
             <ColorInput />
          </effect>
       </Button>
-      <Button fx:id="pauseButton" layoutX="120.0" layoutY="35.0" mnemonicParsing="false" onAction="#mediaPause" prefHeight="31.0" prefWidth="31.0">
-         <effect>
-            <ColorInput />
-         </effect>
-      </Button>
       <TableView fx:id="songsInPlaylistTable" layoutX="264.0" layoutY="119.0" prefHeight="398.0" prefWidth="189.0">
         <columns>
           <TableColumn prefWidth="188.80001220703124" text="Songs" />
         </columns>
       </TableView>
+      <Button fx:id="pauseBtn" layoutX="273.0" layoutY="29.0" onAction="#mediaPause" mnemonicParsing="false" text="Button" />
    </children>
 </AnchorPane>

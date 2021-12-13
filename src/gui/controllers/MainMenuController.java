@@ -100,14 +100,16 @@ public class MainMenuController {
                 mediaPlayer.stop();
                 mediaPlayer = null;
             });
-        }else if (playButton.isManaged()){
+        }else {
             mediaPlayer.pause();
             mediaPlayer = null;
         }
+        System.out.println(mediaPlayer.getStatus());
     }
 
     public void mediaPause(){
-
+        mediaPlayer.pause();
+        System.out.println(mediaPlayer.getStatus());
     }
 
     public void goEditSong(ActionEvent actionEvent) throws IOException{
