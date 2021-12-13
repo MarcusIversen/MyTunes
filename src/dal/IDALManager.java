@@ -13,6 +13,8 @@ public interface IDALManager {
 
     public List<Playlist> getAllPlaylists() throws SQLException;
 
+    public List<Song> getAllSongsInPlaylist(int PlaylistId) throws SQLException;
+
     public Song getSingleSongById(int id);
 
     public Song createSong(String title, String artist, String category, String time, String URL) ;
@@ -24,4 +26,6 @@ public interface IDALManager {
     public void deleteSong(Song song) ;
 
     Playlist createPlaylist(String name) throws SQLServerException;
+
+    Song addSongToPLaylist(int playlistId, int songId);
 }

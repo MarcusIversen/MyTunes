@@ -4,6 +4,7 @@ import be.Playlist;
 import be.Song;
 import gui.models.PlaylistModel;
 import gui.models.SongModel;
+import gui.models.SongsInPlaylistModel;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
@@ -18,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
@@ -36,11 +38,15 @@ public class MainMenuController {
     @FXML
     private TableView<Playlist> PlaylistTable;
 
+    @FXML
     private TableView songsInPlaylistTable;
 
 
 
-    private TableColumn<Song, String> TableSongs;
+    @FXML
+    public TableColumn<Song, String> TableSongsId;
+    @FXML
+    public TableColumn<Song, String> TableSongs;
     @FXML
     private TableColumn<Song, String> TableTitle;
     @FXML
@@ -61,12 +67,15 @@ public class MainMenuController {
     ObservableList<Song> songData = FXCollections.observableArrayList();
     ObservableList<Song> searchData = FXCollections.observableArrayList();
     ObservableList<Playlist> playlistData = FXCollections.observableArrayList();
+    ObservableList<Song> PLSongsData = FXCollections.observableArrayList();
     MediaPlayer mediaPlayer;
 
 
     public Text songTextPlaying;
     private SongModel songModel;
     private PlaylistModel playlistModel;
+    private SongsInPlaylistModel songsInPlaylistModel;
+    public MouseEvent playlistId;
 
     public Button songEditor;
     public Button songDeleter;
@@ -108,6 +117,14 @@ public class MainMenuController {
 
     public void mediaPause(){
 
+    }
+
+    public void addSongToPlaylist(){
+
+        Playlist PlaylistId = PlaylistTable.getSelectionModel().getSelectedItem();
+        Song songId = SongTable.getSelectionModel().getSelectedItem();
+
+        songsInPlaylistModel.addSongToPlaylist(PlaylistId.getPlaylistId(), songId.getId());
     }
 
     public void goEditSong(ActionEvent actionEvent) throws IOException{
@@ -201,7 +218,24 @@ public class MainMenuController {
             }
         });
 
+        //TODO FIKS PROBLEMET HVOR MAN KAN TRYKKE PÅ EN PLAYLIST OG SÅ VISER DEN SANGENE I TABLE VED SIDEN AF
+        songsInPlaylistModel = new SongsInPlaylistModel(PlaylistTable.getSelectionModel().getSelectedItem().getPlaylistId());
+
+        TableSongsId.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        TableSongs.setCellValueFactory(new PropertyValueFactory<>("Songs"));
+
+        try {
+            PLSongsData = FXCollections.observableList(songsInPlaylistModel.getSongsInPlaylistData());
+            PLSongsTableViewLoad(PLSongsData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
     }
+
+
 
     //TableView bliver generert
 
@@ -217,6 +251,10 @@ public class MainMenuController {
         PlaylistTable.setItems(getPlaylistData());
     }
 
+    private void PLSongsTableViewLoad(ObservableList<Song> PLSongsData){
+        songsInPlaylistTable.setItems(getPLSongsData());
+    }
+
 
 
     public ObservableList<Song> getSearchData() {
@@ -230,6 +268,9 @@ public class MainMenuController {
 
     public ObservableList<Playlist> getPlaylistData() {
         return playlistData;
+    }
+    public ObservableList<Song> getPLSongsData(){
+        return PLSongsData;
     }
 
     public void filterSongs() throws Exception {

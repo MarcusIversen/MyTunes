@@ -1,7 +1,11 @@
 package be;
 
 public class Song {
+
     private int id;
+    private int songsInPlaylistId;
+    private int songId;
+    private int playlistId;
     private String title;
     private String artist;
     private String category;
@@ -17,8 +21,6 @@ public class Song {
             this.id = id;
     }
 
-
-
     public String getURL() {
         return URL;
     }
@@ -28,6 +30,12 @@ public class Song {
     }
 
     private String URL;
+
+    public Song(int songsInPlaylistId, int songId, int playlistId) {
+        this.songsInPlaylistId = songsInPlaylistId;
+        this.songId = songId;
+        this.playlistId = playlistId;
+    }
 
     public Song(int id, String title, String artist, String category, String time, String URL) {
 

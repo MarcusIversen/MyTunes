@@ -85,7 +85,7 @@
             <Image url="@../Pictures/Sound%20Logo.png" />
          </image>
       </ImageView>
-      <Button layoutX="474.0" layoutY="117.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="52.0">
+      <Button layoutX="474.0" layoutY="117.0" mnemonicParsing="false" onAction="#addSongToPlaylist" prefHeight="24.0" prefWidth="52.0">
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -135,7 +135,8 @@
       </Button>
       <TableView fx:id="songsInPlaylistTable" layoutX="264.0" layoutY="119.0" prefHeight="398.0" prefWidth="189.0">
         <columns>
-          <TableColumn prefWidth="188.80001220703124" text="Songs" />
+          <TableColumn fx:id="TableSongsId" prefWidth="27.2000732421875" text="Id" />
+            <TableColumn fx:id="TableSongs" prefWidth="160.80001220703124" text="Songs" />
         </columns>
       </TableView>
    </children>

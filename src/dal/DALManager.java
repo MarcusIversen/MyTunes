@@ -5,17 +5,20 @@ import be.Song;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.db.dao.PlaylistDAO_DB;
 import dal.db.dao.SongDAO_DB;
+import dal.db.dao.SongsInPlaylistDAO_DB;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class DALManager implements  IDALManager{
+public class DALManager implements IDALManager {
     private SongDAO_DB songDAO;
     private PlaylistDAO_DB playlistDAO;
+    private SongsInPlaylistDAO_DB songsInPlaylistDAO;
 
     public DALManager() {
         songDAO = new SongDAO_DB();
         playlistDAO = new PlaylistDAO_DB();
+        songsInPlaylistDAO = new SongsInPlaylistDAO_DB();
     }
 
 
@@ -29,8 +32,20 @@ public class DALManager implements  IDALManager{
         return playlistDAO.getAllPlaylists();
     }
 
+    @Override
+    public List<Song> getAllSongsInPlaylist(int PlaylistId) throws SQLException {
+        return songsInPlaylistDAO.getAllSongsInPlaylist(PlaylistId);
+    }
+
+
     public Playlist createPlaylist(String name) throws SQLServerException {
         return playlistDAO.createPlaylist(name);
+    }
+
+    @Override
+    public Song addSongToPLaylist(int playlistId, int songId) {
+        songsInPlaylistDAO.addSongToPlaylist(playlistId, songId);
+        return null;
     }
 
 

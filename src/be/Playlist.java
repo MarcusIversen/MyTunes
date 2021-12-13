@@ -4,8 +4,7 @@ import java.util.List;
 
 public class Playlist {
 
-
-
+    private int PlaylistId;
     private String name;
     private int songs;
     private double time;
@@ -32,6 +31,14 @@ public class Playlist {
         }
         return playTime;
     }*/
+
+    public int getPlaylistId() {
+        return PlaylistId;
+    }
+
+    public void setPlaylistId(int playlistId) {
+        this.PlaylistId = playlistId;
+    }
 
     public String getName() {
         return name;
