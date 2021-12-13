@@ -84,6 +84,7 @@ public class MainMenuController {
 
     public MainMenuController(){
         volumeSlider = new Slider();
+
     }
 
 
@@ -211,7 +212,6 @@ public class MainMenuController {
     }
 
 
-    
 
     public ObservableList<Song> getSearchData() {
         return searchData;
