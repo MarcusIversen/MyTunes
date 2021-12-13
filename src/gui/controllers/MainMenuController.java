@@ -27,6 +27,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainMenuController {
 
@@ -88,9 +90,12 @@ public class MainMenuController {
     public Button pauseButton;
     public Slider volumeSlider;
     public double volume = 0;
-    private String SongPlaying;
     private Object ObservableList;
+    private List<Song> SongsPlayed;
+    private int IndexOfSongPlaying;
+    Song songToPlayIfSet = null; //Hvis sat afspilles denne når man kalder mediaPlay, bliver sat til null efter afspilningen er startet
 
+    private Boolean IsPaused = false;
 
     public MainMenuController(){
         volumeSlider = new Slider();
@@ -99,24 +104,42 @@ public class MainMenuController {
 
 
     public void mediaPlay() {
-
-            Media pick = new Media(new File(SongTable.getSelectionModel().getSelectedItem().getURL()).toURI().toString());
-            mediaPlayer = new MediaPlayer(pick);
+        if(IsPaused) {
+            IsPaused = false;
             mediaPlayer.play();
-            songTextPlaying.setText(SongTable.getSelectionModel().getSelectedItem().getTitle());
+        }else {
+            if(mediaPlayer != null){
+                //Hvis der er en kørende mediaplayer, så stoppes denne inden en ny startes
+                mediaPlayer.dispose();
+            }
+            if(songToPlayIfSet == null){
+                songToPlayIfSet = SongTable.getSelectionModel().getSelectedItem();
+                SongsPlayed.add(songToPlayIfSet);
+                IndexOfSongPlaying = SongsPlayed.size() - 1;
+            }
+            Media pick = new Media(new File(songToPlayIfSet.getURL()).toURI().toString());
+            mediaPlayer = new MediaPlayer(pick);
+            mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
+            mediaPlayer.play();
+            songTextPlaying.setText(songToPlayIfSet.getTitle());
             playButton.setVisible(false);
             mediaPlayer.setOnEndOfMedia(() -> {
                 mediaPlayer.stop();
                 mediaPlayer = null;
             });
+            songToPlayIfSet = null;
+        }
+
 
         System.out.println(mediaPlayer.getStatus());
     }
 
     public void mediaPause(){
+        IsPaused = true;
         mediaPlayer.pause();
         System.out.println(mediaPlayer.getStatus());
     }
+
 
     public void addSongToPlaylist(){
 
@@ -178,6 +201,8 @@ public class MainMenuController {
 //
         songModel = new SongModel();
 
+        SongsPlayed = new ArrayList<Song>();
+
         TableTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         TableArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
         TableCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
@@ -218,7 +243,9 @@ public class MainMenuController {
         });
 
         //TODO FIKS PROBLEMET HVOR MAN KAN TRYKKE PÅ EN PLAYLIST OG SÅ VISER DEN SANGENE I TABLE VED SIDEN AF
-        songsInPlaylistModel = new SongsInPlaylistModel(PlaylistTable.getSelectionModel().getSelectedItem().getPlaylistId());
+        if(PlaylistTable.getSelectionModel().getSelectedItem() != null){
+            songsInPlaylistModel = new SongsInPlaylistModel(PlaylistTable.getSelectionModel().getSelectedItem().getPlaylistId());
+        }
 
         TableSongsId.setCellValueFactory(new PropertyValueFactory<>("Id"));
         TableSongs.setCellValueFactory(new PropertyValueFactory<>("Songs"));
@@ -280,5 +307,21 @@ public class MainMenuController {
             e.printStackTrace();
         }
 
+    }
+
+    public void PreviousSongBtnClicked(ActionEvent event) {
+        if(SongsPlayed.size() > 0) {
+            Song songToSet;
+            //Find song on index - 1 if size is bigger than 1
+            if(SongsPlayed.size() == 1){
+                IndexOfSongPlaying = 0;
+                songToPlayIfSet = SongsPlayed.get(0);
+            }else {
+                //Hvis først afspillet sang, hopper vi til den sidste i listen
+                IndexOfSongPlaying = IndexOfSongPlaying != 0 ? IndexOfSongPlaying - 1 : SongsPlayed.size() - 1;
+                songToPlayIfSet = SongsPlayed.get(IndexOfSongPlaying);
+            }
+            mediaPlay();
+        }
     }
 }

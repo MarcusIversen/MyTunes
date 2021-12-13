@@ -129,6 +129,7 @@
             <TableColumn fx:id="TableSongs" prefWidth="160.80001220703124" text="Songs" />
         </columns>
       </TableView>
-      <Button fx:id="pauseBtn" layoutX="273.0" layoutY="29.0" onAction="#mediaPause" mnemonicParsing="false" text="Button" />
+      <Button fx:id="pauseBtn" layoutX="273.0" layoutY="29.0" mnemonicParsing="false" onAction="#mediaPause" text="Button" />
+      <Button fx:id="PreviousSongBtn" layoutX="448.0" layoutY="29.0" mnemonicParsing="false" onAction="#PreviousSongBtnClicked" text="Back" />
    </children>
 </AnchorPane>
