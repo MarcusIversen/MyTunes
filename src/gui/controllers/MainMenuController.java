@@ -99,7 +99,7 @@ public class MainMenuController {
 
 
     public void mediaPlay() {
-        if (mediaPlayer == null) {
+
             Media pick = new Media(new File(SongTable.getSelectionModel().getSelectedItem().getURL()).toURI().toString());
             mediaPlayer = new MediaPlayer(pick);
             mediaPlayer.play();
@@ -109,14 +109,13 @@ public class MainMenuController {
                 mediaPlayer.stop();
                 mediaPlayer = null;
             });
-        }else if (playButton.isManaged()){
-            mediaPlayer.pause();
-            mediaPlayer = null;
-        }
+
+        System.out.println(mediaPlayer.getStatus());
     }
 
     public void mediaPause(){
-
+        mediaPlayer.pause();
+        System.out.println(mediaPlayer.getStatus());
     }
 
     public void addSongToPlaylist(){
