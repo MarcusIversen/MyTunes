@@ -68,10 +68,7 @@ public class EditSongController implements Initializable {
         Song song = new Song( updateTitle, updateArtist, updateCategory, updateTime, updateId, updateUrl);
         songModel.updateSong(song);
 
-        Stage swich = (Stage) ReturnMainMenu.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
-        Scene scene = new Scene(parent);
-        swich.setScene(scene);
+        GoReturnMainMenu(actionEvent);
     }
 
     public void setSong(Song song){

@@ -37,7 +37,7 @@ public class MainMenuController {
     @FXML
     private TableView<Playlist> PlaylistTable;
 
-  
+
     @FXML
     private TableColumn<Song, String> TableTitle;
     @FXML
