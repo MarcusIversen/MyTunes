@@ -211,10 +211,7 @@ public class MainMenuController {
     }
 
 
-    public void adjustVolume(){
-       /* volume = volumeSlider.getValue() / 100;
-        System.out.println(volume);*/
-    }
+    
 
     public ObservableList<Song> getSearchData() {
         return searchData;
