@@ -20,7 +20,7 @@ public class SongsInPlaylistDAO_DB {
 
         try (Connection connection = databaseConnector.getConnection()) {
 
-            String sql = "SELECT * FROM Songs INNER JOIN SongsInPlaylist ON SongsInPlaylist.SongId = Song.Id WHERE SongsInPlaylist.PlaylistId = ?;";
+            String sql = "SELECT * FROM Songs INNER JOIN SongsInPlaylist ON SongsInPlaylist.SongId = Songs.Id WHERE SongsInPlaylist.PlaylistId = ?;";
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, PlaylistId);
             statement.execute();
@@ -50,6 +50,7 @@ public class SongsInPlaylistDAO_DB {
         try (Connection connection = databaseConnector.getConnection()) {
 
             String sql = "INSERT INTO SongsInPlaylist (PlaylistId, SongId) VALUES (?,?);";
+            System.out.println(PlaylistId + "" + SongId);
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setInt(1,PlaylistId);

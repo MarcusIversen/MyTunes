@@ -13,7 +13,6 @@ public interface IDALManager {
 
     public List<Playlist> getAllPlaylists() throws SQLException;
 
-    public List<Song> getAllSongsInPlaylist(int PlaylistId) throws SQLException;
 
     public Song getSingleSongById(int id);
 

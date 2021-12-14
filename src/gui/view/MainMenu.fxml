@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -29,7 +29,7 @@
       <Button fx:id="songEditor" layoutX="609.0" layoutY="537.0" mnemonicParsing="false" onAction="#goEditSong" prefHeight="26.0" prefWidth="52.0" text="Edit.." />
       <Button fx:id="songDeleter" layoutX="668.0" layoutY="537.0" mnemonicParsing="false" onAction="#deleteSong" prefHeight="26.0" prefWidth="64.0" text="Delete" />
       <Button fx:id="NewSong" layoutX="544.0" layoutY="537.0" mnemonicParsing="false" onAction="#GoNewSong" prefHeight="26.0" prefWidth="52.0" text="New.." />
-      <TableView fx:id="PlaylistTable" layoutX="47.0" layoutY="119.0" prefHeight="398.0" prefWidth="200.0">
+      <TableView fx:id="PlaylistTable" layoutX="47.0" layoutY="119.0" onMouseClicked="#lookAtPlaylist" prefHeight="398.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="PlaylistName" prefWidth="75.0" text="Name" />
           <TableColumn fx:id="playlistSongs" prefWidth="68.80001831054688" text="Songs" />
@@ -66,17 +66,12 @@
             </ImageView>
          </graphic>
       </Button>
-      <ImageView fitHeight="50.0" fitWidth="57.0" layoutX="93.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Pictures/Pause%20Button.png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="150.0" fitWidth="52.0" layoutX="147.0" layoutY="17.0" onMouseClicked="#mediaPlay" onTouchPressed="#mediaPlay" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Pictures/Play%20Button.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="60.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="82.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Pictures/Back%20Button.png" />
          </image>
@@ -114,24 +109,23 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="playButton" layoutX="147.0" layoutY="21.0" mnemonicParsing="false" onAction="#mediaPlay" prefHeight="50.0" prefWidth="52.0">
+      <Button fx:id="playButton" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" onAction="#mediaPlay" prefHeight="50.0" prefWidth="52.0">
          <effect>
             <ColorInput />
          </effect>
       </Button>
-      <Button layoutX="199.0" layoutY="32.0" mnemonicParsing="false" opacity="0.0" prefHeight="36.0" prefWidth="39.0">
+      <Button layoutX="196.0" layoutY="33.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="39.0">
          <effect>
             <ColorInput />
          </effect>
       </Button>
-      <TableView fx:id="songsInPlaylistTable" layoutX="264.0" layoutY="119.0" prefHeight="398.0" prefWidth="189.0">
-        <columns>
-          <TableColumn fx:id="TableSongsId" prefWidth="27.2000732421875" text="Id" />
-            <TableColumn fx:id="TableSongs" prefWidth="160.80001220703124" text="Songs" />
-        </columns>
-      </TableView>
-      <Button fx:id="pauseBtn" layoutX="100.0" layoutY="29.0" mnemonicParsing="false" onAction="#mediaPause" opacity="0.0" prefHeight="40.0" prefWidth="39.0" />
-      <Button fx:id="PreviousSongBtn" layoutX="63.0" layoutY="30.0" mnemonicParsing="false" onAction="#PreviousSongBtnClicked" opacity="0.0" prefHeight="40.0" prefWidth="38.0" text="Back" />
-      <Label layoutX="276.0" layoutY="33.0" />
+      <Button layoutX="81.0" layoutY="33.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="39.0">
+         <effect>
+            <ColorInput />
+         </effect>
+      </Button>
+      <Button fx:id="pauseBtn" layoutX="273.0" layoutY="29.0" mnemonicParsing="false" onAction="#mediaPause" text="Button" />
+      <Button fx:id="PreviousSongBtn" layoutX="448.0" layoutY="29.0" mnemonicParsing="false" onAction="#PreviousSongBtnClicked" text="Back" />
+      <ListView fx:id="songsInPlaylistTable" layoutX="264.0" layoutY="119.0" prefHeight="398.0" prefWidth="190.0" />
    </children>
 </AnchorPane>

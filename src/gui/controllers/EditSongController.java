@@ -21,6 +21,7 @@ import jdk.javadoc.internal.doclets.formats.html.markup.Text;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.title;
@@ -39,6 +40,9 @@ public class EditSongController implements Initializable {
     public Button updateSongButton;
     public ComboBox categoryMenu;
     public TextField idBar;
+
+    public EditSongController() throws SQLException {
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
