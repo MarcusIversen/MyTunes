@@ -76,6 +76,7 @@ public class MainMenuController {
     private SongModel songModel;
     private PlaylistModel playlistModel;
     private SongsInPlaylistModel songsInPlaylistModel;
+    private Playlist selectedPlaylist;
 
     public Button songEditor;
     public Button songDeleter;
@@ -149,24 +150,10 @@ public class MainMenuController {
         });
 
 
-        /**songsInPlaylistModel = new SongsInPlaylistModel(PlaylistTable.getSelectionModel().getSelectedItem().getPlaylistId());
-
-         TableSongsId.setCellValueFactory(new PropertyValueFactory<>("Id"));
-         TableSongs.setCellValueFactory(new PropertyValueFactory<>("Songs"));
-
-         try {
-         PLSongsData = FXCollections.observableList(songsInPlaylistModel.getSongsInPlaylistData());
-         PLSongsTableViewLoad(PLSongsData);
-         } catch (Exception e) {
-         e.printStackTrace();
-         }
-         */
-
-
-
     }
 
     public void mediaPlay() {
+
         if (IsPaused) {
             IsPaused = false;
             mediaPlayer.play();
@@ -176,7 +163,7 @@ public class MainMenuController {
                 mediaPlayer.dispose();
             }
             if (songToPlayIfSet == null) {
-                songToPlayIfSet = SongTable.getSelectionModel().getSelectedItem();
+                songToPlayIfSet = (Song) songsInPlaylistTable.getSelectionModel().getSelectedItem();
                 SongsPlayed.add(songToPlayIfSet);
                 IndexOfSongPlaying = SongsPlayed.size() - 1;
             }
@@ -210,7 +197,26 @@ public class MainMenuController {
         Song songId = SongTable.getSelectionModel().getSelectedItem();
 
         songsInPlaylistModel.addSongToPlaylist(PlaylistId.getPlaylistId(), songId.getId());
+
+        reloadPlaylistTable();
     }
+
+    private void reloadPlaylistTable(){
+        try {
+            int index = PlaylistTable.getSelectionModel().getFocusedIndex();
+            this.PlaylistTable.setItems(FXCollections.observableList(playlistModel.getPlaylist()));
+            PlaylistTable.getSelectionModel().select(index);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+   /** private void reloadSongsInPlaylistTable(){
+        try {
+            int index = songsInPlaylistTable.getSelectionModel().getSelectedIndex();
+            this.songsInPlaylistTable.setItems(FXCollections.observableList(selectedPlaylist.getPlaylistId());
+        }
+    }*/
 
     public void goEditSong(ActionEvent actionEvent) throws IOException {
         Song selectedItem = SongTable.getSelectionModel().getSelectedItem();
