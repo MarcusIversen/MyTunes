@@ -86,7 +86,7 @@
             <Image url="@../Pictures/Sound%20Logo.png" />
          </image>
       </ImageView>
-      <Button layoutX="474.0" layoutY="117.0" mnemonicParsing="false" onAction="#addSongToPlaylist" prefHeight="24.0" prefWidth="52.0">
+      <Button layoutX="469.0" layoutY="117.0" mnemonicParsing="false" onAction="#addSongToPlaylist" prefHeight="30.0" prefWidth="64.0">
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>

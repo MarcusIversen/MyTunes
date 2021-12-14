@@ -78,6 +78,7 @@ public class MainMenuController {
     private SongsInPlaylistModel songsInPlaylistModel;
     private Playlist selectedPlaylist;
 
+    public Button refreshButton;
     public Button songEditor;
     public Button songDeleter;
     public Button playButton;
@@ -193,12 +194,16 @@ public class MainMenuController {
 
     public void addSongToPlaylist() {
 
+        songsInPlaylistTable.refresh();
+
         Playlist PlaylistId = PlaylistTable.getSelectionModel().getSelectedItem();
         Song songId = SongTable.getSelectionModel().getSelectedItem();
 
         songsInPlaylistModel.addSongToPlaylist(PlaylistId.getPlaylistId(), songId.getId());
 
         reloadPlaylistTable();
+        reloadSongsInPlaylistTable();
+
     }
 
     private void reloadPlaylistTable(){
@@ -211,12 +216,18 @@ public class MainMenuController {
         }
     }
 
-   /** private void reloadSongsInPlaylistTable(){
-        try {
-            int index = songsInPlaylistTable.getSelectionModel().getSelectedIndex();
-            this.songsInPlaylistTable.setItems(FXCollections.observableList(selectedPlaylist.getPlaylistId());
-        }
-    }*/
+    public void reloadSongsInPlaylistTable(){
+
+        songsInPlaylistTable.refresh();
+
+        Playlist playlist = PlaylistTable.getSelectionModel().getSelectedItem();
+
+        List<Song> observableList = (playlist.getSongs());
+        songsInPlaylistTable.setItems(FXCollections.observableList(observableList));
+
+    }
+
+
 
     public void goEditSong(ActionEvent actionEvent) throws IOException {
         Song selectedItem = SongTable.getSelectionModel().getSelectedItem();
