@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,10 +40,8 @@ public class MainMenuController {
     private TableView<Song> SongTable;
     @FXML
     private TableView<Playlist> PlaylistTable;
-
     @FXML
-    private TableView songsInPlaylistTable;
-
+    public ListView songsInPlaylistTable;
 
 
     @FXML
@@ -77,7 +76,6 @@ public class MainMenuController {
     private SongModel songModel;
     private PlaylistModel playlistModel;
     private SongsInPlaylistModel songsInPlaylistModel;
-    public MouseEvent playlistId;
 
     public Button songEditor;
     public Button songDeleter;
@@ -97,22 +95,87 @@ public class MainMenuController {
 
     private Boolean IsPaused = false;
 
-    public MainMenuController(){
+    public MainMenuController() throws SQLException {
+
+        songModel = new SongModel();
         volumeSlider = new Slider();
+        PlaylistTable = new TableView<>();
+        songsInPlaylistModel = new SongsInPlaylistModel();
+        playlistModel = new PlaylistModel();
+    }
+
+    //*  her starter jeg programmet og sætter værdierne til at fortæller der er en song som er en String der hedder title et sted i koden. Den finder den og gør det
+    //* samme for de andre
+    public void initialize() throws Exception {
+//
+        SongsPlayed = new ArrayList<Song>();
+
+        TableTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        TableArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
+        TableCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+        TableTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+
+
+        //* her sætter jeg dataen til at blive vist i tabellen
+        try {
+            songData = FXCollections.observableList((songModel.getSongData()));
+            songTableViewLoad(songData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        volumeSlider.valueProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                mediaPlayer.setVolume(volume);
+            }
+        });
+
+        PlaylistName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        playlistSongs.setCellValueFactory(new PropertyValueFactory<>("SongCount"));
+        playlistTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+
+        try {
+            playlistData = FXCollections.observableList(playlistModel.getPlaylistData());
+            playlistTableViewLoad(playlistData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
+            }
+        });
+
+
+        /**songsInPlaylistModel = new SongsInPlaylistModel(PlaylistTable.getSelectionModel().getSelectedItem().getPlaylistId());
+
+         TableSongsId.setCellValueFactory(new PropertyValueFactory<>("Id"));
+         TableSongs.setCellValueFactory(new PropertyValueFactory<>("Songs"));
+
+         try {
+         PLSongsData = FXCollections.observableList(songsInPlaylistModel.getSongsInPlaylistData());
+         PLSongsTableViewLoad(PLSongsData);
+         } catch (Exception e) {
+         e.printStackTrace();
+         }
+         */
+
+
 
     }
 
-
     public void mediaPlay() {
-        if(IsPaused) {
+        if (IsPaused) {
             IsPaused = false;
             mediaPlayer.play();
-        }else {
-            if(mediaPlayer != null){
+        } else {
+            if (mediaPlayer != null) {
                 //Hvis der er en kørende mediaplayer, så stoppes denne inden en ny startes
                 mediaPlayer.dispose();
             }
-            if(songToPlayIfSet == null){
+            if (songToPlayIfSet == null) {
                 songToPlayIfSet = SongTable.getSelectionModel().getSelectedItem();
                 SongsPlayed.add(songToPlayIfSet);
                 IndexOfSongPlaying = SongsPlayed.size() - 1;
@@ -134,14 +197,14 @@ public class MainMenuController {
         System.out.println(mediaPlayer.getStatus());
     }
 
-    public void mediaPause(){
+    public void mediaPause() {
         IsPaused = true;
         mediaPlayer.pause();
         System.out.println(mediaPlayer.getStatus());
     }
 
 
-    public void addSongToPlaylist(){
+    public void addSongToPlaylist() {
 
         Playlist PlaylistId = PlaylistTable.getSelectionModel().getSelectedItem();
         Song songId = SongTable.getSelectionModel().getSelectedItem();
@@ -149,7 +212,7 @@ public class MainMenuController {
         songsInPlaylistModel.addSongToPlaylist(PlaylistId.getPlaylistId(), songId.getId());
     }
 
-    public void goEditSong(ActionEvent actionEvent) throws IOException{
+    public void goEditSong(ActionEvent actionEvent) throws IOException {
         Song selectedItem = SongTable.getSelectionModel().getSelectedItem();
         Stage swich = (Stage) songEditor.getScene().getWindow();
         FXMLLoader parent = new FXMLLoader(getClass().getResource("../view/EditSong.fxml"));
@@ -187,7 +250,7 @@ public class MainMenuController {
         System.exit(0);
     }
 
-    public void deleteSong(){
+    public void deleteSong() {
         songModel.deleteSong(SongTable.getSelectionModel().getSelectedItem());
         SongTable.getItems().remove(SongTable.getSelectionModel().getSelectedItem());
     }
@@ -195,72 +258,13 @@ public class MainMenuController {
 
 
 
-    //*  her starter jeg programmet og sætter værdierne til at fortæller der er en song som er en String der hedder title et sted i koden. Den finder den og gør det
-    //* samme for de andre
-    public void initialize() throws Exception {
-//
-        songModel = new SongModel();
+    public void lookAtPlaylist(){
+        Playlist playlist = PlaylistTable.getSelectionModel().getSelectedItem();
 
-        SongsPlayed = new ArrayList<Song>();
-
-        TableTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-        TableArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
-        TableCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
-        TableTime.setCellValueFactory(new PropertyValueFactory<>("time"));
-
-
-        //* her sætter jeg dataen til at blive vist i tabellen
-        try {
-            songData = FXCollections.observableList((songModel.getSongData()));
-            songTableViewLoad(songData);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        volumeSlider.valueProperty().addListener(new InvalidationListener() {
-            @Override
-            public void invalidated(Observable observable) {mediaPlayer.setVolume(volume);
-            }
-        });
-
-        playlistModel = new PlaylistModel();
-
-        PlaylistName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        playlistSongs.setCellValueFactory(new PropertyValueFactory<>("songs"));
-        playlistTime.setCellValueFactory(new PropertyValueFactory<>("time"));
-
-        try {
-            playlistData = FXCollections.observableList(playlistModel.getPlaylistData());
-            playlistTableViewLoad(playlistData);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
-            }
-        });
-
-        //TODO FIKS PROBLEMET HVOR MAN KAN TRYKKE PÅ EN PLAYLIST OG SÅ VISER DEN SANGENE I TABLE VED SIDEN AF
-        if(PlaylistTable.getSelectionModel().getSelectedItem() != null){
-            songsInPlaylistModel = new SongsInPlaylistModel(PlaylistTable.getSelectionModel().getSelectedItem().getPlaylistId());
-        }
-
-        TableSongsId.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        TableSongs.setCellValueFactory(new PropertyValueFactory<>("Songs"));
-
-        try {
-            PLSongsData = FXCollections.observableList(songsInPlaylistModel.getSongsInPlaylistData());
-            PLSongsTableViewLoad(PLSongsData);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
+            List<Song> observableList = (playlist.getSongs());
+            songsInPlaylistTable.setItems(FXCollections.observableList(observableList));
 
     }
-
 
 
     //TableView bliver generert
@@ -277,10 +281,9 @@ public class MainMenuController {
         PlaylistTable.setItems(getPlaylistData());
     }
 
-    private void PLSongsTableViewLoad(ObservableList<Song> PLSongsData){
+    private void PLSongsTableViewLoad(ObservableList<Song> PLSongsData) {
         songsInPlaylistTable.setItems(getPLSongsData());
     }
-
 
 
     public ObservableList<Song> getSearchData() {
@@ -295,7 +298,8 @@ public class MainMenuController {
     public ObservableList<Playlist> getPlaylistData() {
         return playlistData;
     }
-    public ObservableList<Song> getPLSongsData(){
+
+    public ObservableList<Song> getPLSongsData() {
         return PLSongsData;
     }
 
@@ -310,13 +314,13 @@ public class MainMenuController {
     }
 
     public void PreviousSongBtnClicked(ActionEvent event) {
-        if(SongsPlayed.size() > 0) {
+        if (SongsPlayed.size() > 0) {
             Song songToSet;
             //Find song on index - 1 if size is bigger than 1
-            if(SongsPlayed.size() == 1){
+            if (SongsPlayed.size() == 1) {
                 IndexOfSongPlaying = 0;
                 songToPlayIfSet = SongsPlayed.get(0);
-            }else {
+            } else {
                 //Hvis først afspillet sang, hopper vi til den sidste i listen
                 IndexOfSongPlaying = IndexOfSongPlaying != 0 ? IndexOfSongPlaying - 1 : SongsPlayed.size() - 1;
                 songToPlayIfSet = SongsPlayed.get(IndexOfSongPlaying);

@@ -19,10 +19,6 @@ public class SongsInPlaylistManager implements ISongsInPlaylistManager {
     }
 
 
-    @Override
-    public List<Song> getAllSongsInPlaylist(int PlaylistId) throws SQLException {
-        return dalManager.getAllSongsInPlaylist(PlaylistId);
-    }
 
     @Override
     public Song addSongToPlaylist(int PlaylistId, int SongId) {

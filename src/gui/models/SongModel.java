@@ -7,14 +7,15 @@ import gui.controllers.MainMenuController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.SQLException;
 import java.util.List;
 
-public class SongModel extends MainMenuController {
+public class SongModel {
     private ObservableList<Song> songsToBeViewed;
 
     private ISongManager songManager;
 
-    public SongModel() {
+    public SongModel()   {
         songManager = new SongManager();
         songsToBeViewed = FXCollections.observableArrayList();
         songsToBeViewed.addAll(songManager.getAllSongs());

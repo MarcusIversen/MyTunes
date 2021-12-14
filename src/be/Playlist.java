@@ -1,17 +1,17 @@
 package be;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Playlist {
 
     private int PlaylistId;
     private String name;
-    private int songs;
+    private List<Song> songs = new ArrayList<>();
     private double time;
-    private static List<Playlist> playlist;
 
-    public Playlist(String name) {
-
+    public Playlist(int id, String name) {
+        this.PlaylistId = id;
         this.name = name;
         //this.songs = songs;
         //this.time = time;
@@ -19,8 +19,8 @@ public class Playlist {
     }
 
 
-    public static int getSongCount() {
-        return playlist.size();
+    public int getSongCount() {
+        return songs.size();
     }
 
 
@@ -44,8 +44,12 @@ public class Playlist {
         return name;
     }
 
-    public int getSongs() {
+    public List<Song> getSongs() {
         return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
     }
 
     public double getTime() {
@@ -56,9 +60,6 @@ public class Playlist {
         this.name = name;
     }
 
-    public void setSongs(int songs) {
-        this.songs = songs;
-    }
 
     public void setTime(double time) {
         this.time = time;
