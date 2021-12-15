@@ -16,13 +16,13 @@ public interface IDALManager {
 
     public Song getSingleSongById(int id);
 
-    public Song createSong(String title, String artist, String category, int time, String URL) ;
+    public Song createSong(String title, String artist, String category, int time, String URL);
 
 
-    public void updateSong(Song song) ;
+    public void updateSong(Song song);
 
 
-    public void deleteSong(Song song) ;
+    public void deleteSong(Song song);
 
     Playlist createPlaylist(String name) throws SQLServerException;
 

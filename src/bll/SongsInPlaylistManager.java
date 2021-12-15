@@ -10,10 +10,9 @@ import java.util.List;
 
 public class SongsInPlaylistManager implements ISongsInPlaylistManager {
     SongsInPlaylistDAO_DB songsInPlaylistDAO;
-    private IDALManager dalManager ;
+    private IDALManager dalManager;
 
-    public SongsInPlaylistManager()
-    {
+    public SongsInPlaylistManager() {
         songsInPlaylistDAO = new SongsInPlaylistDAO_DB();
         dalManager = new DALManager();
     }
@@ -24,7 +23,7 @@ public class SongsInPlaylistManager implements ISongsInPlaylistManager {
         return dalManager.addSongToPLaylist(PlaylistId, SongId);
     }
 
-    public void deleteSongInPlaylist(int PlaylistId, int SongId){
+    public void deleteSongInPlaylist(int PlaylistId, int SongId) {
         dalManager.deleteSongInPlaylist(PlaylistId, SongId);
     }
 }

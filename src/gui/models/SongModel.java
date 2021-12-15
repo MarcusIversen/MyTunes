@@ -15,7 +15,7 @@ public class SongModel {
 
     private ISongManager songManager;
 
-    public SongModel()   {
+    public SongModel() {
         songManager = new SongManager();
         songsToBeViewed = FXCollections.observableArrayList();
         songsToBeViewed.addAll(songManager.getAllSongs());

@@ -9,15 +9,14 @@ import java.util.List;
 
 public class SongManager implements ISongManager {
 
-    private SongSearcher songSearcher ;
-    private IDALManager dalManager ;
+    private SongSearcher songSearcher;
+    private IDALManager dalManager;
 
 
     public SongManager() {
         songSearcher = new SongSearcher();
         dalManager = new DALManager();
     }
-
 
 
     @Override
@@ -37,7 +36,7 @@ public class SongManager implements ISongManager {
 
     @Override
     public void updateSong(Song song) {
-         dalManager.updateSong(song);
+        dalManager.updateSong(song);
     }
 
     @Override

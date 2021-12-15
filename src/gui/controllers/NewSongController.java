@@ -35,7 +35,7 @@ public class NewSongController {
     public void initialize() {
 
         songModel = new SongModel();
-        categoryMenu.setItems(FXCollections.observableArrayList("Pop", "Rock", "Reggae", "Techno", "RnB"));
+        categoryMenu.setItems(FXCollections.observableArrayList("Pop", "Hip Hop", "Rap", "Rock", "Dance", "Techno", "Latin music", "Indie Rock", "Classical", "Country", "Metal", "RnB"));
     }
 
     public void GoReturnMainMenu(ActionEvent actionEvent) throws IOException {

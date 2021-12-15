@@ -12,29 +12,27 @@ public class PlaylistDAO_DB {
 
     private MyDatabaseConnector databaseConnector;
     private SongsInPlaylistDAO_DB songsInPlaylistDAODb;
-    public PlaylistDAO_DB()
-    {
+
+    public PlaylistDAO_DB() {
         databaseConnector = new MyDatabaseConnector();
-        songsInPlaylistDAODb =  new SongsInPlaylistDAO_DB();
+        songsInPlaylistDAODb = new SongsInPlaylistDAO_DB();
     }
+
     public List<Playlist> getAllPlaylists() throws SQLException {
         ArrayList<Playlist> allPlaylist = new ArrayList<>();
 
-        try(Connection connection = databaseConnector.getConnection())
-        {
+        try (Connection connection = databaseConnector.getConnection()) {
 
             String sql = "SELECT * FROM Playlist;";
 
             Statement statement = connection.createStatement();
 
-            if(statement.execute(sql))
-            {
+            if (statement.execute(sql)) {
                 ResultSet resultset = statement.getResultSet();
-                while(resultset.next())
-                {
+                while (resultset.next()) {
 
                     int id = resultset.getInt("PlaylistId");
-                   String name = resultset.getString("Name");
+                    String name = resultset.getString("Name");
 
 
                     Playlist playlist = new Playlist(id, name);
@@ -46,10 +44,9 @@ public class PlaylistDAO_DB {
         return allPlaylist;
     }
 
-   public Playlist createPlaylist(String name) throws SQLServerException {
+    public Playlist createPlaylist(String name) throws SQLServerException {
 
-        try(Connection connection = databaseConnector.getConnection())
-        {
+        try (Connection connection = databaseConnector.getConnection()) {
             String sql = "INSERT INTO PLaylist(Name) values(?);";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -71,8 +68,6 @@ public class PlaylistDAO_DB {
     }
 
 
-
-
     public void updatePlaylist(Playlist playlist) throws SQLException {
         try (Connection connection = databaseConnector.getConnection()) {
             String sql = "UPDATE Playlist SET Name=? WHERE PlaylistId=?;";
@@ -88,8 +83,7 @@ public class PlaylistDAO_DB {
     }
 
 
-
-    public void deletePlaylist (Playlist playlist){
+    public void deletePlaylist(Playlist playlist) {
         String sql = "DELETE FROM Playlist WHERE PlaylistId =?;";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);

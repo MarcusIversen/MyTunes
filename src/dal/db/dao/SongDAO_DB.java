@@ -59,16 +59,16 @@ public class SongDAO_DB {
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 if (resultSet.next()) {
-                        id = resultSet.getInt("Id");
-                        String title = resultSet.getString("Title");
-                        String artist = resultSet.getString("Artist");
-                        String category = resultSet.getString("Category");
-                        int time = resultSet.getInt("Time");
-                        String URL = resultSet.getString("URL");
+                    id = resultSet.getInt("Id");
+                    String title = resultSet.getString("Title");
+                    String artist = resultSet.getString("Artist");
+                    String category = resultSet.getString("Category");
+                    int time = resultSet.getInt("Time");
+                    String URL = resultSet.getString("URL");
 
 
-                        Song song = new Song(id, title, artist, category, time, URL);
-                        return song;
+                    Song song = new Song(id, title, artist, category, time, URL);
+                    return song;
 
                 }
             }
@@ -79,8 +79,6 @@ public class SongDAO_DB {
         }
         return null;
     }
-
-
 
 
     public Song createSong(String title, String artist, String category, int time, String URL) {

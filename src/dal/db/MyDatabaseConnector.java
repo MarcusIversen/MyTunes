@@ -10,8 +10,7 @@ public class MyDatabaseConnector {
 
     private SQLServerDataSource dataSource;
 
-    public MyDatabaseConnector()
-    {
+    public MyDatabaseConnector() {
         dataSource = new SQLServerDataSource();
         dataSource.setServerName("10.176.111.31");
         dataSource.setDatabaseName("MYTUNES2021GR7");

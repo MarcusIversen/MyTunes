@@ -10,18 +10,17 @@ import dal.db.dao.PlaylistDAO_DB;
 import java.sql.SQLException;
 import java.util.List;
 
-public class PlaylistManager implements IPlaylistManager{
+public class PlaylistManager implements IPlaylistManager {
     PlaylistDAO_DB playlistDAODB;
-    private IDALManager dalManager ;
+    private IDALManager dalManager;
 
-    public PlaylistManager()
-    {
+    public PlaylistManager() {
         playlistDAODB = new PlaylistDAO_DB();
         dalManager = new DALManager();
     }
 
     public List<Playlist> getAllPlaylists() throws SQLException {
-            return dalManager.getAllPlaylists();
+        return dalManager.getAllPlaylists();
 
     }
 

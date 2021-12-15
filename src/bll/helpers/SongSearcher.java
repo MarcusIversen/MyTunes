@@ -11,8 +11,7 @@ public class SongSearcher {
         List<Song> searchResult = new ArrayList<>();
 
         for (Song song : searchBase) {
-            if(compareToSongTitle(query, song))
-            {
+            if (compareToSongTitle(query, song)) {
                 searchResult.add(song);
             }
         }

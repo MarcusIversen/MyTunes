@@ -19,12 +19,12 @@ public class Playlist {
 
     public String getDuration() {
         int totalTime = 0;
-        for (Song baseS: songs) {
+        for (Song baseS : songs) {
             totalTime += baseS.getTime();
         }
-        int minuts = totalTime/60;
-        int seconds = totalTime%60;
-        if (10 > seconds){
+        int minuts = totalTime / 60;
+        int seconds = totalTime % 60;
+        if (10 > seconds) {
             return minuts + ":0" + seconds;
         } else {
             return minuts + ":" + seconds;
