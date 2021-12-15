@@ -14,6 +14,7 @@ public interface IDALManager {
     public List<Playlist> getAllPlaylists() throws SQLException;
 
 
+
     public Song getSingleSongById(int id);
 
     public Song createSong(String title, String artist, String category, String time, String URL) ;
@@ -30,8 +31,12 @@ public interface IDALManager {
 
     public void deletePlaylist(Playlist playlist);
 
+<<<<<<< HEAD
     public void deleteSongInPlaylist(int playlistId, int songId);
 
     public void updatePlaylist(Playlist playlist);
 
+=======
+    void deleteSongInPlaylist(int playlistId, int songId);
+>>>>>>> parent of ebcc426 (Merge branch 'main' of https://github.com/MarcusIversen/MyTunes)
 }

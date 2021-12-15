@@ -23,11 +23,11 @@
       <ButtonBar layoutX="53.0" layoutY="109.0" prefHeight="40.0" prefWidth="39.0" />
       <ButtonBar layoutX="28.0" layoutY="530.0" prefHeight="40.0" prefWidth="39.0" />
       <Button fx:id="NewPlaylist" layoutX="46.0" layoutY="537.0" mnemonicParsing="false" onAction="#GoNewPlaylist" prefHeight="26.0" prefWidth="64.0" text="New.." />
-
       <Button layoutX="121.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit.." />
 <<<<<<< HEAD
       <Button fx:id="playlistDeleter" layoutX="183.0" layoutY="537.0" mnemonicParsing="false" onAction="#deletePlaylist" prefHeight="26.0" prefWidth="64.0" text="Delete" />
       <Button fx:id="songsInPlaylistDeleter" layoutX="391.0" layoutY="536.0" mnemonicParsing="false" onAction="#deleteSongInPlaylist" prefHeight="26.0" prefWidth="64.0" text="Delete" />
+<<<<<<< HEAD
 
       <Button fx:id="editPlaylistbutton" layoutX="121.0" layoutY="537.0" mnemonicParsing="false" onAction="#goEditPlaylist" prefHeight="26.0" prefWidth="52.0" text="Edit.." />
       <Button fx:id="playlistDelete" layoutX="183.0" layoutY="537.0" mnemonicParsing="false" onAction="#deletePlaylist" prefHeight="26.0" prefWidth="64.0" text="Delete" />
@@ -37,6 +37,8 @@
       <Button layoutX="183.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Delete" />
       <Button layoutX="391.0" layoutY="536.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Delete" />
 >>>>>>> parent of baaa48a (Delete playlist og delete songs in playlist)
+=======
+>>>>>>> parent of ebcc426 (Merge branch 'main' of https://github.com/MarcusIversen/MyTunes)
     <Button fx:id="closeButton" layoutX="846.0" layoutY="536.0" mnemonicParsing="false" onAction="#closeButton" prefHeight="26.0" prefWidth="64.0" text="Close" />
       <Button fx:id="songEditor" layoutX="609.0" layoutY="537.0" mnemonicParsing="false" onAction="#goEditSong" prefHeight="26.0" prefWidth="52.0" text="Edit.." />
       <Button fx:id="songDeleter" layoutX="668.0" layoutY="537.0" mnemonicParsing="false" onAction="#deleteSong" prefHeight="26.0" prefWidth="64.0" text="Delete" />
