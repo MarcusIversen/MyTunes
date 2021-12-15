@@ -93,13 +93,13 @@ public class PlaylistDAO_DB {
 
 
 
-    public void deletePlaylist (Playlist playlist){
-        String sql = "DELETE FROM Playlist WHERE PlaylistId =?;";
+    public void deleteSong (Song song){
         try (Connection connection = databaseConnector.getConnection()) {
+            String sql = "DELETE FROM Song WHERE Id =?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, playlist.getPlaylistId());
+            preparedStatement.setInt(1, song.getId());
             if (preparedStatement.executeUpdate() != 1) {
-                throw new Exception("Could not delete playlist");
+                throw new Exception("Could not delete song");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

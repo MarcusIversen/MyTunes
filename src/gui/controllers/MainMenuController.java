@@ -34,7 +34,6 @@ import java.util.List;
 public class MainMenuController {
 
 
-
     //* Her tager jeg dataen fra Fxml filen og sætter dem til at op tage data
     @FXML
     private TableView<Song> SongTable;
@@ -80,8 +79,6 @@ public class MainMenuController {
     private SongsInPlaylistModel songsInPlaylistModel;
     private Playlist selectedPlaylist;
 
-    public Button songsInPlaylistDeleter;
-    public Button playlistDeleter;
     public Button refreshButton;
     public Button songEditor;
     public Button songDeleter;
@@ -231,19 +228,6 @@ public class MainMenuController {
 
     }
 
-    public void deleteSongInPlaylist() {
-
-        songsInPlaylistTable.refresh();
-
-        Playlist PlaylistId = PlaylistTable.getSelectionModel().getSelectedItem();
-        Song songId = SongTable.getSelectionModel().getSelectedItem();
-
-        songsInPlaylistModel.deleteSongInPlaylist(PlaylistId.getPlaylistId(), songId.getId());
-
-        reloadPlaylistTable();
-        reloadSongsInPlaylistTable();
-    }
-
     private void reloadPlaylistTable() {
         try {
             int index = PlaylistTable.getSelectionModel().getFocusedIndex();
@@ -329,10 +313,6 @@ public class MainMenuController {
         SongTable.getItems().remove(SongTable.getSelectionModel().getSelectedItem());
     }
 
-    public void deletePlaylist(){
-        playlistModel.deletePlaylist(PlaylistTable.getSelectionModel().getSelectedItem());
-        PlaylistTable.getItems().remove(PlaylistTable.getSelectionModel().getSelectedItem());
-    }
 
     public void lookAtPlaylist() {
         Playlist playlist = PlaylistTable.getSelectionModel().getSelectedItem();
