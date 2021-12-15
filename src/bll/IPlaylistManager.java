@@ -3,7 +3,6 @@ package bll;
 import be.Playlist;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
-
 import java.sql.SQLException;
 import java.util.List;
 

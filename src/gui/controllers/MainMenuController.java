@@ -200,8 +200,7 @@ public class MainMenuController {
             mediaPlayer.currentTimeProperty().addListener((observableValue, oldDuration, newDuration) -> {
                 if (mediaPlayer != null) {
                     timeSlider.setValue((newDuration.toSeconds() / mediaPlayer.getTotalDuration().toSeconds()) * 100);
-
-                    System.out.println("Player:" + observableValue + " | Changed from playing at: " + oldDuration + " to play at " + newDuration);
+                    
                     timeSlider.setValue((newDuration.toSeconds() / mediaPlayer.getTotalDuration().toSeconds()) * 100);
                     //if(mediaPlayer != null) {
                     //String totalTime = String.valueOf(mediaPlayer.getTotalDuration().toMillis() / 60000);
@@ -209,7 +208,6 @@ public class MainMenuController {
                     // MaxTime.setText(totalTime);
                 }
 
-               System.out.println("Player:" + observableValue + " | Changed from playing at: " + oldDuration + " to play at " + newDuration);
                 timeSlider.setValue((newDuration.toSeconds() / mediaPlayer.getTotalDuration().toSeconds()) * 100);
                /*  if(mediaPlayer != null) {
                     String totalTime = String.valueOf(mediaPlayer.getTotalDuration().toMillis() / 60000);

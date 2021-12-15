@@ -1,7 +1,5 @@
 package be;
 
-import java.sql.Time;
-
 public class Song {
 
     private int id;

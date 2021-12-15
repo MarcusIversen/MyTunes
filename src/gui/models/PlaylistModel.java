@@ -20,7 +20,7 @@ public class PlaylistModel {
         playlistToBeViewed.addAll(playlistManager.getAllPlaylists());
     }
 
-    public List<Playlist> getPlaylist() throws SQLException{
+    public List<Playlist> getPlaylist() throws SQLException {
         List<Playlist> allPlaylist = playlistManager.getAllPlaylists();
         return allPlaylist;
     }
@@ -35,10 +35,11 @@ public class PlaylistModel {
     }
 
 
-    public void deletePlaylist(Playlist playlist){
-     playlistManager.deletePlaylist(playlist);}
+    public void deletePlaylist(Playlist playlist) {
+        playlistManager.deletePlaylist(playlist);
+    }
 
-    public void updatePlaylist(Playlist playlist){
+    public void updatePlaylist(Playlist playlist) {
         playlistManager.updatePlaylist(playlist);
 
     }

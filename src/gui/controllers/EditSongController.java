@@ -72,13 +72,13 @@ public class EditSongController implements Initializable {
         String updateUrl = fileText.getText();
 
 
-        Song song = new Song( updateId, updateTitle, updateArtist, updateCategory, updateTime, updateUrl);
+        Song song = new Song(updateId, updateTitle, updateArtist, updateCategory, updateTime, updateUrl);
         songModel.updateSong(song);
 
         GoReturnMainMenu(actionEvent);
     }
 
-    public void setSong(Song song){
+    public void setSong(Song song) {
         titleBar.setText(song.getTitle());
         artistBar.setText(song.getArtist());
         categoryMenu.getSelectionModel().select(song.getCategory());
@@ -89,8 +89,6 @@ public class EditSongController implements Initializable {
     }
 
 
-
-
     public void chooseFile() throws IOException {
         FileChooser fileChooser = new FileChooser();
         File defaultDirectory = new File("src/dal/db/songFiles");
@@ -98,15 +96,15 @@ public class EditSongController implements Initializable {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("mp3 and wav files", "*.mp3", "*.wav"));
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            fileText.appendText("src/dal/db/songFiles/"+selectedFile.getName());
+            fileText.appendText("src/dal/db/songFiles/" + selectedFile.getName());
             Media pick = new Media(new File(selectedFile.getAbsolutePath()).toURI().toString());
             mediaPlayer = new MediaPlayer(pick);
             mediaPlayer.setOnReady(() -> {
                 String timeInSeconds = String.format("%1.0f", mediaPlayer.getMedia().getDuration().toSeconds());
                 timeToSave = (int) mediaPlayer.getMedia().getDuration().toSeconds();
-                int minuts = Integer.parseInt(timeInSeconds)/60;
-                int seconds = Integer.parseInt(timeInSeconds)%60;
-                if (10 > seconds){
+                int minuts = Integer.parseInt(timeInSeconds) / 60;
+                int seconds = Integer.parseInt(timeInSeconds) % 60;
+                if (10 > seconds) {
                     timeBar.setText(minuts + ":0" + seconds);
                 } else {
                     timeBar.setText(minuts + ":" + seconds);
