@@ -33,6 +33,9 @@ public class PlaylistModel {
         Playlist newPlaylist = playlistManager.createPlaylist(name);
         playlistToBeViewed.add(newPlaylist);
     }
+<<<<<<< HEAD
+
+
 
     public void deletePlaylist(Playlist playlist){
      playlistManager.deletePlaylist(playlist);}
@@ -41,4 +44,6 @@ public class PlaylistModel {
         playlistManager.updatePlaylist(playlist);
 
     }
+=======
+>>>>>>> parent of baaa48a (Delete playlist og delete songs in playlist)
 }
