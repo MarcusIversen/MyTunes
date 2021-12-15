@@ -302,12 +302,12 @@ public class MainMenuController {
         for (Song song : songs) {
             this.SongsPlayed.add(song);
         }
-        if (songs.size() > 0) {
+ /*       if (songs.size() > 0) {
             IndexOfSongPlaying = 0;
             IsPaused = false;
             songToPlayIfSet = this.SongsPlayed.get(0);
             this.mediaPlay();
-        }
+        } */
         songsInPlaylistTable.setItems(FXCollections.observableList(songs));
 
     }
