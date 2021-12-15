@@ -80,6 +80,7 @@ public class MainMenuController {
     private SongsInPlaylistModel songsInPlaylistModel;
 
 
+    public Button playlistDeleteBtn;
     public Button songsInPlaylistDeleter;
     public Button playlistDeleter;
     public Button editPLaylistbutton;
@@ -234,7 +235,7 @@ public class MainMenuController {
         songsInPlaylistTable.refresh();
 
         Playlist PlaylistId = PlaylistTable.getSelectionModel().getSelectedItem();
-        Song songId = SongTable.getSelectionModel().getSelectedItem();
+        Song songId = (Song) songsInPlaylistTable.getSelectionModel().getSelectedItem();
 
         songsInPlaylistModel.deleteSongInPlaylist(PlaylistId.getPlaylistId(), songId.getId());
 
