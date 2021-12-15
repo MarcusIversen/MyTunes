@@ -10,26 +10,17 @@ public class Song {
     private String artist;
     private String category;
     private String time;
+    private String URL;
 
     public Song(String title, String artist, String category, String time, int id, String URL) {
 
-            this.title = title;
-            this.artist = artist;
-            this.category = category;
-            this.time = time;
-            this.URL = URL;
-            this.id = id;
-    }
-
-    public String getURL() {
-        return URL;
-    }
-
-    public void setURL(String URL) {
+        this.title = title;
+        this.artist = artist;
+        this.category = category;
+        this.time = time;
         this.URL = URL;
+        this.id = id;
     }
-
-    private String URL;
 
     public Song(int songsInPlaylistId, int songId, int playlistId) {
         this.songsInPlaylistId = songsInPlaylistId;
@@ -84,6 +75,13 @@ public class Song {
         this.time = time;
     }
 
+    public String getURL() {
+        return URL;
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
+    }
     @Override
     public String toString() {
         return title + " - " + artist ;

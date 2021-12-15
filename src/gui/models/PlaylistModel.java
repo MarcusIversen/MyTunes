@@ -34,11 +34,11 @@ public class PlaylistModel {
         playlistToBeViewed.add(newPlaylist);
     }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of ebcc426 (Merge branch 'main' of https://github.com/MarcusIversen/MyTunes)
     public void deletePlaylist(Playlist playlist){
-     playlistManager.deletePlaylist(playlist);
+     playlistManager.deletePlaylist(playlist);}
+
+    public void updatePlaylist(Playlist playlist){
+        playlistManager.updatePlaylist(playlist);
+
     }
 }

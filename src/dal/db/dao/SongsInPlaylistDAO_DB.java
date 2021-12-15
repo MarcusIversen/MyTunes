@@ -66,11 +66,8 @@ public class SongsInPlaylistDAO_DB {
         }
     }
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> parent of ebcc426 (Merge branch 'main' of https://github.com/MarcusIversen/MyTunes)
     public void deleteSongInPlaylist (int PlaylistId, int SongId){
         String sql = "DELETE FROM SongsInPlaylist WHERE PlaylistId =? AND SongId =?;";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -82,9 +79,6 @@ public class SongsInPlaylistDAO_DB {
             e.printStackTrace();
         }
     }
-<<<<<<< HEAD
 
 
-=======
->>>>>>> parent of ebcc426 (Merge branch 'main' of https://github.com/MarcusIversen/MyTunes)
 }

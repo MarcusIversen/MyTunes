@@ -19,7 +19,6 @@ public class SongsInPlaylistManager implements ISongsInPlaylistManager {
     }
 
 
-
     @Override
     public Song addSongToPlaylist(int PlaylistId, int SongId) {
         return dalManager.addSongToPLaylist(PlaylistId, SongId);
