@@ -1,5 +1,6 @@
 package gui.controllers;
 
+import be.Playlist;
 import be.Song;
 import com.sun.tools.javac.Main;
 import gui.models.SongModel;
@@ -83,6 +84,9 @@ public class EditSongController implements Initializable {
         idBar.setText(Integer.toString(song.getId()));
         fileText.setText(song.getURL());
     }
+
+
+
 
     public void chooseFile() throws IOException {
         FileChooser fileChooser = new FileChooser();

@@ -13,8 +13,8 @@ public interface IPlaylistManager {
     public Playlist createPlaylist(String name) throws SQLServerException;
 
 
-    public void updatePlaylist(Playlist Playlist);
+    public void updatePlaylist(Playlist playlist);
 
 
-    public void deletePlaylist(Playlist Playlist);
+    public void deletePlaylist(Playlist playlist);
 }

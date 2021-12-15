@@ -269,6 +269,26 @@ public class MainMenuController {
 
     }
 
+    public void goEditPlaylist(ActionEvent actionEvent) throws IOException {
+
+        Playlist selectedItem = PlaylistTable.getSelectionModel().getSelectedItem();
+
+        Stage swich = (Stage) NewPlaylist.getScene().getWindow();
+        FXMLLoader parent = new FXMLLoader(getClass().getResource("../view/EditPlaylist.fxml"));
+        Scene mainWindowScene = null;
+        try {
+            mainWindowScene = new Scene(parent.load());
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        Stage editPlaylistStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        editPlaylistStage.setScene(mainWindowScene);
+
+        EditPlaylistController editPlaylistController = parent.getController();
+        editPlaylistController.setPlaylist(selectedItem);
+        editPlaylistStage.show();
+    }
+
 
     public void GoNewPlaylist(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) NewPlaylist.getScene().getWindow();
