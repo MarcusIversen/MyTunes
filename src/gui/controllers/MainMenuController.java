@@ -290,7 +290,6 @@ public class MainMenuController {
 
     public void closeButton() {
         System.exit(0);
-        System.out.println("slut");
     }
 
     public void deleteSong() {
