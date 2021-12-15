@@ -50,7 +50,7 @@ public class EditSongController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        categoryMenu.setItems(FXCollections.observableArrayList("Pop", "Rock", "Reggae", "Techno", "RnB"));
+        categoryMenu.setItems(FXCollections.observableArrayList("Pop", "Hip Hop", "Rap", "Rock", "Dance", "Techno", "Latin music", "Indie Rock", "Classical", "Country", "Metal", "RnB"));
 
     }
 

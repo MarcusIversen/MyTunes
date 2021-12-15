@@ -200,7 +200,7 @@ public class MainMenuController {
             mediaPlayer.currentTimeProperty().addListener((observableValue, oldDuration, newDuration) -> {
                 if (mediaPlayer != null) {
                     timeSlider.setValue((newDuration.toSeconds() / mediaPlayer.getTotalDuration().toSeconds()) * 100);
-                    
+
                     timeSlider.setValue((newDuration.toSeconds() / mediaPlayer.getTotalDuration().toSeconds()) * 100);
                     //if(mediaPlayer != null) {
                     //String totalTime = String.valueOf(mediaPlayer.getTotalDuration().toMillis() / 60000);
