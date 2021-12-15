@@ -1,5 +1,6 @@
 package dal.db.dao;
 
+import be.Playlist;
 import be.Song;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.db.MyDatabaseConnector;
@@ -65,7 +66,6 @@ public class SongsInPlaylistDAO_DB {
             throwables.printStackTrace();
         }
     }
-<<<<<<< HEAD
 
 
     public void deleteSongInPlaylist (int PlaylistId, int SongId){
@@ -80,6 +80,4 @@ public class SongsInPlaylistDAO_DB {
         }
     }
 
-=======
->>>>>>> parent of baaa48a (Delete playlist og delete songs in playlist)
 }

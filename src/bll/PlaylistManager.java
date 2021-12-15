@@ -38,12 +38,8 @@ public class PlaylistManager implements IPlaylistManager{
     }
 
     @Override
-<<<<<<< HEAD
     public void deletePlaylist(Playlist playlist) {
         dalManager.deletePlaylist(playlist);
-=======
-    public void deletePlaylist(Playlist Playlist) {
->>>>>>> parent of baaa48a (Delete playlist og delete songs in playlist)
 
     }
 
