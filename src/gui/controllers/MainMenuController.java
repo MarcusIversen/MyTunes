@@ -78,11 +78,11 @@ public class MainMenuController {
     private SongModel songModel;
     private PlaylistModel playlistModel;
     private SongsInPlaylistModel songsInPlaylistModel;
-    private Playlist selectedPlaylist;
+
 
     public Button songsInPlaylistDeleter;
     public Button playlistDeleter;
-    public Button refreshButton;
+    public Button editPLaylistbutton;
     public Button songEditor;
     public Button songDeleter;
     public Button playButton;
@@ -91,11 +91,9 @@ public class MainMenuController {
     public Button NewSong;
     public TextField filterBar;
     public Button filterSearch;
-    public Button pauseButton;
     public Slider volumeSlider;
     public Slider timeSlider;
     public double volume = 0;
-    private Object ObservableList;
     private List<Song> SongsPlayed;
     private int IndexOfSongPlaying;
     Song songToPlayIfSet = null; //Hvis sat afspilles denne når man kalder mediaPlay, bliver sat til null efter afspilningen er startet

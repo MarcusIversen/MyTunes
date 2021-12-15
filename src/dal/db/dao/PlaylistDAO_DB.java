@@ -1,10 +1,8 @@
 package dal.db.dao;
 
 import be.Playlist;
-import be.Song;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.db.MyDatabaseConnector;
-import gui.models.PlaylistModel;
 
 import java.sql.*;
 import java.util.ArrayList;
