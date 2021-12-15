@@ -65,7 +65,7 @@ public class SongsInPlaylistDAO_DB {
             throwables.printStackTrace();
         }
     }
-<<<<<<< HEAD
+
 
 
     public void deleteSongInPlaylist (int PlaylistId, int SongId){
@@ -80,6 +80,5 @@ public class SongsInPlaylistDAO_DB {
         }
     }
 
-=======
->>>>>>> parent of baaa48a (Delete playlist og delete songs in playlist)
+
 }
