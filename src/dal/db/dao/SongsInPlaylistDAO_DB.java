@@ -67,6 +67,7 @@ public class SongsInPlaylistDAO_DB {
         }
     }
 
+
     public void deleteSongInPlaylist (int PlaylistId, int SongId){
         String sql = "DELETE FROM SongsInPlaylist WHERE PlaylistId =? AND SongId =?;";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -78,4 +79,5 @@ public class SongsInPlaylistDAO_DB {
             e.printStackTrace();
         }
     }
+
 }

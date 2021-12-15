@@ -35,7 +35,12 @@ public class PlaylistModel {
     }
 
 
+
     public void deletePlaylist(Playlist playlist){
-     playlistManager.deletePlaylist(playlist);
+     playlistManager.deletePlaylist(playlist);}
+
+    public void updatePlaylist(Playlist playlist){
+        playlistManager.updatePlaylist(playlist);
+
     }
 }

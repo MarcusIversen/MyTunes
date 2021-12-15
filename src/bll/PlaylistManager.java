@@ -33,13 +33,14 @@ public class PlaylistManager implements IPlaylistManager{
     }
 
     @Override
-    public void updatePlaylist(Playlist Playlist) {
-
+    public void updatePlaylist(Playlist playlist) {
+        dalManager.updatePlaylist(playlist);
     }
 
     @Override
     public void deletePlaylist(Playlist playlist) {
         dalManager.deletePlaylist(playlist);
+
     }
 
 
