@@ -209,6 +209,14 @@ public class MainMenuController {
                     // MaxTime.setText(totalTime);
                 }
 
+               System.out.println("Player:" + observableValue + " | Changed from playing at: " + oldDuration + " to play at " + newDuration);
+                timeSlider.setValue((newDuration.toSeconds() / mediaPlayer.getTotalDuration().toSeconds()) * 100);
+               /*  if(mediaPlayer != null) {
+                    String totalTime = String.valueOf(mediaPlayer.getTotalDuration().toMillis() / 60000);
+                    CurrentTime.setText(String.valueOf(newDuration.toSeconds() / 60));
+                    MaxTime.setText(totalTime);
+                } */
+
             });
         }
 
@@ -435,7 +443,6 @@ public class MainMenuController {
     }
 
     public void timeSlideInSong(MouseEvent mouseEvent) {
-
-
+        
     }
 }
