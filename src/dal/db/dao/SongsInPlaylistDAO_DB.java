@@ -1,5 +1,6 @@
 package dal.db.dao;
 
+import be.Playlist;
 import be.Song;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.db.MyDatabaseConnector;
@@ -65,4 +66,18 @@ public class SongsInPlaylistDAO_DB {
             throwables.printStackTrace();
         }
     }
+
+
+    public void deleteSongInPlaylist (int PlaylistId, int SongId){
+        String sql = "DELETE FROM SongsInPlaylist WHERE PlaylistId =? AND SongId =?;";
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1, PlaylistId);
+            preparedStatement.setInt(2, SongId);
+            preparedStatement.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -33,4 +33,14 @@ public class PlaylistModel {
         Playlist newPlaylist = playlistManager.createPlaylist(name);
         playlistToBeViewed.add(newPlaylist);
     }
+
+
+
+    public void deletePlaylist(Playlist playlist){
+     playlistManager.deletePlaylist(playlist);}
+
+    public void updatePlaylist(Playlist playlist){
+        playlistManager.updatePlaylist(playlist);
+
+    }
 }

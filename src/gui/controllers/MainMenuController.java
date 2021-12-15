@@ -35,6 +35,7 @@ import java.util.List;
 public class MainMenuController {
 
 
+
     //* Her tager jeg dataen fra Fxml filen og sætter dem til at op tage data
     @FXML
     private TableView<Song> SongTable;
@@ -78,9 +79,12 @@ public class MainMenuController {
     private SongModel songModel;
     private PlaylistModel playlistModel;
     private SongsInPlaylistModel songsInPlaylistModel;
-    private Playlist selectedPlaylist;
 
-    public Button refreshButton;
+
+    public Button playlistDeleteBtn;
+    public Button songsInPlaylistDeleter;
+    public Button playlistDeleter;
+    public Button editPLaylistbutton;
     public Button songEditor;
     public Button songDeleter;
     public Button playButton;
@@ -89,11 +93,9 @@ public class MainMenuController {
     public Button NewSong;
     public TextField filterBar;
     public Button filterSearch;
-    public Button pauseButton;
     public Slider volumeSlider;
     public Slider timeSlider;
     public double volume = 0;
-    private Object ObservableList;
     private List<Song> SongsPlayed;
     private int IndexOfSongPlaying;
     Song songToPlayIfSet = null; //Hvis sat afspilles denne når man kalder mediaPlay, bliver sat til null efter afspilningen er startet
@@ -229,6 +231,19 @@ public class MainMenuController {
 
     }
 
+    public void deleteSongInPlaylist() {
+
+        songsInPlaylistTable.refresh();
+
+        Playlist PlaylistId = PlaylistTable.getSelectionModel().getSelectedItem();
+        Song songId = (Song) songsInPlaylistTable.getSelectionModel().getSelectedItem();
+
+        songsInPlaylistModel.deleteSongInPlaylist(PlaylistId.getPlaylistId(), songId.getId());
+
+        reloadPlaylistTable();
+        reloadSongsInPlaylistTable();
+    }
+
     private void reloadPlaylistTable() {
         try {
             int index = PlaylistTable.getSelectionModel().getFocusedIndex();
@@ -270,6 +285,26 @@ public class MainMenuController {
 
     }
 
+    public void goEditPlaylist(ActionEvent actionEvent) throws IOException {
+
+        Playlist selectedItem = PlaylistTable.getSelectionModel().getSelectedItem();
+
+        Stage swich = (Stage) NewPlaylist.getScene().getWindow();
+        FXMLLoader parent = new FXMLLoader(getClass().getResource("../view/EditPlaylist.fxml"));
+        Scene mainWindowScene = null;
+        try {
+            mainWindowScene = new Scene(parent.load());
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        Stage editPlaylistStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        editPlaylistStage.setScene(mainWindowScene);
+
+        EditPlaylistController editPlaylistController = parent.getController();
+        editPlaylistController.setPlaylist(selectedItem);
+        editPlaylistStage.show();
+    }
+
 
     public void GoNewPlaylist(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) NewPlaylist.getScene().getWindow();
@@ -294,6 +329,10 @@ public class MainMenuController {
         SongTable.getItems().remove(SongTable.getSelectionModel().getSelectedItem());
     }
 
+    public void deletePlaylist(){
+        playlistModel.deletePlaylist(PlaylistTable.getSelectionModel().getSelectedItem());
+        PlaylistTable.getItems().remove(PlaylistTable.getSelectionModel().getSelectedItem());
+    }
 
     public void lookAtPlaylist() {
         Playlist playlist = PlaylistTable.getSelectionModel().getSelectedItem();

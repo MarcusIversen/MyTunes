@@ -27,4 +27,12 @@ public interface IDALManager {
     Playlist createPlaylist(String name) throws SQLServerException;
 
     Song addSongToPLaylist(int playlistId, int songId);
+
+
+    public void deletePlaylist(Playlist playlist);
+
+    void deleteSongInPlaylist(int playlistId, int songId);
+
+    public void updatePlaylist(Playlist playlist);
+
 }

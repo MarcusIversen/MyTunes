@@ -48,6 +48,24 @@ public class DALManager implements IDALManager {
         return null;
     }
 
+    @Override
+    public void updatePlaylist(Playlist playlist) {
+        try {
+            playlistDAO.updatePlaylist(playlist);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void deleteSongInPlaylist(int PlaylistId, int SongId){
+        songsInPlaylistDAO.deleteSongInPlaylist(PlaylistId, SongId);
+    }
+
+    @Override
+    public void deletePlaylist(Playlist playlist) {
+        playlistDAO.deletePlaylist(playlist);
+    }
 
     @Override
     public Song getSingleSongById(int id) {

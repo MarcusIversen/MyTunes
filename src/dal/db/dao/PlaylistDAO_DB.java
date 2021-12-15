@@ -1,7 +1,6 @@
 package dal.db.dao;
 
 import be.Playlist;
-import be.Song;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.db.MyDatabaseConnector;
 
@@ -75,31 +74,30 @@ public class PlaylistDAO_DB {
 
 
 
-    /**
-     * public void updatePlaylist(Playlist playlist) throws SQLException {
+
+    public void updatePlaylist(Playlist playlist) throws SQLException {
         try (Connection connection = databaseConnector.getConnection()) {
-            String sql = "UPDATE Playlist SET Name=?, Songs=?, Time=? WHERE Id=?;";
+            String sql = "UPDATE Playlist SET Name=? WHERE PlaylistId=?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, Playlist.getPlName());
-            preparedStatement.setString(2, String.valueOf(Playlist.getSongCount()));
-            preparedStatement.setDouble(3, Playlist.getPlTime());
+            preparedStatement.setString(1, playlist.getName());
+            preparedStatement.setInt(2, playlist.getPlaylistId());
             if (preparedStatement.executeUpdate() != 1) {
-                throw new Exception("Could not delete song");
+                throw new Exception("Could not edit song");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-     **/
 
 
-    public void deleteSong (Song song){
+
+    public void deletePlaylist (Playlist playlist){
+        String sql = "DELETE FROM Playlist WHERE PlaylistId =?;";
         try (Connection connection = databaseConnector.getConnection()) {
-            String sql = "DELETE FROM Song WHERE Id =?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, song.getId());
+            preparedStatement.setInt(1, playlist.getPlaylistId());
             if (preparedStatement.executeUpdate() != 1) {
-                throw new Exception("Could not delete song");
+                throw new Exception("Could not delete playlist");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
