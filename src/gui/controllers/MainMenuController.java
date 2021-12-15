@@ -80,9 +80,9 @@ public class MainMenuController {
     private SongsInPlaylistModel songsInPlaylistModel;
     private Playlist selectedPlaylist;
 
-    public Button songsInPlaylistDeleter;
-    public Button playlistDeleter;
-    public Button refreshButton;
+    public Button editPlaylistbutton;
+    public Button playlistDelete;
+    public Button songInPlaylistDelete;
     public Button songEditor;
     public Button songDeleter;
     public Button playButton;
