@@ -38,8 +38,8 @@ public class PlaylistManager implements IPlaylistManager{
     }
 
     @Override
-    public void deletePlaylist(Playlist Playlist) {
-
+    public void deletePlaylist(Playlist playlist) {
+        dalManager.deletePlaylist(playlist);
     }
 
 

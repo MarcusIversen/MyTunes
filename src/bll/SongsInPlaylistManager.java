@@ -24,4 +24,8 @@ public class SongsInPlaylistManager implements ISongsInPlaylistManager {
     public Song addSongToPlaylist(int PlaylistId, int SongId) {
         return dalManager.addSongToPLaylist(PlaylistId, SongId);
     }
+
+    public void deleteSongInPlaylist(int PlaylistId, int SongId){
+        dalManager.deleteSongInPlaylist(PlaylistId, SongId);
+    }
 }

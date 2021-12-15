@@ -25,5 +25,7 @@ public class SongsInPlaylistModel {
         songsInPlaylistToBeViewed.add(newSong);
     }
 
-
+    public void deleteSongInPlaylist(int PlaylistId, int SongId){
+        songsInPlaylistManager.deleteSongInPlaylist(PlaylistId, SongId);
+    }
 }
