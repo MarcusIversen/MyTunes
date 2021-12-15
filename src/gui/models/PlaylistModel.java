@@ -35,7 +35,6 @@ public class PlaylistModel {
     }
 
 
-
     public void deletePlaylist(Playlist playlist){
      playlistManager.deletePlaylist(playlist);}
 

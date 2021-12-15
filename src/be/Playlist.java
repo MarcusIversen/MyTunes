@@ -7,30 +7,34 @@ public class Playlist {
 
     private int PlaylistId;
     private String name;
-    private List<Song> songs = new ArrayList<>();
     private double time;
+    private List<Song> songs = new ArrayList<>();
+
 
     public Playlist(int id, String name) {
         this.PlaylistId = id;
         this.name = name;
-        //this.songs = songs;
-        //this.time = time;
-
     }
 
+
+    public String getDuration() {
+        int totalTime = 0;
+        for (Song baseS: songs) {
+            totalTime += baseS.getTime();
+        }
+        int minuts = totalTime/60;
+        int seconds = totalTime%60;
+        if (10 > seconds){
+            return minuts + ":0" + seconds;
+        } else {
+            return minuts + ":" + seconds;
+        }
+
+    }
 
     public int getSongCount() {
         return songs.size();
     }
-
-
-  /*  public static double getPlayTime() {
-        double playTime = 0;
-        for (Song song : playlist) {
-            playTime += song.getTime();
-        }
-        return playTime;
-    }*/
 
     public int getPlaylistId() {
         return PlaylistId;

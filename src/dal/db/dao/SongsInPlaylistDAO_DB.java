@@ -30,11 +30,11 @@ public class SongsInPlaylistDAO_DB {
                 String name = rs.getString("Title");
                 String artist = rs.getString("Artist");
                 String category = rs.getString("Category");
-                String time = rs.getString("Time");
+                int time = rs.getInt("Time");
                 int id = rs.getInt("Id");
                 String url = rs.getString("URL");
                 if(url != null)
-                    allSongsInPlaylist.add(new Song(name, artist, category, time, id, url));
+                    allSongsInPlaylist.add(new Song(id, name, artist, category, time,  url));
 
             }
             return allSongsInPlaylist;

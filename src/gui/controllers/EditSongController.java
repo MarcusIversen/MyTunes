@@ -41,6 +41,8 @@ public class EditSongController implements Initializable {
     public Button updateSongButton;
     public ComboBox categoryMenu;
     public TextField idBar;
+    private MediaPlayer mediaPlayer;
+    private int timeToSave = -1;
 
     public EditSongController() throws SQLException {
     }
@@ -62,15 +64,15 @@ public class EditSongController implements Initializable {
 
     public void updateSong(ActionEvent actionEvent) throws IOException {
 
+        int updateId = Integer.parseInt(idBar.getText());
         String updateTitle = titleBar.getText();
         String updateArtist = artistBar.getText();
         String updateCategory = categoryMenu.getSelectionModel().getSelectedItem().toString();
-        String updateTime = timeBar.getText();
-        int updateId = Integer.parseInt(idBar.getText());
+        int updateTime = timeToSave;
         String updateUrl = fileText.getText();
 
 
-        Song song = new Song( updateTitle, updateArtist, updateCategory, updateTime, updateId, updateUrl);
+        Song song = new Song( updateId, updateTitle, updateArtist, updateCategory, updateTime, updateUrl);
         songModel.updateSong(song);
 
         GoReturnMainMenu(actionEvent);
@@ -80,9 +82,10 @@ public class EditSongController implements Initializable {
         titleBar.setText(song.getTitle());
         artistBar.setText(song.getArtist());
         categoryMenu.getSelectionModel().select(song.getCategory());
-        timeBar.setText(song.getTime());
+        timeBar.setText(song.getDuration());
         idBar.setText(Integer.toString(song.getId()));
         fileText.setText(song.getURL());
+        timeToSave = song.getTime();
     }
 
 
@@ -97,9 +100,10 @@ public class EditSongController implements Initializable {
         if (selectedFile != null) {
             fileText.appendText("src/dal/db/songFiles/"+selectedFile.getName());
             Media pick = new Media(new File(selectedFile.getAbsolutePath()).toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(pick);
+            mediaPlayer = new MediaPlayer(pick);
             mediaPlayer.setOnReady(() -> {
                 String timeInSeconds = String.format("%1.0f", mediaPlayer.getMedia().getDuration().toSeconds());
+                timeToSave = (int) mediaPlayer.getMedia().getDuration().toSeconds();
                 int minuts = Integer.parseInt(timeInSeconds)/60;
                 int seconds = Integer.parseInt(timeInSeconds)%60;
                 if (10 > seconds){

@@ -14,16 +14,19 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -32,7 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainMenuController {
-
 
 
     //* Her tager jeg dataen fra Fxml filen og sætter dem til at op tage data
@@ -68,7 +70,6 @@ public class MainMenuController {
     ObservableList<Song> songData = FXCollections.observableArrayList();
     ObservableList<Song> searchData = FXCollections.observableArrayList();
     ObservableList<Playlist> playlistData = FXCollections.observableArrayList();
-    ObservableList<Song> PLSongsData = FXCollections.observableArrayList();
     MediaPlayer mediaPlayer;
 
 
@@ -122,7 +123,7 @@ public class MainMenuController {
         TableTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         TableArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
         TableCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
-        TableTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+        TableTime.setCellValueFactory(new PropertyValueFactory<>("duration"));
 
 
         //* her sætter jeg dataen til at blive vist i tabellen
@@ -142,7 +143,7 @@ public class MainMenuController {
 
         PlaylistName.setCellValueFactory(new PropertyValueFactory<>("name"));
         playlistSongs.setCellValueFactory(new PropertyValueFactory<>("SongCount"));
-        playlistTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+        playlistTime.setCellValueFactory(new PropertyValueFactory<>("duration"));
 
         try {
             playlistData = FXCollections.observableList(playlistModel.getPlaylistData());
@@ -196,8 +197,7 @@ public class MainMenuController {
                 songToPlayIfSet = null;
             }
             mediaPlayer.currentTimeProperty().addListener((observableValue, oldDuration, newDuration) -> {
-                System.out.println("Player:" + observableValue + " | Changed from playing at: " + oldDuration + " to play at " + newDuration);
-                if(mediaPlayer != null) {
+                if (mediaPlayer != null) {
                     timeSlider.setValue((newDuration.toSeconds() / mediaPlayer.getTotalDuration().toSeconds()) * 100);
                     String totalTime = String.valueOf(mediaPlayer.getTotalDuration().toMillis() / 60000);
                     CurrentTime.setText(String.valueOf(newDuration.toSeconds() / 60));
@@ -206,13 +206,11 @@ public class MainMenuController {
             });
         }
 
-        System.out.println(mediaPlayer.getStatus());
     }
 
     public void mediaPause() {
         IsPaused = true;
         mediaPlayer.pause();
-        System.out.println(mediaPlayer.getStatus());
     }
 
 
@@ -229,6 +227,7 @@ public class MainMenuController {
         reloadSongsInPlaylistTable();
 
     }
+
 
     public void deleteSongInPlaylist() {
 
@@ -261,7 +260,6 @@ public class MainMenuController {
 
         List<Song> observableList = (playlist.getSongs());
         songsInPlaylistTable.setItems(FXCollections.observableList(observableList));
-
     }
 
 
@@ -328,9 +326,29 @@ public class MainMenuController {
         SongTable.getItems().remove(SongTable.getSelectionModel().getSelectedItem());
     }
 
-    public void deletePlaylist(){
+    public void deletePlaylist() {
         playlistModel.deletePlaylist(PlaylistTable.getSelectionModel().getSelectedItem());
         PlaylistTable.getItems().remove(PlaylistTable.getSelectionModel().getSelectedItem());
+    }
+
+    public void deleteWarning() {
+        Stage window = new Stage();
+
+        window.setTitle("Warning");
+        window.setMinWidth(250);
+
+        Label label = new Label();
+        label.setText("You still have songs in your playlist");
+        Button closeButton = new Button("Close");
+        closeButton.setOnAction(e -> window.close());
+
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(label, closeButton);
+        layout.setAlignment(Pos.CENTER);
+
+        Scene scene = new Scene(layout);
+        window.setScene(scene);
+        window.show();
     }
 
     public void lookAtPlaylist() {
@@ -341,12 +359,7 @@ public class MainMenuController {
         for (Song song : songs) {
             this.SongsPlayed.add(song);
         }
- /*       if (songs.size() > 0) {
-            IndexOfSongPlaying = 0;
-            IsPaused = false;
-            songToPlayIfSet = this.SongsPlayed.get(0);
-            this.mediaPlay();
-        } */
+
         songsInPlaylistTable.setItems(FXCollections.observableList(songs));
 
     }
@@ -366,10 +379,6 @@ public class MainMenuController {
         PlaylistTable.setItems(getPlaylistData());
     }
 
-    private void PLSongsTableViewLoad(ObservableList<Song> PLSongsData) {
-        songsInPlaylistTable.setItems(getPLSongsData());
-    }
-
 
     public ObservableList<Song> getSearchData() {
         return searchData;
@@ -384,11 +393,8 @@ public class MainMenuController {
         return playlistData;
     }
 
-    public ObservableList<Song> getPLSongsData() {
-        return PLSongsData;
-    }
 
-    public void filterSongs() throws Exception {
+    public void filterSongs() {
         try {
             searchData = FXCollections.observableList(songModel.searchSongs(filterBar.getText()));
             searchTableViewLoad(searchData);

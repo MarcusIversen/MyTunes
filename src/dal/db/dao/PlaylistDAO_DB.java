@@ -35,8 +35,6 @@ public class PlaylistDAO_DB {
 
                     int id = resultset.getInt("PlaylistId");
                    String name = resultset.getString("Name");
-                   String songs = resultset.getString("Songs");
-                   String time = resultset.getString("Duration");
 
 
                     Playlist playlist = new Playlist(id, name);

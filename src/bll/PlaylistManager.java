@@ -25,8 +25,6 @@ public class PlaylistManager implements IPlaylistManager{
 
     }
 
-
-
     @Override
     public Playlist createPlaylist(String name) throws SQLServerException {
         return dalManager.createPlaylist(name);
