@@ -443,6 +443,6 @@ public class MainMenuController {
     }
 
     public void timeSlideInSong(MouseEvent mouseEvent) {
-        
+
     }
 }
