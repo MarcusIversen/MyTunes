@@ -14,6 +14,10 @@ public class SongsInPlaylistModel {
     private SongsInPlaylistManager songsInPlaylistManager;
 
 
+    /**
+     * metoder der forbinder vores CRUD til vores controller, et led i vores trelagsarkitektur
+     * @throws SQLException
+     */
     public SongsInPlaylistModel() throws SQLException {
         songsInPlaylistManager = new SongsInPlaylistManager();
         songsInPlaylistToBeViewed = FXCollections.observableArrayList();

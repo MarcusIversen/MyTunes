@@ -14,6 +14,11 @@ public class PlaylistModel {
 
     private PlaylistManager playlistManager;
 
+
+    /**
+     * Mange forskellige metoder der forbinder vores CRUD til controlleren.
+     * @throws SQLException
+     */
     public PlaylistModel() throws SQLException {
         playlistManager = new PlaylistManager();
         playlistToBeViewed = FXCollections.observableArrayList();

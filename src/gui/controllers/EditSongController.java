@@ -47,6 +47,13 @@ public class EditSongController implements Initializable {
     public EditSongController() throws SQLException {
     }
 
+
+    /**
+     * Her i initialize metoden sætter vi kategorierne til vores combobox. Dette gør vi sådan at man har mulighed for
+     * at vælge en passende kategori til en sang.
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -54,6 +61,11 @@ public class EditSongController implements Initializable {
 
     }
 
+    /**
+     * Metode til at skifte tilbage til mainMenu Stage.
+     * @param actionEvent
+     * @throws IOException
+     */
 
     public void GoReturnMainMenu(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) ReturnMainMenu.getScene().getWindow();
@@ -62,6 +74,12 @@ public class EditSongController implements Initializable {
         swich.setScene(scene);
     }
 
+    /**
+     * Her har vi metoden der kan edit/opdatere en sang. Først sætter den teksten og id osv. i vores textfields
+     * derefter kan du trykke edit og så ændres sangen i databasen og tablen i menu'en-
+     * @param actionEvent
+     * @throws IOException
+     */
     public void updateSong(ActionEvent actionEvent) throws IOException {
 
         int updateId = Integer.parseInt(idBar.getText());
@@ -78,6 +96,11 @@ public class EditSongController implements Initializable {
         GoReturnMainMenu(actionEvent);
     }
 
+    /**
+     * Her sætter vi sangen, sådan at når edit vinduet kommer frem, så er textfields udfyldt med den valgte sang.
+     * @param song
+     */
+
     public void setSong(Song song) {
         titleBar.setText(song.getTitle());
         artistBar.setText(song.getArtist());
@@ -89,6 +112,12 @@ public class EditSongController implements Initializable {
     }
 
 
+    /**
+     * Metoden til vores filechooser, hvor du både kan vælge filen der passer til den sanger du editer
+     * Derudover læser den også tiden på filen i minutter og sekunder, hvilket også sætter texten i time txtFieldet.
+     * Er filen ikke valid, laves der en System out Println.
+     * @throws IOException
+     */
     public void chooseFile() throws IOException {
         FileChooser fileChooser = new FileChooser();
         File defaultDirectory = new File("src/dal/db/songFiles");

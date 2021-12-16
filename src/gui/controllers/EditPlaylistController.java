@@ -25,7 +25,10 @@ public class EditPlaylistController implements Initializable {
 
     PlaylistModel playlistModel;
 
-
+    /**
+     * Constructor til EditPlaylistControlleren
+     * @throws SQLException
+     */
     public EditPlaylistController() throws SQLException {
         playlistModel = new PlaylistModel();
     }
@@ -35,11 +38,20 @@ public class EditPlaylistController implements Initializable {
 
     }
 
+    /**
+     * Her sættes en playlist, så når vi skal edit, er textfield allerede udfyldt med playlistens nuværende navn.
+     * @param playlist
+     */
     public void setPlaylist(Playlist playlist) {
         TextInputPlaylist.setText(playlist.getName());
         playlistId.setText(Integer.toString(playlist.getPlaylistId()));
     }
 
+    /**
+     * Metod til at skifte tilbage til mainMenu vinduet.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void GoBackMainMenu(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) BackMainMenu.getScene().getWindow();
         Parent parent = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
@@ -47,6 +59,13 @@ public class EditPlaylistController implements Initializable {
         swich.setScene(scene);
     }
 
+
+    /**
+     * OnAction knappen der gør at vi kan edit en playlist, her udfylder den textfielded, så man ændrer på det rigtige
+     * navn og playlist.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void editPlaylist(ActionEvent actionEvent) throws IOException {
 
         int updatePlaylistId = Integer.parseInt(playlistId.getText());

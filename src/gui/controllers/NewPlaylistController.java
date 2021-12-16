@@ -22,10 +22,19 @@ public class NewPlaylistController {
     private PlaylistModel playlistModel;
     public Button BackMainMenu;
 
+    /**
+     * Constructor til NewPlaylistController, hvor variabler bliver instancieret.
+     * @throws SQLException
+     */
     public NewPlaylistController() throws SQLException {
         playlistModel = new PlaylistModel();
     }
 
+    /**
+     * Metode til at skifte tilbage til mainMenu stage.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void GoBackMainMenu(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) BackMainMenu.getScene().getWindow();
         Parent parent = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
@@ -33,6 +42,13 @@ public class NewPlaylistController {
         swich.setScene(scene);
     }
 
+    /**
+     * Metode der gemmer playlist.
+     * Derudover skifter den også stage til mainMenu, efter der er trykket save.
+     * @param event
+     * @throws IOException
+     * @throws SQLServerException
+     */
     public void savePlaylist(ActionEvent event) throws IOException, SQLServerException {
         uploadPlaylistInfo(TextInputPlaylist.getText());
 
@@ -43,6 +59,11 @@ public class NewPlaylistController {
 
     }
 
+    /**
+     * Metode der er med til at uploade playlistDataen til vores model layer.
+     * @param name
+     * @throws SQLServerException
+     */
     public void uploadPlaylistInfo(String name) throws SQLServerException {
         playlistModel.createPLaylist(name);
     }

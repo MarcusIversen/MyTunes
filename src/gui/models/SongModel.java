@@ -15,6 +15,10 @@ public class SongModel {
 
     private ISongManager songManager;
 
+
+    /**
+     * Metoder der er med til at forbinde vores CRUD til controlleren, hvilket er et led i vores trelags arkitektur
+     */
     public SongModel() {
         songManager = new SongManager();
         songsToBeViewed = FXCollections.observableArrayList();
@@ -25,11 +29,12 @@ public class SongModel {
         return songsToBeViewed;
     }
 
-    public Song getSingleSongById(int id) {
-        return songManager.getSingleSongById(id);
-    }
 
-
+    /**
+     * Songsearcher metode, der return et searchresult.
+     * @param text
+     * @return
+     */
     public List<Song> searchSongs(String text) {
         List<Song> searchResults = null;
 

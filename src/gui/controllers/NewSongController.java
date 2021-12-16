@@ -32,12 +32,20 @@ public class NewSongController {
     SongModel songModel;
     private MediaPlayer mediaPlayer;
 
+    /**
+     * Initialize metode, der instancierer songModel, men også sætter kategorierne i vores comboBox
+     */
     public void initialize() {
 
         songModel = new SongModel();
         categoryMenu.setItems(FXCollections.observableArrayList("Pop", "Hip Hop", "Rap", "Rock", "Dance", "Techno", "Latin music", "Indie Rock", "Classical", "Country", "Metal", "RnB"));
     }
 
+    /**
+     * Metode der skifter stagen tilbage til main menu.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void GoReturnMainMenu(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) ReturnMainMenu.getScene().getWindow();
         Parent parent = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
@@ -46,11 +54,24 @@ public class NewSongController {
 
     }
 
-
+    /**
+     * her uploades vores data til vores model layer, dataen får den fra getSongInfo.
+     * @param title
+     * @param artist
+     * @param category
+     * @param time
+     * @throws IOException
+     * @throws SQLException
+     */
     public void uploadSongInfo(String title, String artist, String category, int time) throws IOException, SQLException {
         songModel.createSong(title, artist, category, time, fileText.getText());
     }
 
+    /**
+     * her bliver songInfo læst og sendt videre til upload metoden ovenfor.
+     * @throws IOException
+     * @throws SQLException
+     */
     public void getSongInfo() throws IOException, SQLException {
         String uploadTitle = title();
         String uploadArtist = artist();
@@ -64,6 +85,11 @@ public class NewSongController {
         swich.setScene(scene);
     }
 
+
+    /**
+     * Metoder til at få texten fra textfields.
+     * @return "Txtfield".getTet();
+     */
 
     public String title() {
         String titleTemp = titleBar.getText();
@@ -86,7 +112,11 @@ public class NewSongController {
         return timeTemp;
     }
 
-
+    /**
+     * Filechooser metode, der både får filens path, men også tiden på sangen, her sætter den sangens tid ind i feltet
+     * "Time"
+     * @throws IOException
+     */
     public void chooseFile() throws IOException {
         FileChooser fileChooser = new FileChooser();
         File defaultDirectory = new File("src/dal/db/songFiles");
@@ -108,10 +138,6 @@ public class NewSongController {
                 }
             });
         } else System.out.println("File is not valid");
-    }
-
-    public void attachFile() throws IOException {
-
     }
 
 }

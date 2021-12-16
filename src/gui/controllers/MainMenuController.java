@@ -104,7 +104,10 @@ public class MainMenuController {
     //Brugt til decimal formatering til 2 decimaler
     private static final DecimalFormat dfSharp = new DecimalFormat("#:##");
 
-
+    /**
+     * Constructoren der instancierer vores variabler.
+     * @throws SQLException
+     */
     public MainMenuController() throws SQLException {
 
         songModel = new SongModel();
@@ -114,10 +117,13 @@ public class MainMenuController {
         playlistModel = new PlaylistModel();
     }
 
-    //*  her starter jeg programmet og sætter værdierne til at fortæller der er en song som er en String der hedder title et sted i koden. Den finder den og gør det
-    //* samme for de andre
+    /**
+     * Initialize metode, som hovedsageligt viser alt vores data i vores tabels.
+     * Udover det bruges vores volumeslider også i denne metode.
+     * @throws Exception
+     */
     public void initialize() throws Exception {
-//
+
         SongsPlayed = new ArrayList<Song>();
 
         TableTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -160,6 +166,11 @@ public class MainMenuController {
 
 
     }
+
+    /**
+     * mediaPlay metode, der er brugt til at afspille vores sange, samt pause dem.
+     * Der tjekkes for om en sang er igang med at spille eller pauset.
+     */
 
     public void mediaPlay() {
         boolean shouldRun = true;
@@ -215,12 +226,20 @@ public class MainMenuController {
 
     }
 
+    /**
+     * mediaPause, pause metoden til at stoppe vores musik.
+     */
+
     public void mediaPause() {
         IsPaused = true;
         mediaPlayer.pause();
     }
 
 
+    /**
+     * Endelige metod til at tilføje en sang til en playliste, når der trykkes på knappen, bliver en sang tilføjet til
+     * en playliste.
+     */
     public void addSongToPlaylist() {
 
         songsInPlaylistTable.refresh();
@@ -235,7 +254,9 @@ public class MainMenuController {
 
     }
 
-
+    /**
+     * Metode der bliver taget i brug når en sang bliver valgt og derefter trykkes delete.
+     */
     public void deleteSongInPlaylist() {
 
         songsInPlaylistTable.refresh();
@@ -249,6 +270,9 @@ public class MainMenuController {
         reloadSongsInPlaylistTable();
     }
 
+    /**
+     * Her reloader vi vores playlistTable, når en ny playlist bliver tilføjet eller edited.
+     */
     private void reloadPlaylistTable() {
         try {
             int index = PlaylistTable.getSelectionModel().getFocusedIndex();
@@ -259,6 +283,10 @@ public class MainMenuController {
         }
     }
 
+    /**
+     * Her reloader vi vores listView med sangene på en specifik playliste.
+     * dette sker når en playlist bliver valgt, en sang bliver tilføjet eller slettet osv.
+      */
     public void reloadSongsInPlaylistTable() {
 
         songsInPlaylistTable.refresh();
@@ -269,6 +297,13 @@ public class MainMenuController {
         songsInPlaylistTable.setItems(FXCollections.observableList(observableList));
     }
 
+    /**
+     * Metode der tages i brug, når knappen edit bliver trykket på.
+     * Sangen bliver edited, med det input du selv kommer med.
+     * Efter der bliver trykket bliver stagen ændret tilbage til main menu.
+     * @param actionEvent
+     * @throws IOException
+     */
 
     public void goEditSong(ActionEvent actionEvent) throws IOException {
         Song selectedItem = SongTable.getSelectionModel().getSelectedItem();
@@ -288,6 +323,15 @@ public class MainMenuController {
         editSongStage.show();
 
     }
+
+    /**
+     * Metode der tages i brug, når knappen edit bliver trykket på.
+     * Playlisten bliver edited, med det input du selv kommer med.
+     * Efter der bliver trykket bliver stagen ændret tilbage til main menu.
+     * @param actionEvent
+     * @throws IOException
+     */
+
 
     public void goEditPlaylist(ActionEvent actionEvent) throws IOException {
 
@@ -310,6 +354,12 @@ public class MainMenuController {
     }
 
 
+    /**
+     * metode der bliver taget i brug, når man vil tilføje en ny playliste.
+     * Trykkes der, åbnes et ny UI, hvor du kan lave en ny playliste.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void GoNewPlaylist(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) NewPlaylist.getScene().getWindow();
         Parent parent = FXMLLoader.load(getClass().getResource("../view/NewPlaylist.fxml"));
@@ -317,6 +367,12 @@ public class MainMenuController {
         swich.setScene(scene);
     }
 
+    /**
+     * Metode der bliver taget i brug, når man vil tilføje en ny sang.
+     * Trykkes der, åbnes et nyt UI, hvor du kan tilføje en ny sang.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void GoNewSong(ActionEvent actionEvent) throws IOException {
         Stage swich = (Stage) NewSong.getScene().getWindow();
         Parent parent = FXMLLoader.load(getClass().getResource("../view/NewSong.fxml"));
@@ -324,40 +380,37 @@ public class MainMenuController {
         swich.setScene(scene);
     }
 
+    /**
+     * Knap der lukker vores app.
+     */
     public void closeButton() {
         System.exit(0);
     }
+
+    /**
+     * Metode der tages i brug når man først vælger en sang og så trykker delete.
+     * Deletes der, fjernes sangen både fra vores table, men også fra vores database.
+     */
 
     public void deleteSong() {
         songModel.deleteSong(SongTable.getSelectionModel().getSelectedItem());
         SongTable.getItems().remove(SongTable.getSelectionModel().getSelectedItem());
     }
 
+    /**
+     * Metode der tages i brug når man først vælger en playlist og så trykker delete.
+     *  Deletes der, fjernes playlisten fra table og database, men kun hvis den er tom.
+     */
+
     public void deletePlaylist() {
         playlistModel.deletePlaylist(PlaylistTable.getSelectionModel().getSelectedItem());
         PlaylistTable.getItems().remove(PlaylistTable.getSelectionModel().getSelectedItem());
     }
 
-    public void deleteWarning() {
-        Stage window = new Stage();
-
-        window.setTitle("Warning");
-        window.setMinWidth(250);
-
-        Label label = new Label();
-        label.setText("You still have songs in your playlist");
-        Button closeButton = new Button("Close");
-        closeButton.setOnAction(e -> window.close());
-
-        VBox layout = new VBox(10);
-        layout.getChildren().addAll(label, closeButton);
-        layout.setAlignment(Pos.CENTER);
-
-        Scene scene = new Scene(layout);
-        window.setScene(scene);
-        window.show();
-    }
-
+    /**
+     * Metoden her bruges når man trykker på en playlist.
+     * Trykkes der, bliver playlistens sange vist i vores listview ved navn, SongsInPlaylistTable
+     */
     public void lookAtPlaylist() {
         Playlist playlist = PlaylistTable.getSelectionModel().getSelectedItem();
         this.SongsPlayed = new ArrayList<Song>();
@@ -374,7 +427,10 @@ public class MainMenuController {
     }
 
 
-    //TableView bliver generert
+    /**
+     * Tableview loaders, der er med til at vise vores data i vores tableviews.
+     * @param songData
+     */
 
     private void songTableViewLoad(ObservableList<Song> songData) {
         SongTable.setItems(getSongData());
@@ -388,12 +444,16 @@ public class MainMenuController {
         PlaylistTable.setItems(getPlaylistData());
     }
 
+    /**
+     * Dataen som skal vises i vores tables, bliver hentet ned her.
+     * @return
+     */
 
     public ObservableList<Song> getSearchData() {
         return searchData;
     }
 
-    //* her sætter jeg hvad song data er
+
     public ObservableList<Song> getSongData() {
         return songData;
     }
@@ -402,7 +462,10 @@ public class MainMenuController {
         return playlistData;
     }
 
-
+    /**
+     * Metode der bruges til at loade den data som vi får gennem vores søgefunktion.
+     * Søges der på en sangtitle, loades table'n for ny, med det der er søgt på.
+     */
     public void filterSongs() {
         try {
             searchData = FXCollections.observableList(songModel.searchSongs(filterBar.getText()));
@@ -412,6 +475,12 @@ public class MainMenuController {
         }
 
     }
+
+    /**
+     * Metode der bruges når knappen, sang tilbage bliver trykket på.
+     * Når der trykkes, henter den sangen tidligere i vores arrayliste og så afspilles den.
+     * @param event
+     */
 
     public void PreviousSongBtnClicked(ActionEvent event) {
         if (SongsPlayed.size() > 0) {
@@ -428,6 +497,12 @@ public class MainMenuController {
         }
     }
 
+    /**
+     * Metode der bruges når man trykker næste sang.
+     * Trykkes der, bliver den næste sang hentet fra vores arrayliste og så afspillet.
+     * @param event
+     */
+
     public void NextSongBtnClicked(ActionEvent event) {
         if (SongsPlayed.size() > 1) {
             IndexOfSongPlaying = IndexOfSongPlaying == SongsPlayed.size() - 1 ? 0 : IndexOfSongPlaying + 1;
@@ -436,12 +511,8 @@ public class MainMenuController {
         }
     }
 
-    public void timeSlideInSong(MouseEvent mouseEvent) {
-
-    }
-
     /**
-     * Knappen med pilen op, gør at man kan rykke en sang op i playlisten
+     * Knappen med pilen op, gør at man nu kan rykke en sang op i playlisten.
      */
 
     public void moveSongUp() {
