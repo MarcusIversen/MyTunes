@@ -15,12 +15,20 @@ public class DALManager implements IDALManager {
     private PlaylistDAO_DB playlistDAO;
     private SongsInPlaylistDAO_DB songsInPlaylistDAO;
 
+
+    /**
+     * Constructor til dalManager klassen.
+     */
     public DALManager() {
         songDAO = new SongDAO_DB();
         playlistDAO = new PlaylistDAO_DB();
         songsInPlaylistDAO = new SongsInPlaylistDAO_DB();
     }
 
+    /**
+     * Alt Data access layer CRUD tages i brug her, dette er et led i vores trelagsarkitektur.
+     * @return
+     */
 
     @Override
     public List<Song> getAllSongs() {

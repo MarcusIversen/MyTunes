@@ -16,7 +16,10 @@ public class Playlist {
         this.name = name;
     }
 
-
+    /**
+     * getDuration sørger for at tælle hver eneste sangs varighed og så lægges det sammen på playlisten.
+     * @return minuts og seconds
+     */
     public String getDuration() {
         int totalTime = 0;
         for (Song baseS : songs) {
@@ -32,9 +35,18 @@ public class Playlist {
 
     }
 
+    /**
+     * Metode til at få fat i antallet af sange på playlisten
+     * @return songs.size();
+     */
     public int getSongCount() {
         return songs.size();
     }
+
+    /**
+     * Get og setter metoder til vores playliste.
+     * @return
+     */
 
     public int getPlaylistId() {
         return PlaylistId;

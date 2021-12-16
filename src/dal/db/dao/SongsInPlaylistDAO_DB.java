@@ -16,6 +16,12 @@ public class SongsInPlaylistDAO_DB {
         databaseConnector = new MyDatabaseConnector();
     }
 
+    /**
+     * Read delen af CRUD, her laves der en liste, hvor alle sange på en playlist bliver hentet.
+     * @param PlaylistId
+     * @return allsongsinplaylist
+     */
+
     public List<Song> getAllSongsInPlaylist(int PlaylistId) {
         ArrayList<Song> allSongsInPlaylist = new ArrayList<>();
 
@@ -47,6 +53,12 @@ public class SongsInPlaylistDAO_DB {
     }
 
 
+    /**
+     * her er Create delen af CRUD, hvor du kan create og tilføje en sang til vores playlist(s).
+     * @param PlaylistId
+     * @param SongId
+     */
+
     public void addSongToPlaylist(int PlaylistId, int SongId) {
         try (Connection connection = databaseConnector.getConnection()) {
 
@@ -67,6 +79,11 @@ public class SongsInPlaylistDAO_DB {
         }
     }
 
+    /**
+     * delete delen af CRUD, hvor du kan slette en sang fra playlisten.
+     * @param PlaylistId
+     * @param SongId
+     */
 
     public void deleteSongInPlaylist(int PlaylistId, int SongId) {
         String sql = "DELETE FROM SongsInPlaylist WHERE PlaylistId =? AND SongId =?;";

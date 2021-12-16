@@ -13,12 +13,23 @@ public class SongManager implements ISongManager {
     private IDALManager dalManager;
 
 
+    /**
+     * Constructer til SongManager.
+     */
     public SongManager() {
         songSearcher = new SongSearcher();
         dalManager = new DALManager();
     }
 
 
+    /**
+     * C.R.U.D til Song
+     * createSong = Create
+     * GetSingleSongById, getAllSongs = read
+     * updateSong = update
+     * deleteSong = delete
+     * @return
+     */
     @Override
     public List<Song> getAllSongs() {
         return dalManager.getAllSongs();
@@ -44,6 +55,12 @@ public class SongManager implements ISongManager {
         dalManager.deleteSong(song);
     }
 
+
+    /**
+     * Her tages serachsongs i brug.
+     * @param query
+     * @return searchResult
+     */
     public List<Song> searchSongs(String query) {
         List<Song> allSongs = getAllSongs();
         List<Song> searchResult = songSearcher.search(allSongs, query);

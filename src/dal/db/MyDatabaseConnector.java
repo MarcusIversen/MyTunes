@@ -10,6 +10,9 @@ public class MyDatabaseConnector {
 
     private SQLServerDataSource dataSource;
 
+    /**
+     * Database connector constructoren, her skriver vi alle vores login data til databasen.
+     */
     public MyDatabaseConnector() {
         dataSource = new SQLServerDataSource();
         dataSource.setServerName("10.176.111.31");
@@ -19,6 +22,11 @@ public class MyDatabaseConnector {
         dataSource.setPortNumber(1433);
     }
 
+    /**
+     * Her bruges vores database login data til at connecte, ved brug af getConnection();
+     * @return
+     * @throws SQLServerException
+     */
     public Connection getConnection() throws SQLServerException {
         return dataSource.getConnection();
     }

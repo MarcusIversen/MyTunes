@@ -13,12 +13,28 @@ public class Song {
     private String URL;
 
 
+    /**
+     * Constructor til når en sang skal connectes til en playliste.
+     * @param songsInPlaylistId
+     * @param songId
+     * @param playlistId
+     */
+
     public Song(int songsInPlaylistId, int songId, int playlistId) {
         this.songsInPlaylistId = songsInPlaylistId;
         this.songId = songId;
         this.playlistId = playlistId;
     }
 
+    /**
+     * Constructor til song, denne bruges til alle andre metoder.
+     * @param id
+     * @param title
+     * @param artist
+     * @param category
+     * @param time
+     * @param URL
+     */
     public Song(int id, String title, String artist, String category, int time, String URL) {
 
         this.id = id;
@@ -28,6 +44,10 @@ public class Song {
         this.time = time;
         this.URL = URL;
     }
+
+    /**
+     * get og setter metoder til vores song class.
+     */
 
     public int getId() {
         return id;

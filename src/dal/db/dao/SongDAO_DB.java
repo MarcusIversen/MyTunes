@@ -16,6 +16,11 @@ public class SongDAO_DB {
         databaseConnector = new MyDatabaseConnector();
     }
 
+    /**
+     * Her findes read deln af song databasen. Der laves en liste som henter alle sangene ned fra databasen.
+     * Den henter id, title, artist, category, time og URL.
+     * @return allSongs
+     */
     public List<Song> getAllSongs() {
         ArrayList<Song> allSongs = new ArrayList<>();
 
@@ -48,6 +53,12 @@ public class SongDAO_DB {
         return allSongs;
     }
 
+
+    /**
+     * Her hentes hver enkelte sangs id fra databasen, det bruger vi til at sætte den ind på playlisten senere.
+     * @param id
+     * @return null;
+     */
     public Song getSingleSongById(int id) {
         try (Connection connection = databaseConnector.getConnection()) {
 
@@ -80,6 +91,16 @@ public class SongDAO_DB {
         return null;
     }
 
+    /**
+     * Create delen af CRUD, her kan man oprette en ny sang med det info der bliver tildelt i appen.
+     * Sange creates på dataene: title, artist, category, time og URL.3
+     * @param title
+     * @param artist
+     * @param category
+     * @param time
+     * @param URL
+     * @return
+     */
 
     public Song createSong(String title, String artist, String category, int time, String URL) {
 
@@ -108,6 +129,10 @@ public class SongDAO_DB {
     }
 
 
+    /**
+     * update delen af CRUD for songs, her opdateres sangen, igen på samme data som create.
+     * @param song
+     */
     public void updateSong(Song song) {
         try (Connection connection = databaseConnector.getConnection()) {
             String sql = "UPDATE Songs SET Title=?, Artist=?, Category=?, Time=?, URL=? WHERE Id=?;";
@@ -127,6 +152,10 @@ public class SongDAO_DB {
     }
 
 
+    /**
+     * delete delen af CRUD, her slettes en sang, dette gør den gennem et Id.
+     * @param song
+     */
     public void deleteSong(Song song) {
         try (Connection connection = databaseConnector.getConnection()) {
             String sql = "DELETE FROM Songs WHERE Id =?;";

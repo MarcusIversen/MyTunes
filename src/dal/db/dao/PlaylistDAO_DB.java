@@ -13,11 +13,20 @@ public class PlaylistDAO_DB {
     private MyDatabaseConnector databaseConnector;
     private SongsInPlaylistDAO_DB songsInPlaylistDAODb;
 
+    /**
+     * Constructor til vores DAO/DB layer.
+     * Her bliver der oprettet en connection til vores database og så benyttes vores C.R.U.D. til at arbejde med databasen
+     */
     public PlaylistDAO_DB() {
         databaseConnector = new MyDatabaseConnector();
         songsInPlaylistDAODb = new SongsInPlaylistDAO_DB();
     }
 
+    /**
+     * Read delen, hvor playlisten bliver læst ud fra vores database.
+     * @return allPlaylists
+     * @throws SQLException
+     */
     public List<Playlist> getAllPlaylists() throws SQLException {
         ArrayList<Playlist> allPlaylist = new ArrayList<>();
 
@@ -44,6 +53,13 @@ public class PlaylistDAO_DB {
         return allPlaylist;
     }
 
+    /**
+     * Create delen af CRUD, her oprettes en playlist i databasen.
+     * @param name
+     * @return null;
+     * @throws SQLServerException
+     */
+
     public Playlist createPlaylist(String name) throws SQLServerException {
 
         try (Connection connection = databaseConnector.getConnection()) {
@@ -67,6 +83,11 @@ public class PlaylistDAO_DB {
         return null;
     }
 
+    /**
+     * update delen af CRUD, her opdateres playlist i databasen, udfra de ændringer du laver i appen (name)
+     * @param playlist
+     * @throws SQLException
+     */
 
     public void updatePlaylist(Playlist playlist) throws SQLException {
         try (Connection connection = databaseConnector.getConnection()) {
@@ -83,6 +104,10 @@ public class PlaylistDAO_DB {
     }
 
 
+    /**
+     * delete delen af CRUD, her kan du delete en playlist i databasen.
+     * @param playlist
+     */
     public void deletePlaylist(Playlist playlist) {
         String sql = "DELETE FROM Playlist WHERE PlaylistId =?;";
         try (Connection connection = databaseConnector.getConnection()) {

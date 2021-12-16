@@ -14,11 +14,24 @@ public class PlaylistManager implements IPlaylistManager {
     PlaylistDAO_DB playlistDAODB;
     private IDALManager dalManager;
 
+    /**
+     * Constructor til playlistmanageren
+     */
     public PlaylistManager() {
         playlistDAODB = new PlaylistDAO_DB();
         dalManager = new DALManager();
     }
 
+    /**
+     * PLaylistmanager implements IPlaylistManager, derfor bruges alle metoder fra interfacet.
+     * C.R.U.D
+     * Creater playlist = create
+     * getAllPLaylists = read
+     * updatePlaylist = update
+     * deletePlaylist = delete
+     * @return
+     * @throws SQLException
+     */
     public List<Playlist> getAllPlaylists() throws SQLException {
         return dalManager.getAllPlaylists();
 

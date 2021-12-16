@@ -12,11 +12,21 @@ public class SongsInPlaylistManager implements ISongsInPlaylistManager {
     SongsInPlaylistDAO_DB songsInPlaylistDAO;
     private IDALManager dalManager;
 
+    /**
+     * Constructor til SongsInPlaylistManager, her instancieres vores variabler.
+     */
     public SongsInPlaylistManager() {
         songsInPlaylistDAO = new SongsInPlaylistDAO_DB();
         dalManager = new DALManager();
     }
 
+    /**
+     * Et halvt C.R.U.D, med kun create og delete
+     * addSongToPlaylist = create
+     * deleteSongInPLaylist = delete.
+     * @param PlaylistId
+     * @param SongId
+     */
 
     @Override
     public Song addSongToPlaylist(int PlaylistId, int SongId) {

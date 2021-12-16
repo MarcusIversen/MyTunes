@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IPlaylistManager {
+
     public List<Playlist> getAllPlaylists() throws SQLException;
 
 
