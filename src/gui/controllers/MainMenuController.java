@@ -20,14 +20,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -201,20 +200,15 @@ public class MainMenuController {
                 if (mediaPlayer != null) {
                     timeSlider.setValue((newDuration.toSeconds() / mediaPlayer.getTotalDuration().toSeconds()) * 100);
 
+
+                    //System.out.println("Player:" + observableValue + " | Changed from playing at: " + oldDuration + " to play at " + newDuration);
+
                     timeSlider.setValue((newDuration.toSeconds() / mediaPlayer.getTotalDuration().toSeconds()) * 100);
                     //if(mediaPlayer != null) {
                     //String totalTime = String.valueOf(mediaPlayer.getTotalDuration().toMillis() / 60000);
                     // CurrentTime.setText(String.valueOf(newDuration.toSeconds() / 60));
                     // MaxTime.setText(totalTime);
                 }
-
-                timeSlider.setValue((newDuration.toSeconds() / mediaPlayer.getTotalDuration().toSeconds()) * 100);
-               /*  if(mediaPlayer != null) {
-                    String totalTime = String.valueOf(mediaPlayer.getTotalDuration().toMillis() / 60000);
-                    CurrentTime.setText(String.valueOf(newDuration.toSeconds() / 60));
-                    MaxTime.setText(totalTime);
-                } */
-
             });
         }
 
@@ -374,6 +368,8 @@ public class MainMenuController {
         }
 
         songsInPlaylistTable.setItems(FXCollections.observableList(songs));
+
+        
 
     }
 
