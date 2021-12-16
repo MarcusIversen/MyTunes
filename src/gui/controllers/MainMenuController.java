@@ -439,4 +439,41 @@ public class MainMenuController {
     public void timeSlideInSong(MouseEvent mouseEvent) {
 
     }
+
+    /**
+     * Knappen med pilen op, gør at man kan rykke en sang op i playlisten
+     */
+
+    public void moveSongUp() {
+        if(songsInPlaylistTable.getSelectionModel().getSelectedItem() != null) // check if the user really selected a row in the table
+        {
+            if(songsInPlaylistTable.getSelectionModel().getSelectedIndex() != 0) // if the row first one so do nothing
+            {
+                int index = songsInPlaylistTable.getSelectionModel().getSelectedIndex(); // get the selected row index
+                Song x = (Song) songsInPlaylistTable.getSelectionModel().getSelectedItem(); // get the selected item
+                songsInPlaylistTable.getItems().set(index, songsInPlaylistTable.getItems().get(index-1)); // move the selected item up
+                songsInPlaylistTable.getItems().set(index-1, x); // change the row with the item in above
+                songsInPlaylistTable.getSelectionModel().select(index-1); // select the new row position
+            }
+        }
+    }
+
+    /**
+     * Knappen med pilen ned, gør at man kan rykke en sang ned i playlisten
+     */
+    public void moveSongDown() {
+        {
+            if(songsInPlaylistTable.getSelectionModel().getSelectedItem() != null)
+            {
+                if(songsInPlaylistTable.getSelectionModel().getSelectedIndex() != songsInPlaylistTable.getItems().size()-1) // if the row is in last so dont do nothing
+                {
+                    int index = songsInPlaylistTable.getSelectionModel().getSelectedIndex();
+                    Song x = (Song) songsInPlaylistTable.getSelectionModel().getSelectedItem();
+                    songsInPlaylistTable.getItems().set(index, songsInPlaylistTable.getItems().get(index+1));
+                    songsInPlaylistTable.getItems().set(index+1, x);
+                    songsInPlaylistTable.getSelectionModel().select(index+1);
+                }
+            }
+        }
+    }
 }
