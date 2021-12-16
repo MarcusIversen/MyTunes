@@ -9,27 +9,9 @@ public class Song {
     private String title;
     private String artist;
     private String category;
-    private String time;
-
-    public Song(String title, String artist, String category, String time, int id, String URL) {
-
-            this.title = title;
-            this.artist = artist;
-            this.category = category;
-            this.time = time;
-            this.URL = URL;
-            this.id = id;
-    }
-
-    public String getURL() {
-        return URL;
-    }
-
-    public void setURL(String URL) {
-        this.URL = URL;
-    }
-
+    private int time;
     private String URL;
+
 
     public Song(int songsInPlaylistId, int songId, int playlistId) {
         this.songsInPlaylistId = songsInPlaylistId;
@@ -37,7 +19,7 @@ public class Song {
         this.playlistId = playlistId;
     }
 
-    public Song(int id, String title, String artist, String category, String time, String URL) {
+    public Song(int id, String title, String artist, String category, int time, String URL) {
 
         this.id = id;
         this.title = title;
@@ -76,7 +58,7 @@ public class Song {
         this.category = category;
     }
 
-    public String getTime() {
+    public int getTime() {
         return time;
     }
 
@@ -84,6 +66,24 @@ public class Song {
         this.time = time;
     }
 
+    public String getURL() {
+        return URL;
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
+    }
+
+    public String getDuration() {
+        int minuts = (time)/60;
+        int seconds = (time)%60;
+        if (10 > seconds){
+            return minuts + ":0" + seconds;
+        } else {
+            return minuts + ":" + seconds;
+        }
+
+    }
     @Override
     public String toString() {
         return title + " - " + artist ;

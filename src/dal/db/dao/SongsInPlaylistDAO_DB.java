@@ -1,5 +1,6 @@
 package dal.db.dao;
 
+import be.Playlist;
 import be.Song;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.db.MyDatabaseConnector;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SongsInPlaylistDAO_DB {
-    private MyDatabaseConnector databaseConnector;
+    private final MyDatabaseConnector databaseConnector;
 
     public SongsInPlaylistDAO_DB() {
         databaseConnector = new MyDatabaseConnector();
@@ -25,15 +26,15 @@ public class SongsInPlaylistDAO_DB {
             statement.setInt(1, PlaylistId);
             statement.execute();
             ResultSet rs = statement.getResultSet();
-            while(rs.next()){
+            while (rs.next()) {
                 String name = rs.getString("Title");
                 String artist = rs.getString("Artist");
                 String category = rs.getString("Category");
-                String time = rs.getString("Time");
+                int time = rs.getInt("Time");
                 int id = rs.getInt("Id");
                 String url = rs.getString("URL");
-                if(url != null)
-                    allSongsInPlaylist.add(new Song(name, artist, category, time, id, url));
+                if (url != null)
+                    allSongsInPlaylist.add(new Song(id, name, artist, category, time, url));
 
             }
             return allSongsInPlaylist;
@@ -46,15 +47,15 @@ public class SongsInPlaylistDAO_DB {
     }
 
 
-    public void addSongToPlaylist(int PlaylistId, int SongId){
+    public void addSongToPlaylist(int PlaylistId, int SongId) {
         try (Connection connection = databaseConnector.getConnection()) {
 
             String sql = "INSERT INTO SongsInPlaylist (PlaylistId, SongId) VALUES (?,?);";
             System.out.println(PlaylistId + "" + SongId);
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                preparedStatement.setInt(1,PlaylistId);
-                preparedStatement.setInt(2,SongId);
+                preparedStatement.setInt(1, PlaylistId);
+                preparedStatement.setInt(2, SongId);
                 preparedStatement.executeUpdate();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -65,4 +66,18 @@ public class SongsInPlaylistDAO_DB {
             throwables.printStackTrace();
         }
     }
+
+
+    public void deleteSongInPlaylist(int PlaylistId, int SongId) {
+        String sql = "DELETE FROM SongsInPlaylist WHERE PlaylistId =? AND SongId =?;";
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1, PlaylistId);
+            preparedStatement.setInt(2, SongId);
+            preparedStatement.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

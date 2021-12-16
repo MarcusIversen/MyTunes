@@ -30,11 +30,12 @@ public class NewSongController {
     public TextField fileText;
 
     SongModel songModel;
+    private MediaPlayer mediaPlayer;
 
     public void initialize() {
 
         songModel = new SongModel();
-        categoryMenu.setItems(FXCollections.observableArrayList("Pop", "Rock", "Reggae", "Techno", "RnB"));
+        categoryMenu.setItems(FXCollections.observableArrayList("Pop", "Hip Hop", "Rap", "Rock", "Dance", "Techno", "Latin music", "Indie Rock", "Classical", "Country", "Metal", "RnB"));
     }
 
     public void GoReturnMainMenu(ActionEvent actionEvent) throws IOException {
@@ -46,7 +47,7 @@ public class NewSongController {
     }
 
 
-    public void uploadSongInfo(String title, String artist, String category, String time) throws IOException, SQLException {
+    public void uploadSongInfo(String title, String artist, String category, int time) throws IOException, SQLException {
         songModel.createSong(title, artist, category, time, fileText.getText());
     }
 
@@ -54,7 +55,7 @@ public class NewSongController {
         String uploadTitle = title();
         String uploadArtist = artist();
         String uploadCategory = category();
-        String uploadTime = time();
+        int uploadTime = (int) mediaPlayer.getMedia().getDuration().toSeconds();
         uploadSongInfo(uploadTitle, uploadArtist, uploadCategory, uploadTime);
 
         Stage swich = (Stage) ReturnMainMenu.getScene().getWindow();
@@ -95,7 +96,7 @@ public class NewSongController {
         if (selectedFile != null) {
             fileText.appendText("src/dal/db/songFiles/" + selectedFile.getName());
             Media pick = new Media(new File(selectedFile.getAbsolutePath()).toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(pick);
+            mediaPlayer = new MediaPlayer(pick);
             mediaPlayer.setOnReady(() -> {
                 String timeInSeconds = String.format("%1.0f", mediaPlayer.getMedia().getDuration().toSeconds());
                 int minuts = Integer.parseInt(timeInSeconds) / 60;

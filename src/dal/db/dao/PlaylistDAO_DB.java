@@ -1,7 +1,6 @@
 package dal.db.dao;
 
 import be.Playlist;
-import be.Song;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.db.MyDatabaseConnector;
 
@@ -13,31 +12,27 @@ public class PlaylistDAO_DB {
 
     private MyDatabaseConnector databaseConnector;
     private SongsInPlaylistDAO_DB songsInPlaylistDAODb;
-    public PlaylistDAO_DB()
-    {
+
+    public PlaylistDAO_DB() {
         databaseConnector = new MyDatabaseConnector();
-        songsInPlaylistDAODb =  new SongsInPlaylistDAO_DB();
+        songsInPlaylistDAODb = new SongsInPlaylistDAO_DB();
     }
+
     public List<Playlist> getAllPlaylists() throws SQLException {
         ArrayList<Playlist> allPlaylist = new ArrayList<>();
 
-        try(Connection connection = databaseConnector.getConnection())
-        {
+        try (Connection connection = databaseConnector.getConnection()) {
 
             String sql = "SELECT * FROM Playlist;";
 
             Statement statement = connection.createStatement();
 
-            if(statement.execute(sql))
-            {
+            if (statement.execute(sql)) {
                 ResultSet resultset = statement.getResultSet();
-                while(resultset.next())
-                {
+                while (resultset.next()) {
 
                     int id = resultset.getInt("PlaylistId");
-                   String name = resultset.getString("Name");
-                   String songs = resultset.getString("Songs");
-                   String time = resultset.getString("Duration");
+                    String name = resultset.getString("Name");
 
 
                     Playlist playlist = new Playlist(id, name);
@@ -49,10 +44,9 @@ public class PlaylistDAO_DB {
         return allPlaylist;
     }
 
-   public Playlist createPlaylist(String name) throws SQLServerException {
+    public Playlist createPlaylist(String name) throws SQLServerException {
 
-        try(Connection connection = databaseConnector.getConnection())
-        {
+        try (Connection connection = databaseConnector.getConnection()) {
             String sql = "INSERT INTO PLaylist(Name) values(?);";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -74,32 +68,28 @@ public class PlaylistDAO_DB {
     }
 
 
-
-    /**
-     * public void updatePlaylist(Playlist playlist) throws SQLException {
+    public void updatePlaylist(Playlist playlist) throws SQLException {
         try (Connection connection = databaseConnector.getConnection()) {
-            String sql = "UPDATE Playlist SET Name=?, Songs=?, Time=? WHERE Id=?;";
+            String sql = "UPDATE Playlist SET Name=? WHERE PlaylistId=?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, Playlist.getPlName());
-            preparedStatement.setString(2, String.valueOf(Playlist.getSongCount()));
-            preparedStatement.setDouble(3, Playlist.getPlTime());
+            preparedStatement.setString(1, playlist.getName());
+            preparedStatement.setInt(2, playlist.getPlaylistId());
             if (preparedStatement.executeUpdate() != 1) {
-                throw new Exception("Could not delete song");
+                throw new Exception("Could not edit song");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-     **/
 
 
-    public void deleteSong (Song song){
+    public void deletePlaylist(Playlist playlist) {
+        String sql = "DELETE FROM Playlist WHERE PlaylistId =?;";
         try (Connection connection = databaseConnector.getConnection()) {
-            String sql = "DELETE FROM Song WHERE Id =?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, song.getId());
+            preparedStatement.setInt(1, playlist.getPlaylistId());
             if (preparedStatement.executeUpdate() != 1) {
-                throw new Exception("Could not delete song");
+                throw new Exception("Could not delete playlist");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

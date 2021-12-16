@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class PlaylistModel {
     private ObservableList<Playlist> playlistToBeViewed;
@@ -19,12 +20,27 @@ public class PlaylistModel {
         playlistToBeViewed.addAll(playlistManager.getAllPlaylists());
     }
 
-    public ObservableList<Playlist> getPlaylistData(){
+    public List<Playlist> getPlaylist() throws SQLException {
+        List<Playlist> allPlaylist = playlistManager.getAllPlaylists();
+        return allPlaylist;
+    }
+
+    public ObservableList<Playlist> getPlaylistData() throws SQLException {
         return playlistToBeViewed;
     }
 
     public void createPLaylist(String name) throws SQLServerException {
         Playlist newPlaylist = playlistManager.createPlaylist(name);
         playlistToBeViewed.add(newPlaylist);
+    }
+
+
+    public void deletePlaylist(Playlist playlist) {
+        playlistManager.deletePlaylist(playlist);
+    }
+
+    public void updatePlaylist(Playlist playlist) {
+        playlistManager.updatePlaylist(playlist);
+
     }
 }

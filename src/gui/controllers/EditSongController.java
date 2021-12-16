@@ -1,5 +1,6 @@
 package gui.controllers;
 
+import be.Playlist;
 import be.Song;
 import com.sun.tools.javac.Main;
 import gui.models.SongModel;
@@ -40,6 +41,8 @@ public class EditSongController implements Initializable {
     public Button updateSongButton;
     public ComboBox categoryMenu;
     public TextField idBar;
+    private MediaPlayer mediaPlayer;
+    private int timeToSave = -1;
 
     public EditSongController() throws SQLException {
     }
@@ -47,7 +50,7 @@ public class EditSongController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        categoryMenu.setItems(FXCollections.observableArrayList("Pop", "Rock", "Reggae", "Techno", "RnB"));
+        categoryMenu.setItems(FXCollections.observableArrayList("Pop", "Hip Hop", "Rap", "Rock", "Dance", "Techno", "Latin music", "Indie Rock", "Classical", "Country", "Metal", "RnB"));
 
     }
 
@@ -61,28 +64,30 @@ public class EditSongController implements Initializable {
 
     public void updateSong(ActionEvent actionEvent) throws IOException {
 
+        int updateId = Integer.parseInt(idBar.getText());
         String updateTitle = titleBar.getText();
         String updateArtist = artistBar.getText();
         String updateCategory = categoryMenu.getSelectionModel().getSelectedItem().toString();
-        String updateTime = timeBar.getText();
-        int updateId = Integer.parseInt(idBar.getText());
+        int updateTime = timeToSave;
         String updateUrl = fileText.getText();
 
 
-        Song song = new Song( updateTitle, updateArtist, updateCategory, updateTime, updateId, updateUrl);
+        Song song = new Song(updateId, updateTitle, updateArtist, updateCategory, updateTime, updateUrl);
         songModel.updateSong(song);
 
         GoReturnMainMenu(actionEvent);
     }
 
-    public void setSong(Song song){
+    public void setSong(Song song) {
         titleBar.setText(song.getTitle());
         artistBar.setText(song.getArtist());
         categoryMenu.getSelectionModel().select(song.getCategory());
-        timeBar.setText(song.getTime());
+        timeBar.setText(song.getDuration());
         idBar.setText(Integer.toString(song.getId()));
         fileText.setText(song.getURL());
+        timeToSave = song.getTime();
     }
+
 
     public void chooseFile() throws IOException {
         FileChooser fileChooser = new FileChooser();
@@ -91,14 +96,15 @@ public class EditSongController implements Initializable {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("mp3 and wav files", "*.mp3", "*.wav"));
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            fileText.appendText("src/dal/db/songFiles/"+selectedFile.getName());
+            fileText.appendText("src/dal/db/songFiles/" + selectedFile.getName());
             Media pick = new Media(new File(selectedFile.getAbsolutePath()).toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(pick);
+            mediaPlayer = new MediaPlayer(pick);
             mediaPlayer.setOnReady(() -> {
                 String timeInSeconds = String.format("%1.0f", mediaPlayer.getMedia().getDuration().toSeconds());
-                int minuts = Integer.parseInt(timeInSeconds)/60;
-                int seconds = Integer.parseInt(timeInSeconds)%60;
-                if (10 > seconds){
+                timeToSave = (int) mediaPlayer.getMedia().getDuration().toSeconds();
+                int minuts = Integer.parseInt(timeInSeconds) / 60;
+                int seconds = Integer.parseInt(timeInSeconds) % 60;
+                if (10 > seconds) {
                     timeBar.setText(minuts + ":0" + seconds);
                 } else {
                     timeBar.setText(minuts + ":" + seconds);

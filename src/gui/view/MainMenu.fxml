@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
@@ -14,17 +15,23 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.MainMenuController">
+<AnchorPane prefHeight="632.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.MainMenuController">
    <children>
       <ButtonBar layoutX="43.0" layoutY="99.0" prefHeight="40.0" prefWidth="39.0" />
       <ButtonBar layoutX="53.0" layoutY="109.0" prefHeight="40.0" prefWidth="39.0" />
       <ButtonBar layoutX="53.0" layoutY="109.0" prefHeight="40.0" prefWidth="39.0" />
       <ButtonBar layoutX="53.0" layoutY="109.0" prefHeight="40.0" prefWidth="39.0" />
       <ButtonBar layoutX="28.0" layoutY="530.0" prefHeight="40.0" prefWidth="39.0" />
-      <Button fx:id="NewPlaylist" layoutX="47.0" layoutY="537.0" mnemonicParsing="false" onAction="#GoNewPlaylist" prefHeight="26.0" prefWidth="64.0" text="New.." />
+      <Button fx:id="NewPlaylist" layoutX="46.0" layoutY="537.0" mnemonicParsing="false" onAction="#GoNewPlaylist" prefHeight="26.0" prefWidth="64.0" text="New.." />
+
       <Button layoutX="121.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit.." />
-      <Button layoutX="183.0" layoutY="537.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Delete" />
-      <Button layoutX="391.0" layoutY="536.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Delete" />
+      <Button fx:id="playlistDeleter" layoutX="183.0" layoutY="537.0" mnemonicParsing="false" onAction="#deletePlaylist" prefHeight="26.0" prefWidth="64.0" text="Delete" />
+      <Button fx:id="songsInPlaylistDeleter" layoutX="391.0" layoutY="536.0" mnemonicParsing="false" onAction="#deleteSongInPlaylist" prefHeight="26.0" prefWidth="64.0" text="Delete" />
+
+      <Button fx:id="editPLaylistbutton" layoutX="121.0" layoutY="537.0" mnemonicParsing="false" onAction="#goEditPlaylist" prefHeight="26.0" prefWidth="52.0" text="Edit.." />
+      <Button fx:id="playlistDeleteBtn" layoutX="183.0" layoutY="537.0" mnemonicParsing="false" onAction="#deletePlaylist" prefHeight="26.0" prefWidth="64.0" text="Delete" />
+      <Button fx:id="songInPlaylistDeleteBtn" layoutX="391.0" layoutY="536.0" mnemonicParsing="false" onAction="#deleteSongInPlaylist" prefHeight="26.0" prefWidth="64.0" text="Delete" />
+
     <Button fx:id="closeButton" layoutX="846.0" layoutY="536.0" mnemonicParsing="false" onAction="#closeButton" prefHeight="26.0" prefWidth="64.0" text="Close" />
       <Button fx:id="songEditor" layoutX="609.0" layoutY="537.0" mnemonicParsing="false" onAction="#goEditSong" prefHeight="26.0" prefWidth="52.0" text="Edit.." />
       <Button fx:id="songDeleter" layoutX="668.0" layoutY="537.0" mnemonicParsing="false" onAction="#deleteSong" prefHeight="26.0" prefWidth="64.0" text="Delete" />
@@ -44,7 +51,7 @@
             <TableColumn fx:id="TableTime" minWidth="8.800048828125" prefWidth="72.00003662109373" text="Time" />
          </columns>
       </TableView>
-      <Slider fx:id="volumeSlider" layoutX="82.0" layoutY="71.0" max="110.0" min="-10.0" prefHeight="14.0" prefWidth="152.0" value="30.0" />
+      <Slider fx:id="volumeSlider" layoutX="82.0" layoutY="78.0" max="110.0" min="-10.0" prefHeight="14.0" prefWidth="162.0" value="30.0" />
       <Text layoutX="320.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Now Playing:">
          <font>
             <Font size="20.0" />
@@ -66,27 +73,27 @@
             </ImageView>
          </graphic>
       </Button>
-      <ImageView fitHeight="150.0" fitWidth="52.0" layoutX="147.0" layoutY="17.0" onMouseClicked="#mediaPlay" onTouchPressed="#mediaPlay" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="45.0" fitWidth="55.0" layoutX="159.0" layoutY="27.0" onMouseClicked="#mediaPlay" onTouchPressed="#mediaPlay" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Pictures/Play%20Button.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="82.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="85.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Pictures/Back%20Button.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="39.0" layoutX="196.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="205.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Pictures/Next%20Button.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="72.0" fitWidth="14.0" layoutX="66.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="56.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Pictures/Sound%20Logo.png" />
          </image>
       </ImageView>
-      <Button layoutX="474.0" layoutY="117.0" mnemonicParsing="false" onAction="#addSongToPlaylist" prefHeight="24.0" prefWidth="52.0">
+      <Button layoutX="469.0" layoutY="117.0" mnemonicParsing="false" onAction="#addSongToPlaylist" prefHeight="30.0" prefWidth="64.0">
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -109,23 +116,22 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="playButton" layoutX="147.0" layoutY="16.0" mnemonicParsing="false" onAction="#mediaPlay" prefHeight="50.0" prefWidth="52.0">
+      <Button fx:id="playButton" layoutX="161.0" layoutY="30.0" mnemonicParsing="false" onAction="#mediaPlay" prefHeight="45.0" prefWidth="41.0">
          <effect>
             <ColorInput />
          </effect>
       </Button>
-      <Button layoutX="196.0" layoutY="33.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="39.0">
-         <effect>
-            <ColorInput />
-         </effect>
-      </Button>
-      <Button layoutX="81.0" layoutY="33.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="39.0">
-         <effect>
-            <ColorInput />
-         </effect>
-      </Button>
-      <Button fx:id="pauseBtn" layoutX="273.0" layoutY="29.0" mnemonicParsing="false" onAction="#mediaPause" text="Button" />
-      <Button fx:id="PreviousSongBtn" layoutX="448.0" layoutY="29.0" mnemonicParsing="false" onAction="#PreviousSongBtnClicked" text="Back" />
+      <Button fx:id="PreviousSongBtn" layoutX="86.0" layoutY="42.0" mnemonicParsing="false" onAction="#PreviousSongBtnClicked" opacity="0.0" prefHeight="30.0" prefWidth="31.0" />
       <ListView fx:id="songsInPlaylistTable" layoutX="264.0" layoutY="119.0" prefHeight="398.0" prefWidth="190.0" />
+      <ImageView fitHeight="53.0" fitWidth="54.0" layoutX="112.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Pictures/Pause%20Button.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="pauseBtn" layoutX="115.0" layoutY="30.0" mnemonicParsing="false" onAction="#mediaPause" opacity="0.0" prefHeight="45.0" prefWidth="47.0" />
+      <Button fx:id="NextSongBtn" layoutX="205.0" layoutY="41.0" mnemonicParsing="false" onAction="#NextSongBtnClicked" opacity="0.0" prefHeight="27.0" prefWidth="31.0" text="Button" />
+      <Slider fx:id="timeSlider" layoutX="52.0" layoutY="583.0" onDragDetected="#timeSlideInSong" prefHeight="14.0" prefWidth="860.0" />
+      <Label fx:id="CurrentTime" layoutX="49.0" layoutY="601.0" />
+      <Label fx:id="MaxTime" layoutX="890.0" layoutY="601.0" />
    </children>
 </AnchorPane>

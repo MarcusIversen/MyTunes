@@ -32,7 +32,7 @@ public class SongDAO_DB {
                     String title = resultset.getString("Title");
                     String artist = resultset.getString("Artist");
                     String category = resultset.getString("Category");
-                    String time = resultset.getString("Time");
+                    int time = resultset.getInt("Time");
                     String URL = resultset.getString("URL");
 
 
@@ -59,16 +59,16 @@ public class SongDAO_DB {
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 if (resultSet.next()) {
-                        id = resultSet.getInt("Id");
-                        String title = resultSet.getString("Title");
-                        String artist = resultSet.getString("Artist");
-                        String category = resultSet.getString("Category");
-                        String time = resultSet.getString("Time");
-                        String URL = resultSet.getString("URL");
+                    id = resultSet.getInt("Id");
+                    String title = resultSet.getString("Title");
+                    String artist = resultSet.getString("Artist");
+                    String category = resultSet.getString("Category");
+                    int time = resultSet.getInt("Time");
+                    String URL = resultSet.getString("URL");
 
 
-                        Song song = new Song(id, title, artist, category, time, URL);
-                        return song;
+                    Song song = new Song(id, title, artist, category, time, URL);
+                    return song;
 
                 }
             }
@@ -81,9 +81,7 @@ public class SongDAO_DB {
     }
 
 
-
-
-    public Song createSong(String title, String artist, String category, String time, String URL) {
+    public Song createSong(String title, String artist, String category, int time, String URL) {
 
         try (Connection connection = databaseConnector.getConnection()) {
             String sql = "INSERT INTO Songs(Title, Artist, Category, Time, URL) values(?,?,?,?,?);";
@@ -92,7 +90,7 @@ public class SongDAO_DB {
                 preparedStatement.setString(1, title);
                 preparedStatement.setString(2, artist);
                 preparedStatement.setString(3, category);
-                preparedStatement.setString(4, time);
+                preparedStatement.setInt(4, time);
                 preparedStatement.setString(5, URL);
                 preparedStatement.executeUpdate();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -117,7 +115,7 @@ public class SongDAO_DB {
             preparedStatement.setString(1, song.getTitle());
             preparedStatement.setString(2, song.getArtist());
             preparedStatement.setString(3, song.getCategory());
-            preparedStatement.setString(4, song.getTime());
+            preparedStatement.setInt(4, song.getTime());
             preparedStatement.setString(5, song.getURL());
             preparedStatement.setInt(6, song.getId());
             if (preparedStatement.executeUpdate() != 1) {
@@ -144,26 +142,4 @@ public class SongDAO_DB {
         }
     }
 
-    /**public Song addSongToPLaylist(Song song)  {
-        try (Connection connection = databaseConnector.getConnection()){
-            String sql = "INSERT INTO SongsInPlaylist(Id, Title) values(?,?);";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
-                {
-                    preparedStatement.setString(1, id);
-                    preparedStatement.setString(2, title);
-
-                    Song song = new Song(id, title);
-                    return song;
-
-                }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        } catch (SQLServerException throwables) {
-            throwables.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
-**/
 }

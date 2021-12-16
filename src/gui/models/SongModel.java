@@ -15,7 +15,7 @@ public class SongModel {
 
     private ISongManager songManager;
 
-    public SongModel()   {
+    public SongModel() {
         songManager = new SongManager();
         songsToBeViewed = FXCollections.observableArrayList();
         songsToBeViewed.addAll(songManager.getAllSongs());
@@ -40,7 +40,7 @@ public class SongModel {
         return searchResults;
     }
 
-    public void createSong(String title, String artist, String category, String time, String URL) {
+    public void createSong(String title, String artist, String category, int time, String URL) {
         Song newSong = songManager.createSong(title, artist, category, time, URL);
         songsToBeViewed.add(newSong);
     }
