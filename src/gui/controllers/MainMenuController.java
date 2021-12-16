@@ -321,7 +321,7 @@ public class MainMenuController {
         EditSongController editSongController = parent.getController();
         editSongController.setSong(selectedItem);
         editSongStage.show();
-
+        mediaPlayer.stop();
     }
 
     /**
@@ -351,6 +351,7 @@ public class MainMenuController {
         EditPlaylistController editPlaylistController = parent.getController();
         editPlaylistController.setPlaylist(selectedItem);
         editPlaylistStage.show();
+        mediaPlayer.stop();
     }
 
 
@@ -365,6 +366,7 @@ public class MainMenuController {
         Parent parent = FXMLLoader.load(getClass().getResource("../view/NewPlaylist.fxml"));
         Scene scene = new Scene(parent);
         swich.setScene(scene);
+        mediaPlayer.stop();
     }
 
     /**
@@ -378,6 +380,7 @@ public class MainMenuController {
         Parent parent = FXMLLoader.load(getClass().getResource("../view/NewSong.fxml"));
         Scene scene = new Scene(parent);
         swich.setScene(scene);
+        mediaPlayer.stop();
     }
 
     /**
