@@ -264,6 +264,8 @@ public class MainMenuController {
             List<Song> observableList = (playlist.getSongs());
             songsInPlaylistTable.setItems(FXCollections.observableList(observableList));
 
+        
+
     }
 
 
